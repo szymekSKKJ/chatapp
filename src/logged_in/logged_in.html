@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300&display=swap" rel="stylesheet">
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <title>Chat app</title>
+</head>
+
+<body>
+    <div id="app">
+        <div id="Contacts">
+            <div id="upside">
+                <div id="first-wrapper">
+                    <div id="profile">
+                        <img src="">
+                    </div>
+                    <div id="title">
+                        <p>Messages</p>
+                    </div>
+                </div>
+                <div id="second-wrapper">
+                    <div id="searcher">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search">
+                    </div>
+                </div>
+            </div>
+            <div id="content">
+                <div id="friends-list">
+                </div>
+            </div>
+            <div id="add-contact-button">
+                <i class="far fa-plus"></i>
+            </div>
+        </div>
+        <div id="MyProfile">
+            <div id="content">
+                <div id="name-and-lastname">
+                    <p></p>
+                </div>
+                <div class="option new-window">
+                    <div id="title">
+                        <p>Change profile image</p>
+                    </div>
+                </div>
+                <div class="option new-window">
+                    <div id="title">
+                        <p>Change language</p>
+                    </div>
+                </div>
+                <div class="option new-window" id="blocked-users-option">
+                    <div id="title">
+                        <p>Blocked users</p>
+                    </div>
+                </div>
+                <div class="option fullscreen">
+                    <div id="title">
+                        <p>Open In fullscreen</p>
+                    </div>
+                </div>
+                <div class="option logout">
+                    <div id="title">
+                        <p>Log out</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="MyProfileOptions">
+            <div class="option" id="change-profile-image">
+                <div id="upside">
+                    <div id="back-button">
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                </div>
+                <div id="title">
+                    <p>Change profile image</p>
+                </div>
+                <div id="content">
+                    <div id="image-preview">
+                        <img src="">
+                        <i class="fad fa-plus-circle"></i>
+                    </div>
+                    <div id="short-message">
+                        <p>Select your profile image to display at friends list</p>
+                    </div>
+                    <div id="submit-button">
+                        <button>Save changes</button>
+                        <input type="file">
+                    </div>
+                </div>
+            </div>
+            <div class="option" id="change-language">
+                <div id="upside">
+                    <div id="back-button">
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                </div>
+                <div id="title">
+                    <p>Change language</p>
+                </div>
+                <div id="content">
+                    <div id="change-language-icons">
+                        <div class="icon" data-language="_pl">
+                            <img src="/assets/poland.png">
+                        </div>
+                        <div class="icon" data-language="">
+                            <img src="/assets/united-kingdom.png">
+                        </div>
+                    </div>
+                    <div id="short-message">
+                        <p>Select your language</p>
+                    </div>
+                    <div id="submit-button">
+                        <button>Save changes</button>
+                        <input type="file">
+                    </div>
+                </div>
+            </div>
+            <div class="option" id="blocked-users">
+                <div id="upside">
+                    <div id="back-button">
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                </div>
+                <div id="title">
+                    <p>Blocked users</p>
+                </div>
+                <div id="content">
+                    <div id="short-message">
+                        <p>Here is a list of users that you have ignored while that sent you a friend invitation or that you have blocked</p>
+                    </div>
+                    <div id="blocked-users-list">
+                        <div id="no-blocked-users">
+                            <p>No one user is blocked</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="SelectedContact">
+            <div id="upside">
+                <div id="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <div id="wrapper">
+                    <div id="contact-image">
+                        <img src="">
+                    </div>
+                    <div id="user-active"></div>
+                    <div id="wrapper1">
+                        <div id="contact-name">
+                            <p></p>
+                        </div>
+                        <div id="user-status">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div id="contact-options">
+                    <div id="settings" class="option">
+                        <i class="fal fa-ellipsis-v"></i>
+                    </div>
+                </div>
+            </div>
+            <div id="content"></div>
+            <div id="messages-status">
+                <p></p>
+            </div>
+            <div id="message-additions-content">
+                <div id="emojis" class="content">
+                    <div id="wrapper">
+                        <div id="last-chosen" class="category">
+
+                        </div>
+                        <div id="standard" class="category">
+
+                        </div>
+                    </div>
+                </div>
+                <div id="categories">
+                    <div class="category-button checked">
+                        <i class="fad fa-clock"></i>
+                    </div>
+                    <div class="category-button">
+                        <i class="fas fa-laugh-beam"></i>
+                    </div>
+                </div>
+            </div>
+            <div id="write-message">
+                <div id="message-addition-buttons">
+                    <div class="button" id="emojis-addition">
+                        <i class="fas fa-laugh-beam"></i>
+                    </div>
+                </div>
+                <textarea placeholder="Type a message" class="input-on-enter"></textarea>
+                <div id="send-button">
+                    <i class="fad fa-play"></i>
+                </div>
+            </div>
+        </div>
+        <div id="SelectedContactSettings">
+            <div id="upside">
+                <div id="close-button">
+                    <i class="far fa-times"></i>
+                </div>
+            </div>
+            <div id="wrapper">
+                <div id="contact-image">
+                    <img src="default_user.png">
+                </div>
+                <div id="contact-name">
+                    <p></p>
+                </div>
+            </div>
+            <div class="option">
+                <i class="fad fa-user-edit"></i>
+                <p>Change nickname</p>
+            </div>
+            <div class="option">
+                <i class="fad fa-palette"></i>
+                <p>Change theme</p>
+            </div>
+            <div class="option">
+                <i class="fad fa-lock-alt"></i>
+                <p>Block this user</p>
+            </div>
+        </div>
+        <div id="AddFriend">
+            <div id="upside">
+                <div id="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+            </div>
+            <div id="title">
+                <p>Add friends</p>
+            </div>
+            <div id="find-username" class="input-placeholder">
+                <input type="text" placeholder="Friend username" class="input-on-enter">
+                <p>Write your friend username to add him to your friend list</p>
+            </div>
+            <div id="submit-button">
+                <button>Add friend</button>
+            </div>
+        </div>
+        <div id="global-notification">
+            <p></p>
+        </div>
+        <div id="global-loading">
+            <div id="text">
+                <p>Loading</p>
+            </div>
+            <div id="dots">
+                <div class="dot">
+                    <p>.</p>
+                </div>
+                <div class="dot">
+                    <p>.</p>
+                </div>
+                <div class="dot">
+                    <p>.</p>
+                </div>
+            </div>
+        </div>
+        <div id="global-popout-message">
+            <div id="message">
+                <p>Are you sure you want to do that?</p>
+            </div>
+            <div class="option">
+                <p>YES</p>
+            </div>
+            <div class="option">
+                <p>NO</p>
+            </div>
+        </div>
+    </div>
+    <script src="../fontAwesome.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script type="module" src="../firebaseInitialize.js"></script>
+    <script type="module" src="loadFriendsList.js"></script>
+    <script type="module" src="eventListenersForApearComponentLoggedIn.js"></script>
+    <script type="module" src="sendingMessage.js"></script>
+    <script type="module" src="eventListenersForApearAddFriendComponent.js"></script>
+    <script type="module" src="addFriends.js"></script>
+    <script type="module" src="requestForFullscreen.js"></script>
+    <script type="module" src="hideMessagesStatusOnScroll.js"></script>
+    <script type="module" src="showMyProfileComponent.js"></script>
+    <script type="module" src="loadDataToMyProfileComponent.js"></script>
+    <script type="module" src="myProfileOptionsFunctions.js"></script>
+    <script type="module" src="showProfileOption.js"></script>
+    <script type="module" src="changeProfileImageFunctions.js"></script>
+    <script type="module" src="loadProfileImage.js"></script>
+    <script type="module" src="searchForMyContacts.js" defer></script>
+    <script type="module" src="saveLanguageOption.js"></script>
+    <script type="module" src="loadEmojisToMessageAdditions.js"></script>
+    <script type="module" src="showMessageAdditionsContent.js"></script>
+    <script type="module" src="switchBetweenEmojiCategories.js"></script>
+    <script type="module" src="addEmojiToLastChosen.js"></script>
+    <script type="module" src="loadLastChosenEmojis.js"></script>
+    <script type="module" src="addEmojiToWriteMessageInput.js" defer></script>
+    <script type="module" src="autoRisizeTextArea.js"></script>
+    <script type="module" src="../displayGlobalPopoutMessage.js"></script>
+    <script type="module" src="loadBlockedUsers.js"></script>
+    <script type="module" src="blockedUsersFunctions.js"></script>
+    <script type="module" src="./showSelectedContactSettingsComponent.js"></script>
+</body>
+
+</html>

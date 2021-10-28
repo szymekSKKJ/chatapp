@@ -1,0 +1,3410 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+::-webkit-backdrop {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2e3238), to(#23262a));
+  background-image: linear-gradient(#2e3238, #23262a);
+}
+
+::backdrop {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2e3238), to(#23262a));
+  background-image: linear-gradient(#2e3238, #23262a);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  max-width: 100vw;
+  min-height: 100vh;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2e3238), to(#23262a));
+  background-image: linear-gradient(#2e3238, #23262a);
+  font-family: 'Mitr', sans-serif;
+  color: #d3d8de;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  font-weight: 300;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body #app {
+  width: inherit;
+  height: inherit;
+  background-color: transparent;
+}
+
+body #app #Contacts #upside {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+@media screen and (min-width: 1024px) {
+  body #app #Contacts #upside {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+body #app #Contacts #upside #first-wrapper {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  padding: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media screen and (min-width: 1024px) {
+  body #app #Contacts #upside #first-wrapper {
+    width: auto;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+  }
+}
+
+body #app #Contacts #upside #first-wrapper #profile {
+  width: 50px;
+  height: 50px;
+  background-color: #2e3238;
+  border-radius: 100%;
+  border: solid 4px #22252a;
+  overflow: hidden;
+  -webkit-filter: drop-shadow(0px 0px 8px #17191c);
+          filter: drop-shadow(0px 0px 8px #17191c);
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  z-index: 1000000;
+  cursor: pointer;
+}
+
+body #app #Contacts #upside #first-wrapper #profile img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+body #app #Contacts #upside #first-wrapper #title {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  text-transform: capitalize;
+  font-size: 30px;
+  font-weight: 300;
+  margin-left: 12px;
+}
+
+body #app #Contacts #upside #second-wrapper {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media screen and (min-width: 1024px) {
+  body #app #Contacts #upside #second-wrapper {
+    width: 50%;
+  }
+}
+
+body #app #Contacts #upside #second-wrapper #searcher {
+  width: 90%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+body #app #Contacts #upside #second-wrapper #searcher i {
+  color: #23262a;
+  font-size: 20px;
+  position: absolute;
+  left: 10px;
+}
+
+body #app #Contacts #upside #second-wrapper #searcher input {
+  width: 100%;
+  height: 36px;
+  background-color: #e2e5e9;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  padding-left: 36px;
+  border-radius: 100px;
+  border: solid 2px #22252b;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+}
+
+body #app #Contacts #upside #second-wrapper #searcher input:focus {
+  border: solid 2px #e2e5e9;
+}
+
+body #app #Contacts #content {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  margin-top: 25px;
+  overflow: auto;
+}
+
+@media screen and (min-width: 1024px) {
+  body #app #Contacts #content {
+    width: 50%;
+    background-color: transparent;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+body #app #Contacts #content #friends-list {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+}
+
+body #app #Contacts #content #friends-list .friends-list-item {
+  width: 100%;
+  height: 75px;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0px 24px 0px 24px;
+  cursor: pointer;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+}
+
+body #app #Contacts #content #friends-list .friends-list-item .image {
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 100%;
+  border: solid 4px #22252a;
+  overflow: hidden;
+  -webkit-filter: drop-shadow(0px 0px 8px #17191c);
+          filter: drop-shadow(0px 0px 8px #17191c);
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+body #app #Contacts #content #friends-list .friends-list-item .image img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+body #app #Contacts #content #friends-list .friends-list-item .wrapper {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+body #app #Contacts #content #friends-list .friends-list-item .wrapper .name {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  font-size: 22px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body #app #Contacts #content #friends-list .friends-list-item .wrapper .name p {
+  white-space: nowrap;
+}
+
+body #app #Contacts #content #friends-list .friends-list-item .wrapper .name p:nth-child(2) {
+  padding-left: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+body #app #Contacts #content #friends-list .friends-list-item .wrapper .message {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  font-size: 14px;
+  color: #b6bec8;
+  position: relative;
+  margin-top: -5px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+body #app #Contacts #content #friends-list .friends-list-item .wrapper .message p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+body #app #Contacts #content #friends-list .friends-list-item .wrapper .message p span {
+  color: #4188be;
+  font-weight: 500;
+}
+
+body #app #Contacts #content #friends-list .friends-list-item .wrapper .message p img {
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
+  width: 14px;
+  height: 14px;
+  margin-left: 4px;
+}
+
+body #app #Contacts #content #friends-list .friends-list-item .wrapper .new-message {
+  color: #e2e5e9;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+body #app #Contacts #content #friends-list .friends-list-item .notification-number {
+  width: auto;
+  height: auto;
+  background-color: #4188be;
+  border-radius: 100px;
+  padding: 2px 8px 2px 8px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  -webkit-animation: popUp 333ms forwards ease-in-out;
+          animation: popUp 333ms forwards ease-in-out;
+}
+
+@-webkit-keyframes popUp {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes popUp {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+body #app #Contacts #content #friends-list .friends-list-item .accept-or-ignore-friend {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 4px;
+}
+
+body #app #Contacts #content #friends-list .friends-list-item .accept-or-ignore-friend .button {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  margin: 8px 8px 0px 8px;
+}
+
+body #app #Contacts #content #friends-list .friends-list-item .accept-or-ignore-friend .button i {
+  font-size: 44px;
+}
+
+body #app #Contacts #content #friends-list .friends-list-item .accept-or-ignore-friend .button .fa-check-square {
+  color: #02aa3a;
+}
+
+body #app #Contacts #content #friends-list .friends-list-item .accept-or-ignore-friend .button .fa-times-square {
+  color: #b30202;
+}
+
+body #app #Contacts #content #friends-list .found-friend {
+  background-color: #4188be;
+}
+
+body #app #Contacts #content #friends-list .new-friend {
+  -webkit-animation: showNewFriend 1500ms forwards ease-in-out;
+          animation: showNewFriend 1500ms forwards ease-in-out;
+}
+
+@-webkit-keyframes showNewFriend {
+  0% {
+    background-color: transparent;
+  }
+  5% {
+    background-color: rgba(65, 136, 190, 0.5);
+  }
+  15% {
+    background-color: rgba(65, 136, 190, 0.5);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes showNewFriend {
+  0% {
+    background-color: transparent;
+  }
+  5% {
+    background-color: rgba(65, 136, 190, 0.5);
+  }
+  15% {
+    background-color: rgba(65, 136, 190, 0.5);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+body #app #Contacts #add-contact-button {
+  width: 50px;
+  height: 50px;
+  background-color: #4188be;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: solid 2px #23262a;
+  border-radius: 100%;
+  font-size: 30px;
+  -webkit-filter: drop-shadow(0px 0px 4px #17191c);
+          filter: drop-shadow(0px 0px 4px #17191c);
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+body #app #MyProfile {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  display: none;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+  z-index: 100000;
+}
+
+body #app #MyProfile #content {
+  width: 80%;
+  height: 100%;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2e3238), to(#23262a));
+  background-image: linear-gradient(#2e3238, #23262a);
+  border-right: solid 4px #17191c;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transform: translateX(-100vw);
+          transform: translateX(-100vw);
+  -webkit-transition: 500ms;
+  transition: 500ms;
+}
+
+@media screen and (min-width: 1024px) {
+  body #app #MyProfile #content {
+    width: 25%;
+  }
+}
+
+body #app #MyProfile #content #name-and-lastname {
+  width: 100%;
+  height: 75px;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 20px;
+  padding-left: 50px;
+}
+
+body #app #MyProfile #content .option {
+  width: 100%;
+  height: 50px;
+  background-color: #2d323a;
+  border-top: solid 1px #23262a;
+  border-bottom: solid 1px #23262a;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+body #app #MyProfile #content .logout {
+  background-image: unset;
+  background-color: #ac393b;
+  font-weight: 500;
+}
+
+body #app #MyProfileOptions {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+body #app #MyProfileOptions #change-profile-image,
+body #app #MyProfileOptions #change-language,
+body #app #MyProfileOptions #blocked-users {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: none;
+}
+
+@media screen and (min-width: 1024px) {
+  body #app #MyProfileOptions #change-profile-image,
+  body #app #MyProfileOptions #change-language,
+  body #app #MyProfileOptions #blocked-users {
+    width: 33%;
+    height: 33%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+body #app #MyProfileOptions #change-profile-image #upside,
+body #app #MyProfileOptions #change-language #upside,
+body #app #MyProfileOptions #blocked-users #upside {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  padding: 24px;
+  position: absolute;
+  top: 0;
+}
+
+body #app #MyProfileOptions #change-profile-image #upside #back-button,
+body #app #MyProfileOptions #change-language #upside #back-button,
+body #app #MyProfileOptions #blocked-users #upside #back-button {
+  width: 36px;
+  height: 36px;
+  background-color: #4188be;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: solid 2px #23262a;
+  border-radius: 100%;
+  font-size: 20px;
+  -webkit-filter: drop-shadow(0px 0px 4px #17191c);
+          filter: drop-shadow(0px 0px 4px #17191c);
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  z-index: 1000000;
+  cursor: pointer;
+}
+
+body #app #MyProfileOptions #change-profile-image #title,
+body #app #MyProfileOptions #change-language #title,
+body #app #MyProfileOptions #blocked-users #title {
+  width: 75%;
+  height: auto;
+  background-color: transparent;
+  margin-top: 12vh;
+  font-size: 33px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+body #app #MyProfileOptions #change-profile-image #content,
+body #app #MyProfileOptions #change-language #content,
+body #app #MyProfileOptions #blocked-users #content {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body #app #MyProfileOptions #change-profile-image #image-preview {
+  width: 75vw;
+  height: 75vw;
+  background-color: #2e3238;
+  border-radius: 100%;
+  border: solid 4px #4188be;
+  -webkit-filter: drop-shadow(0px 0px 8px #17191c);
+          filter: drop-shadow(0px 0px 8px #17191c);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 1024px) {
+  body #app #MyProfileOptions #change-profile-image #image-preview {
+    width: 500px;
+    height: 500px;
+  }
+}
+
+body #app #MyProfileOptions #change-profile-image #image-preview img {
+  width: 100%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 100%;
+  z-index: 1000000;
+}
+
+body #app #MyProfileOptions #change-profile-image #image-preview i {
+  background-color: transparent;
+  font-size: 20vw;
+  color: #3f444d;
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 100000;
+}
+
+body #app #MyProfileOptions #change-profile-image #short-message {
+  width: 80%;
+  height: auto;
+  background-color: transparent;
+  text-align: center;
+  margin-top: 33px;
+}
+
+body #app #MyProfileOptions #change-profile-image #submit-button {
+  width: 80%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: all 333ms;
+  transition: all 333ms;
+}
+
+body #app #MyProfileOptions #change-profile-image #submit-button button {
+  width: 100%;
+  height: 40px;
+  background-color: #4188be;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  border-radius: 100px;
+  -webkit-transition: all 333ms;
+  transition: all 333ms;
+  color: #e2e5e9;
+  font-weight: bold;
+  margin-top: 33px;
+}
+
+body #app #MyProfileOptions #change-profile-image #submit-button input {
+  display: none;
+}
+
+body #app #MyProfileOptions #change-language #short-message {
+  width: 80%;
+  height: auto;
+  background-color: transparent;
+  text-align: center;
+  margin-top: 33px;
+}
+
+body #app #MyProfileOptions #change-language #change-language-icons {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+body #app #MyProfileOptions #change-language #change-language-icons .icon {
+  width: 100px;
+  height: 66px;
+  background-color: transparent;
+  overflow: hidden;
+  border-radius: 12px;
+  border: solid 4px #4188be;
+  opacity: 0.5;
+  -webkit-transition: 333ms;
+  transition: 333ms;
+}
+
+body #app #MyProfileOptions #change-language #change-language-icons .icon:hover {
+  opacity: 1;
+  -webkit-transform: scale(1.125);
+          transform: scale(1.125);
+  border: solid 4px transparent;
+}
+
+body #app #MyProfileOptions #change-language #change-language-icons .icon img {
+  width: 150%;
+  height: 150%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+body #app #MyProfileOptions #change-language #submit-button {
+  width: 80%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: all 333ms;
+  transition: all 333ms;
+}
+
+body #app #MyProfileOptions #change-language #submit-button button {
+  width: 100%;
+  height: 40px;
+  background-color: #4188be;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  border-radius: 100px;
+  -webkit-transition: all 333ms;
+  transition: all 333ms;
+  color: #e2e5e9;
+  font-weight: bold;
+  margin-top: 33px;
+}
+
+body #app #MyProfileOptions #change-language #submit-button input {
+  display: none;
+}
+
+body #app #MyProfileOptions #blocked-users #title {
+  margin-bottom: 12px;
+}
+
+body #app #MyProfileOptions #blocked-users #short-message {
+  width: 80%;
+  height: auto;
+  background-color: transparent;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+body #app #MyProfileOptions #blocked-users #blocked-users-list {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: scroll;
+}
+
+body #app #MyProfileOptions #blocked-users #blocked-users-list #no-blocked-users {
+  width: 100%;
+  height: 50px;
+  background-color: transparent;
+  color: #4b5057;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 50px;
+}
+
+body #app #MyProfileOptions #blocked-users #blocked-users-list .blocked-user {
+  width: 100%;
+  height: 50px;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-top: solid 1px #23262a;
+  border-bottom: solid 1px #23262a;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+body #app #MyProfileOptions #blocked-users #blocked-users-list .blocked-user .image {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  border-radius: 100%;
+  overflow: hidden;
+  border: solid 2px #22252a;
+}
+
+body #app #MyProfileOptions #blocked-users #blocked-users-list .blocked-user .image img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+body #app #MyProfileOptions #blocked-users #blocked-users-list .blocked-user .name {
+  width: auto;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 16px;
+}
+
+body #app #MyProfileOptions #blocked-users #blocked-users-list .blocked-user .name p {
+  font-size: 20px;
+}
+
+body #app #MyProfileOptions #blocked-users #blocked-users-list .blocked-user .name p:nth-child(2) {
+  margin-left: 4px;
+}
+
+body #app #SelectedContact {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+body #app #SelectedContact #upside {
+  width: 100%;
+  height: 70px;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: 0px;
+  -webkit-transform: translateY(-70px);
+          transform: translateY(-70px);
+  -webkit-animation: upsideSlideDown 500ms ease-in-out forwards;
+          animation: upsideSlideDown 500ms ease-in-out forwards;
+  z-index: 1000000;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+}
+
+@-webkit-keyframes upsideSlideDown {
+  0% {
+    -webkit-transform: translateY(-70px);
+            transform: translateY(-70px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+@keyframes upsideSlideDown {
+  0% {
+    -webkit-transform: translateY(-70px);
+            transform: translateY(-70px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+body #app #SelectedContact #upside #back-button {
+  width: 36px;
+  height: 36px;
+  background-color: #4188be;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: solid 2px #23262a;
+  border-radius: 100%;
+  font-size: 20px;
+  -webkit-filter: drop-shadow(0px 0px 4px #17191c);
+          filter: drop-shadow(0px 0px 4px #17191c);
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  margin-left: 12px;
+  z-index: 1000000;
+  cursor: pointer;
+}
+
+body #app #SelectedContact #upside #wrapper {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+body #app #SelectedContact #upside #wrapper #contact-image {
+  width: 50px;
+  height: 50px;
+  background-color: #2e3238;
+  border-radius: 100%;
+  border: solid 1px #22252a;
+  overflow: hidden;
+  -webkit-filter: drop-shadow(0px 0px 8px #17191c);
+          filter: drop-shadow(0px 0px 8px #17191c);
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  margin-right: 12px;
+  margin-left: 12px;
+  position: relative;
+}
+
+body #app #SelectedContact #upside #wrapper #contact-image img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+body #app #SelectedContact #upside #wrapper #user-active {
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+  background-color: #02aa3a;
+  position: absolute;
+  border: solid 4px #2e3238;
+  left: 50px;
+  top: 36px;
+  display: none;
+}
+
+body #app #SelectedContact #upside #wrapper #wrapper1 {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body #app #SelectedContact #upside #wrapper #wrapper1 #contact-name {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  font-size: 24px;
+  text-align: left;
+}
+
+body #app #SelectedContact #upside #wrapper #wrapper1 #user-status {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  font-size: 12px;
+  color: #8b97a7;
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+}
+
+body #app #SelectedContact #upside #contact-options {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: auto;
+  padding: 4px;
+  margin-right: 12px;
+}
+
+body #app #SelectedContact #upside #contact-options .option {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 2px;
+  margin-right: 2px;
+  font-size: 28px;
+  padding: 4px;
+}
+
+body #app #SelectedContact ::-webkit-scrollbar {
+  width: 0px;
+  background-clip: padding-box;
+}
+
+body #app #SelectedContact ::-webkit-scrollbar-track {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2e3238), to(#23262a));
+  background-image: linear-gradient(#2e3238, #23262a);
+}
+
+body #app #SelectedContact ::-webkit-scrollbar-thumb {
+  background-color: #393e46;
+  border-radius: 100px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+body #app #SelectedContact #content {
+  width: 100vw;
+  height: calc(100vh - 120px);
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: absolute;
+  top: 70px;
+  overflow: scroll;
+  overflow-x: hidden;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  -webkit-mask-position: left bottom;
+          mask-position: left bottom;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+  scroll-behavior: auto;
+}
+
+body #app #SelectedContact #content:hover {
+  -webkit-mask-position: left top;
+}
+
+body #app #SelectedContact #content .message-to {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  padding-right: 26px;
+  padding-left: 8px;
+  margin-bottom: 8px;
+}
+
+body #app #SelectedContact #content .message-to .message-content {
+  max-width: 80%;
+  height: auto;
+  background-color: #393e46;
+  padding: 8px;
+  border-radius: 8px 8px 0px 8px;
+  font-size: 16px;
+  word-wrap: break-word;
+  word-spacing: -2px;
+  line-height: 1.2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body #app #SelectedContact #content .message-to .message-content img {
+  width: 18px;
+  height: 18px;
+  position: relative;
+  top: 2px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+body #app #SelectedContact #content .message-to .message-content img:first-child {
+  margin-left: 4px;
+}
+
+@-webkit-keyframes showDateAndTime {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes showDateAndTime {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+body #app #SelectedContact #content .message-to .date-and-time {
+  max-width: 20%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 12px;
+  text-align: center;
+  color: #6e7d91;
+  margin-right: 5px;
+  opacity: 0;
+}
+
+body #app #SelectedContact #content .message-from {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-bottom: 8px;
+}
+
+body #app #SelectedContact #content .message-from .profile-image {
+  width: 36px;
+  height: 36px;
+  background-color: #2e3238;
+  border: solid 1px #22252a;
+  border-radius: 100%;
+  position: relative;
+  margin-right: 8px;
+  top: calc(100% - 36px);
+  overflow: hidden;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -webkit-transition: -webkit-transform 333ms;
+  transition: -webkit-transform 333ms;
+  transition: transform 333ms;
+  transition: transform 333ms, -webkit-transform 333ms;
+}
+
+body #app #SelectedContact #content .message-from .profile-image img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+body #app #SelectedContact #content .message-from .message-content {
+  max-width: 80%;
+  height: auto;
+  background-color: #4188be;
+  padding: 8px;
+  border-radius: 8px 8px 8px 0px;
+  font-size: 16px;
+  word-wrap: break-word;
+  word-spacing: -2px;
+  line-height: 1.2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body #app #SelectedContact #content .message-from .message-content img {
+  width: 18px;
+  height: 18px;
+  position: relative;
+  top: 2px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+body #app #SelectedContact #content .message-from .message-content img:first-child {
+  margin-left: 4px;
+}
+
+@keyframes showDateAndTime {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+body #app #SelectedContact #content .message-from .date-and-time {
+  max-width: 20%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 12px;
+  text-align: center;
+  color: #6e7d91;
+  margin-left: 5px;
+  opacity: 0;
+}
+
+body #app #SelectedContact #content .last-read-message {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  padding-right: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transform: translateY(-24px);
+          transform: translateY(-24px);
+}
+
+body #app #SelectedContact #content .last-read-message .message-from-image {
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  border-radius: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+body #app #SelectedContact #content .last-read-message .message-from-image img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+body #app #SelectedContact #content .hr {
+  width: 90%;
+  height: auto;
+  background-color: transparent;
+  border-radius: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 12px;
+  margin-bottom: 50px;
+}
+
+body #app #SelectedContact #content .hr .line {
+  width: 40%;
+  height: 2px;
+  background-color: #3a4049;
+}
+
+body #app #SelectedContact #content .hr p {
+  padding: 2px 8px 2px 8px;
+  color: #67717e;
+  background-color: transparent;
+}
+
+body #app #SelectedContact #messages-status {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #8b97a7;
+  padding: 0px 12px 0px 12px;
+  font-size: 12px;
+  right: 0px;
+  bottom: 55px;
+  position: fixed;
+  font-size: 16px;
+  -webkit-transition: opacity 250ms;
+  transition: opacity 250ms;
+}
+
+body #app #SelectedContact #message-additions-content {
+  width: 100%;
+  height: 300px;
+  background-color: #23262a;
+  position: fixed;
+  bottom: 0px;
+  -webkit-transform: translateY(300px);
+          transform: translateY(300px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0px 4px 12px 4px;
+}
+
+body #app #SelectedContact #message-additions-content ::-webkit-scrollbar-track {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#23262a));
+  background-image: linear-gradient(#23262a);
+}
+
+body #app #SelectedContact #message-additions-content .content {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+
+body #app #SelectedContact #message-additions-content #categories {
+  width: 100%;
+  height: 40px;
+  background-color: #2e3238;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  padding: 4px 0px 4px 0px;
+  border-top: solid 3px #17191c;
+}
+
+body #app #SelectedContact #message-additions-content #categories .category-button {
+  width: 42px;
+  height: 42px;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 24px;
+  border-top: 3px solid transparent;
+}
+
+body #app #SelectedContact #message-additions-content #categories .checked {
+  border-top: 3px solid #4188be;
+  color: #cfb823;
+  --fa-primary-opacity: 0.5;
+  --fa-secondary-opacity: 1;
+}
+
+body #app #SelectedContact #emojis #wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  -ms-scroll-snap-type: x mandatory;
+      scroll-snap-type: x mandatory;
+}
+
+body #app #SelectedContact #emojis #wrapper .category {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  overflow-y: scroll;
+  padding-bottom: 25px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  scroll-snap-align: center;
+}
+
+body #app #SelectedContact #emojis #wrapper .category .emoji-element {
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 4px;
+}
+
+body #app #SelectedContact #emojis #wrapper .category .emoji-element p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body #app #SelectedContact #emojis #wrapper .category .emoji-element p img {
+  width: 80%;
+  height: 80%;
+}
+
+body #app #SelectedContact #write-message {
+  width: 100%;
+  min-height: 50px;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  padding-left: 8px;
+  padding-right: 8px;
+  position: fixed;
+  bottom: 0px;
+  pointer-events: all;
+}
+
+body #app #SelectedContact #write-message #message-addition-buttons {
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  padding-left: 8px;
+  padding-right: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body #app #SelectedContact #write-message #message-addition-buttons .button {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  font-size: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 4px;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+}
+
+body #app #SelectedContact #write-message textarea {
+  width: 90%;
+  height: 36px;
+  background-color: #393e46;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding-top: 6px;
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-radius: 20px;
+  border: solid 3px #22252b;
+  -webkit-transition: all 500ms, height 0ms;
+  transition: all 500ms, height 0ms;
+  color: #e2e5e9;
+  overflow: visible;
+  resize: none;
+  font-family: 'Mitr', sans-serif;
+  line-height: 1;
+  overflow-y: hidden;
+}
+
+body #app #SelectedContact #write-message textarea:focus {
+  border: solid 3px #393e46;
+}
+
+body #app #SelectedContact #write-message #send-button {
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+body #app #SelectedContact #write-message-forbid {
+  width: 100%;
+  min-height: 50px;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  padding-left: 8px;
+  padding-right: 8px;
+  position: fixed;
+  bottom: 0px;
+  pointer-events: none;
+}
+
+body #app #SelectedContact #write-message-forbid #message-addition-buttons {
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  padding-left: 8px;
+  padding-right: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body #app #SelectedContact #write-message-forbid #message-addition-buttons .button {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  font-size: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 4px;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+}
+
+body #app #SelectedContact #write-message-forbid textarea {
+  width: 90%;
+  height: 36px;
+  background-color: #26292c;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding-top: 8px;
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-radius: 20px;
+  border: solid 2px transparent;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+  color: #626262;
+  overflow: visible;
+  resize: none;
+  font-family: 'Mitr', sans-serif;
+  line-height: 1;
+  overflow-y: hidden;
+}
+
+body #app #SelectedContact #write-message-forbid textarea:focus {
+  border: solid 2px transparent;
+}
+
+body #app #SelectedContact #write-message-forbid #send-button {
+  width: 50px;
+  height: 50px;
+  color: #626262;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+body #app #SelectedContact #new-message {
+  max-width: 150px;
+  height: auto;
+  background-color: #4188be;
+  padding: 4px 8px 4px 8px;
+  border-radius: 100px;
+  position: fixed;
+  bottom: 75px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  overflow: hidden;
+  font-size: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+  -webkit-animation: showNewMessage 8000ms ease-in-out forwards;
+          animation: showNewMessage 8000ms ease-in-out forwards;
+  -webkit-filter: drop-shadow(0px 0px 4px black);
+          filter: drop-shadow(0px 0px 4px black);
+  -webkit-transition: 250ms;
+  transition: 250ms;
+}
+
+body #app #SelectedContact #new-message img {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  border-radius: 100%;
+  overflow: hidden;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  border: solid 1px #23262a;
+}
+
+body #app #SelectedContact #new-message p {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@-webkit-keyframes showNewMessage {
+  0% {
+    width: 0px;
+  }
+  5% {
+    width: 125px;
+    opacity: 1;
+  }
+  95% {
+    width: 125px;
+    opacity: 1;
+  }
+  100% {
+    width: 0px;
+    opacity: 0;
+  }
+}
+
+@keyframes showNewMessage {
+  0% {
+    width: 0px;
+  }
+  5% {
+    width: 125px;
+    opacity: 1;
+  }
+  95% {
+    width: 125px;
+    opacity: 1;
+  }
+  100% {
+    width: 0px;
+    opacity: 0;
+  }
+}
+
+body #app #SelectedContactSettings {
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000000;
+  display: none;
+  opacity: 0;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+}
+
+body #app #SelectedContactSettings #upside {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  font-size: 34px;
+  padding-right: 16px;
+  position: absolute;
+  top: 0;
+}
+
+body #app #SelectedContactSettings #wrapper {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 25px;
+}
+
+body #app #SelectedContactSettings #wrapper #contact-image {
+  width: 150px;
+  height: 150px;
+  background-color: transparent;
+  position: relative;
+  -webkit-transform: translateY(-200px);
+          transform: translateY(-200px);
+  -webkit-transition: 750ms;
+  transition: 750ms;
+  border-radius: 100%;
+  overflow: hidden;
+  border: solid 3px #22252a;
+}
+
+body #app #SelectedContactSettings #wrapper #contact-image img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+body #app #SelectedContactSettings #wrapper #contact-name {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 25px;
+}
+
+body #app #SelectedContactSettings .option {
+  width: 100%;
+  height: 50px;
+  background-color: #2d323a;
+  font-size: 20px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 16px;
+}
+
+body #app #SelectedContactSettings .option i {
+  margin-right: 12px;
+}
+
+body #app #SelectedContactSettings .option:nth-child(3) i {
+  margin-right: 8px;
+}
+
+body #app #SelectedContactSettings .option:nth-child(5) i {
+  margin-right: 16px;
+}
+
+body #app #AddFriend {
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  body #app #AddFriend {
+    width: 33%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+body #app #AddFriend #upside {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  padding: 24px;
+  position: absolute;
+  top: 0;
+}
+
+body #app #AddFriend #upside #back-button {
+  width: 36px;
+  height: 36px;
+  background-color: #4188be;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: solid 2px #23262a;
+  border-radius: 100%;
+  font-size: 20px;
+  -webkit-filter: drop-shadow(0px 0px 4px #17191c);
+          filter: drop-shadow(0px 0px 4px #17191c);
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  z-index: 1000000;
+  cursor: pointer;
+}
+
+body #app #AddFriend #title {
+  width: 75%;
+  height: auto;
+  background-color: transparent;
+  margin-top: 12vh;
+  font-size: 33px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+body #app #AddFriend #find-username,
+body #app #AddFriend #submit-button {
+  width: 80%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: all 333ms;
+  transition: all 333ms;
+  text-align: center;
+}
+
+body #app #AddFriend #find-username i,
+body #app #AddFriend #submit-button i {
+  color: #23262a;
+  position: absolute;
+  left: 12px;
+  z-index: 1000000;
+}
+
+body #app #AddFriend #find-username input,
+body #app #AddFriend #submit-button input {
+  width: 100%;
+  height: 40px;
+  background-color: #e2e5e9;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  border-radius: 100px;
+  border: solid 2px #22252b;
+  -webkit-transition: all 333ms, -webkit-transform 250ms;
+  transition: all 333ms, -webkit-transform 250ms;
+  transition: all 333ms, transform 250ms;
+  transition: all 333ms, transform 250ms, -webkit-transform 250ms;
+  padding-left: 12px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+body #app #AddFriend #find-username input:focus,
+body #app #AddFriend #submit-button input:focus {
+  border: solid 2px #e2e5e9;
+}
+
+body #app #AddFriend #find-username button,
+body #app #AddFriend #submit-button button {
+  width: 100%;
+  height: 40px;
+  background-color: #4188be;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  border-radius: 100px;
+  -webkit-transition: all 333ms;
+  transition: all 333ms;
+  color: #e2e5e9;
+  font-weight: bold;
+}
+
+body #app #AddFriend #find-username {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body #app #AddFriend #submit-button {
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+body #app #LoginForm {
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  body #app #LoginForm {
+    width: 33%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+body #app #LoginForm #change-language {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding-top: 16px;
+  padding-right: 4px;
+}
+
+body #app #LoginForm #change-language .icon {
+  width: auto;
+  height: 20px;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 6px;
+  margin-right: 6px;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+  border: solid 1px gray;
+}
+
+body #app #LoginForm #change-language .icon img {
+  width: 150%;
+  height: 150%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+body #app #LoginForm #title {
+  width: 75%;
+  height: auto;
+  background-color: transparent;
+  margin-top: 12vh;
+  font-size: 33px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+body #app #LoginForm #user-login,
+body #app #LoginForm #user-password,
+body #app #LoginForm #submit-button {
+  width: 80%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: all 333ms;
+  transition: all 333ms;
+  position: relative;
+}
+
+body #app #LoginForm #user-login i,
+body #app #LoginForm #user-password i,
+body #app #LoginForm #submit-button i {
+  color: #23262a;
+  z-index: 1000000;
+  position: absolute;
+  left: 12px;
+}
+
+body #app #LoginForm #user-login input,
+body #app #LoginForm #user-password input,
+body #app #LoginForm #submit-button input {
+  width: 100%;
+  height: 40px;
+  background-color: #e2e5e9;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  border-radius: 100px;
+  border: solid 2px #22252b;
+  -webkit-transition: all 333ms, -webkit-transform 250ms;
+  transition: all 333ms, -webkit-transform 250ms;
+  transition: all 333ms, transform 250ms;
+  transition: all 333ms, transform 250ms, -webkit-transform 250ms;
+  padding-left: 33px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+body #app #LoginForm #user-login input:focus,
+body #app #LoginForm #user-password input:focus,
+body #app #LoginForm #submit-button input:focus {
+  border: solid 2px #e2e5e9;
+}
+
+body #app #LoginForm #user-login button,
+body #app #LoginForm #user-password button,
+body #app #LoginForm #submit-button button {
+  width: 100%;
+  height: 40px;
+  background-color: #4188be;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  border-radius: 100px;
+  -webkit-transition: all 333ms;
+  transition: all 333ms;
+  color: #e2e5e9;
+  font-weight: bold;
+}
+
+body #app #LoginForm #submit-button {
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+body #app #LoginForm #sign-up {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 12px;
+}
+
+body #app #LoginForm #sign-up p:nth-child(2) {
+  margin-left: 20px;
+  color: #4188be;
+}
+
+body #app #LoginForm #remember-me {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  padding: 4px 12px 4px 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 400px) {
+  body #app #LoginForm #remember-me {
+    font-size: 14px;
+  }
+}
+
+body #app #LoginForm #remember-me label {
+  margin-left: 6px;
+}
+
+body #app #LoginForm #remember-me p {
+  color: #4188be;
+  margin-left: 20px;
+}
+
+body #app #LoginForm #login-with {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  position: absolute;
+  bottom: 0px;
+  padding: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+@media screen and (max-height: 650px) {
+  body #app #LoginForm #login-with {
+    position: relative;
+  }
+}
+
+body #app #LoginForm #login-with #login-with-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+body #app #LoginForm #login-with #wrapper {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body #app #LoginForm #login-with #wrapper .login-with-item {
+  width: 44px;
+  height: 44px;
+  background-color: #4188be;
+  border-radius: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 6px;
+  margin-right: 6px;
+  -webkit-filter: drop-shadow(0px 0px 8px #17191c);
+          filter: drop-shadow(0px 0px 8px #17191c);
+  padding: 16px;
+}
+
+body #app #LoginForm #login-with #wrapper .login-with-item i {
+  font-size: 33px;
+}
+
+body #app #SignupForm {
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  body #app #SignupForm {
+    width: 33%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+body #app #SignupForm #title {
+  width: 75%;
+  height: auto;
+  background-color: transparent;
+  margin-top: 12vh;
+  font-size: 33px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+body #app #SignupForm .row {
+  width: 80%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body #app #SignupForm .row:last-child {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body #app #SignupForm .row #user-first-name,
+body #app #SignupForm .row #user-last-name,
+body #app #SignupForm .row #user-login,
+body #app #SignupForm .row #user-email,
+body #app #SignupForm .row #user-password,
+body #app #SignupForm .row #user-confirm-password,
+body #app #SignupForm .row #submit-button {
+  width: 48%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: all 333ms;
+  transition: all 333ms;
+}
+
+body #app #SignupForm .row #user-first-name i,
+body #app #SignupForm .row #user-last-name i,
+body #app #SignupForm .row #user-login i,
+body #app #SignupForm .row #user-email i,
+body #app #SignupForm .row #user-password i,
+body #app #SignupForm .row #user-confirm-password i,
+body #app #SignupForm .row #submit-button i {
+  color: #23262a;
+  position: absolute;
+  left: 12px;
+  z-index: 1000000;
+}
+
+body #app #SignupForm .row #user-first-name input,
+body #app #SignupForm .row #user-last-name input,
+body #app #SignupForm .row #user-login input,
+body #app #SignupForm .row #user-email input,
+body #app #SignupForm .row #user-password input,
+body #app #SignupForm .row #user-confirm-password input,
+body #app #SignupForm .row #submit-button input {
+  width: 100%;
+  height: 40px;
+  background-color: #e2e5e9;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  border-radius: 100px;
+  border: solid 2px #22252b;
+  -webkit-transition: all 333ms, -webkit-transform 250ms;
+  transition: all 333ms, -webkit-transform 250ms;
+  transition: all 333ms, transform 250ms;
+  transition: all 333ms, transform 250ms, -webkit-transform 250ms;
+  padding-left: 12px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+body #app #SignupForm .row #user-first-name input:focus,
+body #app #SignupForm .row #user-last-name input:focus,
+body #app #SignupForm .row #user-login input:focus,
+body #app #SignupForm .row #user-email input:focus,
+body #app #SignupForm .row #user-password input:focus,
+body #app #SignupForm .row #user-confirm-password input:focus,
+body #app #SignupForm .row #submit-button input:focus {
+  border: solid 2px #e2e5e9;
+}
+
+body #app #SignupForm .row #user-first-name button,
+body #app #SignupForm .row #user-last-name button,
+body #app #SignupForm .row #user-login button,
+body #app #SignupForm .row #user-email button,
+body #app #SignupForm .row #user-password button,
+body #app #SignupForm .row #user-confirm-password button,
+body #app #SignupForm .row #submit-button button {
+  width: 100%;
+  height: 40px;
+  background-color: #4188be;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  border-radius: 100px;
+  -webkit-transition: all 333ms;
+  transition: all 333ms;
+  color: #e2e5e9;
+  font-weight: bold;
+}
+
+body #app #SignupForm .row #user-login,
+body #app #SignupForm .row #user-email,
+body #app #SignupForm .row #user-password,
+body #app #SignupForm .row #user-confirm-password,
+body #app #SignupForm .row #submit-button {
+  width: 100%;
+}
+
+body #app #SignupForm .row #submit-button {
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+body #app #SignupForm .row #sign-in {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 12px;
+  white-space: nowrap;
+}
+
+body #app #SignupForm .row #sign-in p:nth-child(2) {
+  margin-left: 20px;
+  color: #4188be;
+}
+
+body #app #SignupForm .row #privacy-and-policy {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  padding: 4px 12px 4px 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 400px) {
+  body #app #SignupForm .row #privacy-and-policy {
+    font-size: 14px;
+  }
+}
+
+body #app #SignupForm .row #privacy-and-policy label {
+  margin-left: 6px;
+}
+
+body #app #SignupForm .row #privacy-and-policy p {
+  color: #4188be;
+  margin-left: 20px;
+}
+
+body #app #RememberPassowrdForm {
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  body #app #RememberPassowrdForm {
+    width: 33%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+body #app #RememberPassowrdForm #upside {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  padding: 24px;
+  position: absolute;
+  top: 0;
+}
+
+body #app #RememberPassowrdForm #upside #back-button {
+  width: 36px;
+  height: 36px;
+  background-color: #4188be;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: solid 2px #23262a;
+  border-radius: 100%;
+  font-size: 20px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  z-index: 1000000;
+  cursor: pointer;
+}
+
+body #app #RememberPassowrdForm #title {
+  width: 75%;
+  height: auto;
+  background-color: transparent;
+  margin-top: 12vh;
+  font-size: 33px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+body #app #RememberPassowrdForm #user-email,
+body #app #RememberPassowrdForm #submit-button {
+  width: 80%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: all 333ms;
+  transition: all 333ms;
+}
+
+body #app #RememberPassowrdForm #user-email i,
+body #app #RememberPassowrdForm #submit-button i {
+  color: #23262a;
+  position: absolute;
+  left: 12px;
+  z-index: 1000000;
+}
+
+body #app #RememberPassowrdForm #user-email input,
+body #app #RememberPassowrdForm #submit-button input {
+  width: 100%;
+  height: 40px;
+  background-color: #e2e5e9;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  border-radius: 100px;
+  border: solid 2px #22252b;
+  -webkit-transition: all 333ms, -webkit-transform 250ms;
+  transition: all 333ms, -webkit-transform 250ms;
+  transition: all 333ms, transform 250ms;
+  transition: all 333ms, transform 250ms, -webkit-transform 250ms;
+  padding-left: 12px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+body #app #RememberPassowrdForm #user-email input:focus,
+body #app #RememberPassowrdForm #submit-button input:focus {
+  border: solid 2px #e2e5e9;
+}
+
+body #app #RememberPassowrdForm #user-email button,
+body #app #RememberPassowrdForm #submit-button button {
+  width: 100%;
+  height: 40px;
+  background-color: #4188be;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  border-radius: 100px;
+  -webkit-transition: all 333ms;
+  transition: all 333ms;
+  color: #e2e5e9;
+  font-weight: bold;
+}
+
+body #app #RememberPassowrdForm #user-email {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body #app #RememberPassowrdForm #user-email p {
+  text-align: center;
+}
+
+body #app #RememberPassowrdForm #submit-button {
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+body #app #global-notification {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  position: fixed;
+  bottom: 10vh;
+  font-size: 18px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: none;
+  -webkit-transition: all 1000ms;
+  transition: all 1000ms;
+  -webkit-transform: translateY(-25px);
+          transform: translateY(-25px);
+  pointer-events: none;
+}
+
+body #app #global-notification p {
+  width: auto;
+  max-width: 80%;
+  background-color: transparent;
+  position: relative;
+  -webkit-box-shadow: 0px 0px 8px #17191c;
+          box-shadow: 0px 0px 8px #17191c;
+  border-radius: 4px;
+  padding: 4px 8px 4px 8px;
+  text-align: center;
+}
+
+@-webkit-keyframes failure {
+  0% {
+    -webkit-transform: translateX(-5px) translateY(-25px);
+            transform: translateX(-5px) translateY(-25px);
+  }
+  2% {
+    -webkit-transform: translateX(5px) translateY(-25px);
+            transform: translateX(5px) translateY(-25px);
+  }
+  4% {
+    -webkit-transform: translateX(-5px) translateY(-25px);
+            transform: translateX(-5px) translateY(-25px);
+  }
+  6% {
+    -webkit-transform: translateX(5px) translateY(-25px);
+            transform: translateX(5px) translateY(-25px);
+  }
+  8% {
+    -webkit-transform: translateX(-5px) translateY(-25px);
+            transform: translateX(-5px) translateY(-25px);
+  }
+  10% {
+    -webkit-transform: translateX(5px) translateY(-25px);
+            transform: translateX(5px) translateY(-25px);
+  }
+  12% {
+    -webkit-transform: translateX(-5px) translateY(-25px);
+            transform: translateX(-5px) translateY(-25px);
+  }
+  14% {
+    -webkit-transform: translateX(0px) translateY(-25px);
+            transform: translateX(0px) translateY(-25px);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes failure {
+  0% {
+    -webkit-transform: translateX(-5px) translateY(-25px);
+            transform: translateX(-5px) translateY(-25px);
+  }
+  2% {
+    -webkit-transform: translateX(5px) translateY(-25px);
+            transform: translateX(5px) translateY(-25px);
+  }
+  4% {
+    -webkit-transform: translateX(-5px) translateY(-25px);
+            transform: translateX(-5px) translateY(-25px);
+  }
+  6% {
+    -webkit-transform: translateX(5px) translateY(-25px);
+            transform: translateX(5px) translateY(-25px);
+  }
+  8% {
+    -webkit-transform: translateX(-5px) translateY(-25px);
+            transform: translateX(-5px) translateY(-25px);
+  }
+  10% {
+    -webkit-transform: translateX(5px) translateY(-25px);
+            transform: translateX(5px) translateY(-25px);
+  }
+  12% {
+    -webkit-transform: translateX(-5px) translateY(-25px);
+            transform: translateX(-5px) translateY(-25px);
+  }
+  14% {
+    -webkit-transform: translateX(0px) translateY(-25px);
+            transform: translateX(0px) translateY(-25px);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes success {
+  0% {
+    -webkit-transform: translateY(-25px);
+            transform: translateY(-25px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+@keyframes success {
+  0% {
+    -webkit-transform: translateY(-25px);
+            transform: translateY(-25px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+body #app #global-loading {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+  -webkit-animation: showUpGlobalLoading 5000ms ease-in-out infinite;
+          animation: showUpGlobalLoading 5000ms ease-in-out infinite;
+  display: none;
+  z-index: 1000000;
+}
+
+body #app #global-loading #text {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+}
+
+body #app #global-loading #text p {
+  font-size: 36px;
+}
+
+body #app #global-loading #dots {
+  width: auto;
+  height: 50px;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+}
+
+body #app #global-loading #dots .dot {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 4px;
+  margin-right: 4px;
+  -webkit-animation: dotsAnimation 2000ms ease-in-out infinite;
+          animation: dotsAnimation 2000ms ease-in-out infinite;
+}
+
+body #app #global-loading #dots .dot:first-child {
+  margin-left: 8px;
+}
+
+body #app #global-loading #dots .dot:nth-child(2) {
+  -webkit-animation-delay: 200ms;
+          animation-delay: 200ms;
+}
+
+body #app #global-loading #dots .dot:nth-child(3) {
+  -webkit-animation-delay: 400ms;
+          animation-delay: 400ms;
+}
+
+body #app #global-loading #dots .dot p {
+  font-size: 66px;
+}
+
+@-webkit-keyframes dotsAnimation {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  25% {
+    -webkit-transform: translateY(-8px);
+            transform: translateY(-8px);
+  }
+  50% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+@keyframes dotsAnimation {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  25% {
+    -webkit-transform: translateY(-8px);
+            transform: translateY(-8px);
+  }
+  50% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+@-webkit-keyframes showUpGlobalLoading {
+  0% {
+    -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes showUpGlobalLoading {
+  0% {
+    -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
+
+body #app #global-popout-message {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1000000;
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+  display: none;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+  -webkit-animation: showUpGlobalPopoutMessage 500ms ease-in-out forwards;
+          animation: showUpGlobalPopoutMessage 500ms ease-in-out forwards;
+}
+
+body #app #global-popout-message #message {
+  max-width: 80%;
+  height: auto;
+  background-color: transparent;
+  position: absolute;
+  top: 20%;
+  font-size: 22px;
+  text-align: center;
+  font-weight: bold;
+}
+
+body #app #global-popout-message .option {
+  width: 100px;
+  height: auto;
+  background-color: #ac393b;
+  padding: 10px 16px 10px 16px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+body #app #global-popout-message .option:nth-child(2) {
+  background-color: #1c975b;
+}
+
+@-webkit-keyframes showUpGlobalPopoutMessage {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes showUpGlobalPopoutMessage {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+body #app .single-emoji {
+  width: 36px;
+  height: 36px;
+  background-color: transparent;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  -webkit-transform: translateY(300px);
+          transform: translateY(300px);
+  display: none;
+  z-index: 1000000;
+  pointer-events: none;
+}
+
+body #app .single-emoji img {
+  width: 100%;
+}
+
+body #app .single-emoji:nth-last-child(5n+1) {
+  bottom: 0px;
+  -webkit-animation: flyUp 3000ms ease-in forwards;
+          animation: flyUp 3000ms ease-in forwards;
+}
+
+body #app .single-emoji:nth-last-child(5n+1) img {
+  width: 110%;
+  -webkit-transform: rotate(10deg);
+          transform: rotate(10deg);
+}
+
+body #app .single-emoji:nth-last-child(5n+2) {
+  bottom: 50px;
+  -webkit-animation: flyUp 3250ms ease-in forwards 50ms;
+          animation: flyUp 3250ms ease-in forwards 50ms;
+}
+
+body #app .single-emoji:nth-last-child(5n+2) img {
+  width: 120%;
+  -webkit-transform: rotate(5deg);
+          transform: rotate(5deg);
+}
+
+body #app .single-emoji:nth-last-child(5n+3) {
+  bottom: 100px;
+  -webkit-animation: flyUp 3500ms ease-in forwards 100ms;
+          animation: flyUp 3500ms ease-in forwards 100ms;
+}
+
+body #app .single-emoji:nth-last-child(5n+3) img {
+  width: 130%;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+
+body #app .single-emoji:nth-last-child(5n+4) {
+  bottom: 150px;
+  -webkit-animation: flyUp 3750ms ease-in forwards 150ms;
+          animation: flyUp 3750ms ease-in forwards 150ms;
+}
+
+body #app .single-emoji:nth-last-child(5n+4) img {
+  width: 140%;
+  -webkit-transform: rotate(-10deg);
+          transform: rotate(-10deg);
+}
+
+body #app .single-emoji:nth-last-child(5n+5) {
+  bottom: 200px;
+  -webkit-animation: flyUp 4000ms ease-in forwards 200ms;
+          animation: flyUp 4000ms ease-in forwards 200ms;
+}
+
+body #app .single-emoji:nth-last-child(5n+5) img {
+  width: 150%;
+  -webkit-transform: rotate(-15deg);
+          transform: rotate(-15deg);
+}
+
+body #app .single-emoji:nth-last-of-type(30n+1) {
+  left: 3%;
+  -webkit-animation-delay: 200ms;
+          animation-delay: 200ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+2) {
+  left: 6%;
+  -webkit-animation-delay: 600ms;
+          animation-delay: 600ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+3) {
+  left: 9%;
+  -webkit-animation-delay: 250ms;
+          animation-delay: 250ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+4) {
+  left: 12%;
+  -webkit-animation-delay: 700ms;
+          animation-delay: 700ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+5) {
+  left: 15%;
+  -webkit-animation-delay: 200ms;
+          animation-delay: 200ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+6) {
+  left: 18%;
+  -webkit-animation-delay: 300ms;
+          animation-delay: 300ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+7) {
+  left: 21%;
+  -webkit-animation-delay: 100ms;
+          animation-delay: 100ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+8) {
+  left: 24%;
+  -webkit-animation-delay: 400ms;
+          animation-delay: 400ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+9) {
+  left: 27%;
+  -webkit-animation-delay: 200ms;
+          animation-delay: 200ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+10) {
+  left: 30%;
+  -webkit-animation-delay: 350ms;
+          animation-delay: 350ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+11) {
+  left: 33%;
+  -webkit-animation-delay: 150ms;
+          animation-delay: 150ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+12) {
+  left: 36%;
+  -webkit-animation-delay: 700ms;
+          animation-delay: 700ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+13) {
+  left: 39%;
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+14) {
+  left: 42%;
+  -webkit-animation-delay: 350ms;
+          animation-delay: 350ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+15) {
+  left: 45%;
+  -webkit-animation-delay: 850ms;
+          animation-delay: 850ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+16) {
+  left: 48%;
+  -webkit-animation-delay: 600ms;
+          animation-delay: 600ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+17) {
+  left: 51%;
+  -webkit-animation-delay: 800ms;
+          animation-delay: 800ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+18) {
+  left: 54%;
+  -webkit-animation-delay: 600ms;
+          animation-delay: 600ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+19) {
+  left: 57%;
+  -webkit-animation-delay: 850ms;
+          animation-delay: 850ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+20) {
+  left: 60%;
+  -webkit-animation-delay: 200ms;
+          animation-delay: 200ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+21) {
+  left: 63%;
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+22) {
+  left: 66%;
+  -webkit-animation-delay: 400ms;
+          animation-delay: 400ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+23) {
+  left: 69%;
+  -webkit-animation-delay: 800ms;
+          animation-delay: 800ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+24) {
+  left: 72%;
+  -webkit-animation-delay: 900ms;
+          animation-delay: 900ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+25) {
+  left: 75%;
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+26) {
+  left: 78%;
+  -webkit-animation-delay: 700ms;
+          animation-delay: 700ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+27) {
+  left: 81%;
+  -webkit-animation-delay: 350ms;
+          animation-delay: 350ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+28) {
+  left: 84%;
+  -webkit-animation-delay: 450ms;
+          animation-delay: 450ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+29) {
+  left: 87%;
+  -webkit-animation-delay: 250ms;
+          animation-delay: 250ms;
+}
+
+body #app .single-emoji:nth-last-of-type(30n+30) {
+  left: 90%;
+  -webkit-animation-delay: 500ms;
+          animation-delay: 500ms;
+}
+
+@-webkit-keyframes flyUp {
+  0% {
+    -webkit-transform: translateY(300px);
+            transform: translateY(300px);
+  }
+  100% {
+    -webkit-transform: translateY(-110vh);
+            transform: translateY(-110vh);
+  }
+}
+
+@keyframes flyUp {
+  0% {
+    -webkit-transform: translateY(300px);
+            transform: translateY(300px);
+  }
+  100% {
+    -webkit-transform: translateY(-110vh);
+            transform: translateY(-110vh);
+  }
+}
+/*# sourceMappingURL=styles.css.map */

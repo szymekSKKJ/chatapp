@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Chat app</title>
+</head>
+
+<body>
+    <div id="app">
+        <div id="LoginForm">
+            <div id="change-language">
+                <div class="icon" data-language="_pl">
+                    <img src="/assets/poland.png">
+                </div>
+                <div class="icon" data-language="">
+                    <img src="/assets/united-kingdom.png">
+                </div>
+            </div>
+            <div id="title">
+                <p>Log In!</p>
+            </div>
+            <div id="user-login" class="input-placeholder">
+                <input type="text" placeholder="Email" class="input-on-enter">
+                <i class="fas fa-user-alt"></i>
+            </div>
+            <div id="user-password" class="input-placeholder">
+                <input type="password" placeholder="Password" class="input-on-enter">
+                <i class="fas fa-lock-alt"></i>
+            </div>
+            <div id="remember-me">
+                <input id="remember-me-button" type="checkbox">
+                <label for="remember-me-button">Remember me</label>
+                <p id="forgot-password-button">Forgot password?</p>
+            </div>
+            <div id="submit-button">
+                <button>Log In</button>
+            </div>
+            <div id="sign-up">
+                <p>Don't have an account?</p>
+                <p>Sign Up!</p>
+            </div>
+            <div id="login-with">
+                <div id="login-with-title">
+                    <p>Or log In with:</p>
+                </div>
+                <div id="wrapper">
+                    <div class="login-with-item" id="login-with-facebook">
+                        <i class="fab fa-facebook-square"></i>
+                    </div>
+                    <div class="login-with-item">
+                        <i class="fab fa-google"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="SignupForm">
+            <div id="title">
+                <p>Sign Up!</p>
+            </div>
+            <div class="row">
+                <div id="user-first-name" class="input-placeholder">
+                    <input type="text" placeholder="First name" class="input-on-enter">
+                </div>
+                <div id="user-last-name" class="input-placeholder">
+                    <input type="text" placeholder="Last name" class="input-on-enter">
+                </div>
+            </div>
+            <div class="row">
+                <div id="user-login" class="input-placeholder">
+                    <input type="text" placeholder="Username" class="input-on-enter">
+                </div>
+            </div>
+            <div class="row">
+                <div id="user-email" class="input-placeholder">
+                    <input type="text" placeholder="Email" class="input-on-enter">
+                </div>
+            </div>
+            <div class="row">
+                <div id="user-password" class="input-placeholder">
+                    <input type="password" placeholder="Password" class="input-on-enter">
+                </div>
+            </div>
+            <div class="row">
+                <div id="user-confirm-password" class="input-placeholder">
+                    <input type="password" placeholder="Confirm password" class="input-on-enter">
+                </div>
+            </div>
+            <div class="row">
+                <div id="privacy-and-policy">
+                    <input id="privacy-and-policy-button" type="checkbox" class="input-on-enter">
+                    <label for="privacy-and-policy-button">I agree with privacy and policy</label>
+                </div>
+            </div>
+            <div class="row">
+                <div id="submit-button">
+                    <button>Sign Up</button>
+                </div>
+            </div>
+            <div class="row">
+                <div id="sign-in">
+                    <p>Already have an account?</p>
+                    <p>Sign In!</p>
+                </div>
+            </div>
+        </div>
+        <div id="RememberPassowrdForm">
+            <div id="upside">
+                <div id="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+            </div>
+            <div id="title">
+                <p>Remember password</p>
+            </div>
+            <div id="user-email" class="input-placeholder">
+                <input type="text" placeholder="Email" class="input-on-enter">
+                <p>We will send you an email with reset password procedure</p>
+            </div>
+            <div id="submit-button">
+                <button>Send email</button>
+            </div>
+        </div>
+        <div id="global-notification">
+            <p></p>
+        </div>
+        <div id="global-loading">
+            <div id="text">
+                <p>Loading</p>
+            </div>
+            <div id="dots">
+                <div class="dot">
+                    <p>.</p>
+                </div>
+                <div class="dot">
+                    <p>.</p>
+                </div>
+                <div class="dot">
+                    <p>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../fontAwesome.js"></script>
+    <script type="module" src="../firebaseInitialize.js"></script>
+    <script type="module" src="eventListenersForApearComponentIndex.js"></script>
+    <script type="module" src="LoginFormInputAnimation.js"></script>
+    <script type="module" src="SignupFormInputAnimation.js"></script>
+    <script type="module" src="loginAuthorization.js"></script>
+    <script type="module" src="signupAuthorization.js"></script>
+    <script type="module" src="automaticLogin.js"></script>
+    <script type="module" src="sendEmailforgotPassword.js"></script>
+    <script type="module" src="signInByFacebook.js"></script>
+    <script type="module" src="saveUserLanguage.js"></script>
+</body>
+
+</html>
