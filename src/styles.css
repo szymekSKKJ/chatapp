@@ -2136,7 +2136,9 @@ body #app #LoginForm {
           align-items: center;
   position: fixed;
   top: 0;
-  left: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 @media screen and (min-width: 1024px) {
@@ -2411,7 +2413,9 @@ body #app #SignupForm {
   display: none;
   position: fixed;
   top: 0;
-  left: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 @media screen and (min-width: 1024px) {
@@ -2626,7 +2630,9 @@ body #app #RememberPassowrdForm {
   display: none;
   position: fixed;
   top: 0;
-  left: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 @media screen and (min-width: 1024px) {
