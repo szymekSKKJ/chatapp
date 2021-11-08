@@ -18,6 +18,7 @@ const ifUserChooseYes = async(uid, id) => {
 }
 
 blockedUsersOption.addEventListener('click', async() => {
+    let counter = 0;
     const auth = getAuth();
     onAuthStateChanged(auth, async(user) => {
         if (user) {
@@ -26,11 +27,14 @@ blockedUsersOption.addEventListener('click', async() => {
             querySnapshot.forEach((doc) => {
                 const { firstName, lastName, isFriend, img, id } = doc.data();
                 if (isFriend === false) {
+                    if (counter === 0) {
+                        blockedUsers.innerHTML = '';
+                    }
                     const blockedUser = document.createElement('div');
                     blockedUser.classList.add('blocked-user');
                     blockedUser.innerHTML = `
                     <div class="image">
-                        <img src="${img}">
+                        <img src="${img === null ? 'default_user.png' : img}">
                     </div>
                     <div class="name">
                         <p>${firstName}</p>
@@ -39,6 +43,7 @@ blockedUsersOption.addEventListener('click', async() => {
                    `;
                     blockedUsers.appendChild(blockedUser);
                     addShowPopoutMessageOnClick(blockedUser, () => ifUserChooseYes(uid, id));
+                    counter++;
                 }
             });
         } else {

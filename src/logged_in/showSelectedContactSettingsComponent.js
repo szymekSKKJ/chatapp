@@ -24,7 +24,7 @@ showSelectedContactComponentSettingsButton.addEventListener('click', () => {
         profileImageElement.style.transform = 'translateY(0px)';
         SelectedContactSettingsComponent.style.backgroundColor = 'rgba(0, 0, 0, 0.75)';
         SelectedContactSettingsComponent.style.opacity = '1';
-    }, 100);
+    }, 50);
 });
 
 closeButton.addEventListener('click', () => {
@@ -37,7 +37,7 @@ closeButton.addEventListener('click', () => {
         setTimeout(() => {
             SelectedContactSettingsComponent.style.display = 'none';
         }, 500);
-    }, 100);
+    }, 50);
 });
 
 export { writeFullContactName };

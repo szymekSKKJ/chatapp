@@ -2,6 +2,7 @@ import { app } from '../firebaseInitialize.js';
 import { doc, updateDoc, collection, getDocs, onSnapshot, getFirestore, orderBy, limit, query, getDoc } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js";
 import ifMessageIncludesEmojiWithSymbols from './ifMessageIncludesEmojiWithSymbols.js';
 import { writeFullContactName as writeFullContactNameInUserSettings } from './showSelectedContactSettingsComponent.js';
+import { getFriendId } from './SelectedContactSettingsFunctions.js';
 const SelectedContactComponent = document.querySelector('#SelectedContact');
 const backButton = SelectedContactComponent.querySelector('#back-button');
 const messagesStatus = SelectedContactComponent.querySelector('#messages-status');
@@ -407,6 +408,7 @@ const loadUserDataToSelectedContactComponent = (firstName, lastName, imageUrl, l
     clearUnreadMessages(uid, id);
     writeUserStatus(uid, id);
     writeFullContactNameInUserSettings(firstName, lastName);
+    getFriendId(id);
 }
 
 export default loadUserDataToSelectedContactComponent;

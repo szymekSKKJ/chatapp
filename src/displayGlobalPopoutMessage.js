@@ -1,24 +1,34 @@
 const globalPopoutMessage = document.querySelector('#global-popout-message');
-const message = globalPopoutMessage.querySelector('#message p');
-const options = globalPopoutMessage.querySelectorAll('.option');
-
 const displayGlobalPopoutMessage = (messageContent, functionToExecute) => {
-    message.innerHTML = messageContent;
+    const message = globalPopoutMessage.querySelector('#message p');
+    const options = globalPopoutMessage.querySelectorAll('.option');
+    globalPopoutMessage.style.animation = 'showUpGlobalPopoutMessage 500ms ease-in-out forwards';
     globalPopoutMessage.style.display = 'flex';
-    options.forEach((option, index) => {
-        option.addEventListener('click', () => {
-            if (index === 0) {
-                functionToExecute();
-            }
-            globalPopoutMessage.style.animation = 'none';
+    message.innerHTML = `${messageContent}`;
+    
+    const ifPickedOption = (event) => {
+        globalPopoutMessage.style.animation = 'none';
+        const index = parseInt(event.target.dataset.index);
+        setTimeout(() => {
+            globalPopoutMessage.style.animation = 'showUpGlobalPopoutMessage 500ms ease-in-out forwards reverse';
             setTimeout(() => {
-                globalPopoutMessage.style.animation = 'showUpGlobalPopoutMessage 500ms ease-in-out forwards reverse';
-                setTimeout(() => {
-                    globalPopoutMessage.style.display = 'none';
-                    globalPopoutMessage.style.animation = 'none';
-                }, 750);
-            }, 25);
+                globalPopoutMessage.style.display = 'none';
+                globalPopoutMessage.style.animation = 'none';
+            }, 500);
+        }, 1);
+
+        if (index === 0) {
+            functionToExecute();
+        }
+        
+        options.forEach((option) => {
+            option.removeEventListener('click', ifPickedOption);
         });
+    }
+
+    options.forEach((option, index) => {
+        option.dataset.index = index;
+        option.addEventListener('click', ifPickedOption);
     });
 }
 

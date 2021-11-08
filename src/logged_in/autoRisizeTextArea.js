@@ -12,14 +12,14 @@ textarea.addEventListener("keydown", function(event) {
 textarea.addEventListener("input", (event) => {
     if (textarea.scrollHeight <= 36) {
         textarea.style.height = "36px";
-        content.scrollTop = content.scrollHeight;
         content.style.height = `calc(100vh - 120px)`;
+        content.scrollTop = content.scrollHeight;
         messagesStatus.style.bottom = `55px`;
     } else if (textarea.scrollHeight > 36) {
-        content.style.height = `calc(100vh - ${84 + textarea.scrollHeight}px)`;
-        messagesStatus.style.bottom = `${19 + textarea.scrollHeight}px`
         textarea.style.height = (textarea.scrollHeight) + "px";
+        content.style.height = `calc(100vh - ${84 + textarea.scrollHeight}px)`;
         content.scrollTop = content.scrollHeight;
+        messagesStatus.style.bottom = `${19 + textarea.scrollHeight}px`
     }
 }, false);
 
