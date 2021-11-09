@@ -107,7 +107,7 @@ submitButton.addEventListener('click', () => {
                 if (language === '_pl')
                     localStorage.setItem('error', 'Zostałeś wylogowany');
                 localStorage.setItem('error', 'You have been log out');
-                window.history.pushState("object or string", "Title", `../index/index${language}.html?`);
+                window.history.pushState("object or string", "Title", `../index/index.html?`);
                 window.location.reload(true);
             }).catch((error) => {
                 // An error happened.

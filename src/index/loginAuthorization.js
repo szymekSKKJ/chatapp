@@ -40,7 +40,7 @@ submitButton.addEventListener('click', () => {
                 }
                 localStorage.setItem('email', userLogin.value.trim());
                 localStorage.setItem('password', userPassword.value);
-                window.history.pushState("object or string", "Title", `/src/logged_in/logged_in${language === null ? '' : language}.html?`);
+                window.history.pushState("object or string", "Title", `/src/logged_in/logged_in.html?`);
                 window.location.reload(true);
                 globalLoading('hide');
             })
