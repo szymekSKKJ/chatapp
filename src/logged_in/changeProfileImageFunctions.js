@@ -39,8 +39,19 @@ const uploadImage = (file) => {
             });
 
         } else {
-            // User is signed out
-            // ...
+            const auth = getAuth();
+            signOut(auth).then(() => {
+                localStorage.removeItem('email');
+                localStorage.removeItem('password');
+                localStorage.removeItem('rememberMe');
+                if (language === '_pl')
+                    localStorage.setItem('error', 'Zostałeś wylogowany');
+                localStorage.setItem('error', 'You have been log out');
+                window.history.pushState("object or string", "Title", `../index/index${language}.html?`);
+                window.location.reload(true);
+            }).catch((error) => {
+                // An error happened.
+            });
         }
     });
 }

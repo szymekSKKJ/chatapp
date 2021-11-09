@@ -7,8 +7,8 @@ const displayGlobalPopoutMessage = (messageContent, functionToExecute) => {
     message.innerHTML = `${messageContent}`;
     
     const ifPickedOption = (event) => {
-        globalPopoutMessage.style.animation = 'none';
         const index = parseInt(event.target.dataset.index);
+        globalPopoutMessage.style.animation = 'none';
         setTimeout(() => {
             globalPopoutMessage.style.animation = 'showUpGlobalPopoutMessage 500ms ease-in-out forwards reverse';
             setTimeout(() => {

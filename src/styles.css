@@ -40,10 +40,6 @@ body #app {
   background-color: transparent;
 }
 
-body #app #Contacts {
-  display: none;
-}
-
 body #app #Contacts #upside {
   width: 100%;
   height: auto;
@@ -546,6 +542,7 @@ body #app #MyProfileOptions {
   position: fixed;
   top: 0;
   left: 0;
+  display: none;
 }
 
 body #app #MyProfileOptions #change-profile-image,
@@ -3140,6 +3137,79 @@ body #app #global-popout-message .option:nth-child(2) {
   100% {
     opacity: 1;
   }
+}
+
+body #app #global-error-fullspace {
+  width: 100vw;
+  height: 100vh;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2e3238), to(#23262a));
+  background-image: linear-gradient(#2e3238, #23262a);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  padding: 25px;
+}
+
+body #app #global-error-fullspace #icon {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  position: absolute;
+  font-size: 100px;
+  color: rgba(255, 255, 255, 0.25);
+  -webkit-transform: translateY(-200px);
+          transform: translateY(-200px);
+}
+
+body #app #global-error-fullspace #message {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+}
+
+body #app #global-error-fullspace #message p {
+  font-size: 24px;
+}
+
+body #app #global-error-fullspace #message p:nth-child(1) {
+  font-weight: bold;
+  font-size: 28px;
+}
+
+body #app #global-error-fullspace #back-button {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  color: #4188be;
+  font-size: 16px;
+  margin-top: 16px;
+}
+
+body #app #global-error-fullspace #error-code {
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 50px;
+  -webkit-transform: translateY(-200px);
+          transform: translateY(-200px);
+}
+
+body #app #global-error-fullspace #message, body #app #global-error-fullspace #back-button {
+  -webkit-transform: translateY(-100px);
+          transform: translateY(-100px);
 }
 
 body #app .single-emoji {

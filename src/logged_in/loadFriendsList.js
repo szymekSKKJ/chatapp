@@ -64,7 +64,7 @@ const listenNewMessages = (uid, id, notificationNumber, lastMessage) => {
     });
 }
 
-const whenNewFriend = (isFriend, friendsListItem, lastMessage, uid, id, firstName, lastName, img, notificationNumber) => {
+const whenNewFriend = (isFriend, friendsListItem, lastMessage, uid, id, firstName, lastName, img, notificationNumber, lastMessageContent) => {
     if (isFriend === null) {
         const acceptOrIgnoreFriend = document.createElement('div');
         acceptOrIgnoreFriend.classList.add('accept-or-ignore-friend');
@@ -91,9 +91,9 @@ const whenNewFriend = (isFriend, friendsListItem, lastMessage, uid, id, firstNam
                         isFriend: true
                     });
                     friendsListItem.removeChild(acceptOrIgnoreFriend);
-                    lastMessage.innerHTML = `
-                      <p>Powitaj nowego przyjaciela!</p>
-                      `;
+
+                    lastMessageContent === undefined ? lastMessage.innerHTML = `<p>Powitaj nowego przyjaciela!</p>` : lastMessage.innerHTML = lastMessageContent;
+                    
                     friendsListItem.addEventListener('click', () => {
                         const SelectedContactComponent = document.querySelector('#SelectedContact');
                         showAndHideComponent(SelectedContactComponent, ContactsComponent);
@@ -111,7 +111,7 @@ const whenNewFriend = (isFriend, friendsListItem, lastMessage, uid, id, firstNam
                     });
                     friendsListItem.style.display = 'none';
                     await updateDoc(doc(db, 'users', id, 'friends', uid), {
-                        isFriend: false
+                        isFriend: true
                     });
                 }
             });
@@ -174,7 +174,6 @@ const loadFriendList = async(firstName, lastName, username, id, img, unreadMessa
             lastMessage.innerHTML = `<p>Powitaj nowego przyjaciela!</p>`;
         }
 
-
         const notificationNumber = document.createElement('div');
         notificationNumber.classList.add('notification-number');
         friendsListItem.appendChild(notificationNumber);
@@ -189,13 +188,13 @@ const loadFriendList = async(firstName, lastName, username, id, img, unreadMessa
             lastMessage.classList.remove('new-message');
         }
 
-        whenNewFriend(isFriend, friendsListItem, lastMessage, uid, id, firstName, lastName, newLoadedImage, notificationNumber);
+        whenNewFriend(isFriend, friendsListItem, lastMessage, uid, id, firstName, lastName, newLoadedImage, notificationNumber, lastMessageContent);
 
         if (isFriend) {
             listenNewMessages(uid, id, notificationNumber, lastMessage);
         }
 
-        friendsListItem.addEventListener('click', async() => {
+        friendsListItem.addEventListener('click', async () => {
             if (isFriend) {
                 const SelectedContactComponent = document.querySelector('#SelectedContact');
                 showAndHideComponent(SelectedContactComponent, ContactsComponent);
@@ -224,6 +223,9 @@ const getUserFriendList = async(uid) => {
         loadFriendList(firstName, lastName, username, id, img, unreadMessagesNumber, lastMessage, isFriend, uid);
     });
     loadFirstnameAndLastnameToMyProfileComponent();
+    await updateDoc(doc(db, 'users', uid), {
+        lastOnline: new Date()
+    });
     globalLoading('hide');
 }
 

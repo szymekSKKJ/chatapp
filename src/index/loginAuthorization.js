@@ -25,9 +25,9 @@ window.addEventListener('load', () => {
 });
 
 submitButton.addEventListener('click', () => {
+    globalLoading('show');
     const auth = getAuth();
     const rememberMeLocalStorage = localStorage.getItem('rememberMe');
-    globalLoading('show');
     if (rememberMeLocalStorage) {
         userLogin.value = localStorage.getItem('email');
         userPassword.value = localStorage.getItem('password');

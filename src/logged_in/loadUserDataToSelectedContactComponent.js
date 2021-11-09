@@ -3,6 +3,7 @@ import { doc, updateDoc, collection, getDocs, onSnapshot, getFirestore, orderBy,
 import ifMessageIncludesEmojiWithSymbols from './ifMessageIncludesEmojiWithSymbols.js';
 import { writeFullContactName as writeFullContactNameInUserSettings } from './showSelectedContactSettingsComponent.js';
 import { getFriendId } from './SelectedContactSettingsFunctions.js';
+import displayGlobalErrorFullspace from '../displayGlobalErrorFullspace.js';
 const SelectedContactComponent = document.querySelector('#SelectedContact');
 const backButton = SelectedContactComponent.querySelector('#back-button');
 const messagesStatus = SelectedContactComponent.querySelector('#messages-status');
@@ -396,19 +397,29 @@ const writeUserStatus = async(uid, id) => {
         unsubscribeListenUserStatus();
         clearInterval(automaticUpdateStatusInterval);
     });
-
 }
 
-const loadUserDataToSelectedContactComponent = (firstName, lastName, imageUrl, lastMessage, uid, id) => {
-    const allMessagesSortedByDate = [];
-    content.innerHTML = '';
-    content.style.display = 'none';
-    loadContactNameAndImage(firstName, lastName, imageUrl);
-    loadAllMessages(allMessagesSortedByDate, lastMessage, uid, id, imageUrl);
-    clearUnreadMessages(uid, id);
-    writeUserStatus(uid, id);
-    writeFullContactNameInUserSettings(firstName, lastName);
-    getFriendId(id);
+const checkIfFriendIsMyFriend = async (uid, id) => {
+    const docSnap = await getDoc(doc(db, 'users', id, 'friends', uid));
+    const { isFriend } = docSnap.data();
+        if (isFriend === false || isFriend === null) {
+            displayGlobalErrorFullspace(backButton, SelectedContactComponent, '403');
+        }
+        return isFriend;
+    }
+
+const loadUserDataToSelectedContactComponent = async (firstName, lastName, imageUrl, lastMessage, uid, id) => {
+    if (await checkIfFriendIsMyFriend(uid, id) && await checkIfFriendIsMyFriend(uid, id) !== null) {
+        const allMessagesSortedByDate = [];
+        content.innerHTML = '';
+        content.style.display = 'none';
+        loadContactNameAndImage(firstName, lastName, imageUrl);
+        loadAllMessages(allMessagesSortedByDate, lastMessage, uid, id, imageUrl);
+        clearUnreadMessages(uid, id);
+        writeUserStatus(uid, id);
+        writeFullContactNameInUserSettings(firstName, lastName);
+        getFriendId(id);
+    }
 }
 
 export default loadUserDataToSelectedContactComponent;

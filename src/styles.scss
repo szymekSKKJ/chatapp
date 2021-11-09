@@ -27,7 +27,7 @@ body {
         height: inherit;
         background-color: transparent;
         #Contacts {
-            display: none;
+            //display: none;
             #upside {
                 width: 100%;
                 height: auto;
@@ -368,6 +368,7 @@ body {
             position: fixed;
             top: 0;
             left: 0;
+            display: none;
             #change-profile-image,
             #change-language,
             #blocked-users {
@@ -2087,6 +2088,61 @@ body {
                 100% {
                     opacity: 1;
                 }
+            }
+        }
+        #global-error-fullspace {
+            width: 100vw;
+            height: 100vh;
+            background-image: linear-gradient(#2e3238, #23262a);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 25px;
+            #icon {
+                width: auto;
+                height: auto;
+                background-color: transparent;
+                position: absolute;
+                font-size: 100px;
+                color: rgba(255, 255, 255, 0.25);
+                transform: translateY(-200px);
+            }
+            #message {
+                width: auto;
+                height: auto;
+                background-color: transparent;
+                p {
+                    font-size: 24px;
+                    &:nth-child(1) {
+                        font-weight: bold;
+                        font-size: 28px;
+                    }
+                }
+            }
+            #back-button {
+                width: auto;
+                height: auto;
+                background-color: transparent;
+                color: $primary-color;
+                font-size: 16px;
+                margin-top: 16px;
+            }
+            #error-code {
+                width: auto;
+                height: auto;
+                background-color: transparent;
+                color: rgba(255, 255, 255, 0.25);
+                font-size: 50px;
+                transform: translateY(-200px);
+                
+            }
+            #message, #back-button {
+                transform: translateY(-100px);
             }
         }
         .single-emoji {
