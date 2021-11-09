@@ -10,6 +10,7 @@ import loadFirstnameAndLastnameToMyProfileComponent from './loadDataToMyProfileC
 import ifMessageIncludesEmojiWithSymbols from './ifMessageIncludesEmojiWithSymbols.js';
 const ContactsComponent = document.querySelector('#Contacts');
 const SelectedContactComponent = document.querySelector('#SelectedContact');
+const friendsList = ContactsComponent.querySelector('#friends-list');
 const messagesStatus = SelectedContactComponent.querySelector('#messages-status');
 const language = localStorage.getItem('language');
 const db = getFirestore(app);
@@ -139,7 +140,6 @@ const checkIfUserChangedProfileImage = async(id, LastImg, friendImageElement, ui
 
 const loadFriendList = async(firstName, lastName, username, id, img, unreadMessagesNumber, lastMessageContent, isFriend, uid) => {
     if (isFriend || isFriend === null) {
-        const friendsList = ContactsComponent.querySelector('#friends-list');
 
         const friendsListItem = document.createElement('div');
         friendsListItem.classList.add('friends-list-item');
@@ -167,7 +167,9 @@ const loadFriendList = async(firstName, lastName, username, id, img, unreadMessa
         const lastMessage = document.createElement('div');
         lastMessage.classList.add('message');
         wrapper.appendChild(lastMessage);
-        getLastMessage(uid, id, lastMessage);
+        if (isFriend) {
+            getLastMessage(uid, id, lastMessage);
+        }
 
         if (lastMessageContent === '') {
             lastMessage.classList.add('new-message');
@@ -176,20 +178,21 @@ const loadFriendList = async(firstName, lastName, username, id, img, unreadMessa
 
         const notificationNumber = document.createElement('div');
         notificationNumber.classList.add('notification-number');
-        friendsListItem.appendChild(notificationNumber);
 
-        if (unreadMessagesNumber !== 0) {
-            notificationNumber.style.display = 'block';
-            notificationNumber.innerHTML = `<p>${unreadMessagesNumber}</p>`;
-            lastMessage.classList.add('new-message');
-        } else {
-            notificationNumber.style.display = 'none';
-            notificationNumber.innerHTML = `<p></p>`;
-            lastMessage.classList.remove('new-message');
+        if (isFriend) {
+            friendsListItem.appendChild(notificationNumber);
+            if (unreadMessagesNumber !== 0) {
+                notificationNumber.style.display = 'block';
+                notificationNumber.innerHTML = `<p>${unreadMessagesNumber}</p>`;
+                lastMessage.classList.add('new-message');
+            } else {
+                notificationNumber.style.display = 'none';
+                notificationNumber.innerHTML = `<p></p>`;
+                lastMessage.classList.remove('new-message');
+            }
         }
 
         whenNewFriend(isFriend, friendsListItem, lastMessage, uid, id, firstName, lastName, newLoadedImage, notificationNumber, lastMessageContent);
-
         if (isFriend) {
             listenNewMessages(uid, id, notificationNumber, lastMessage);
         }
@@ -216,13 +219,45 @@ const ifNotRememberMe = () => {
     }
 }
 
-const getUserFriendList = async(uid) => {
+let isLoadedListenIfNewFriendAddMe = false;
+const listenIfNewFriendAddMe = () => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const uid = user.uid;
+            const unsubscribeListenIfNewFriendAddMe = onSnapshot(query(collection(db, 'users', uid, 'friends')), (querySnapshot) => {
+                if (isLoadedListenIfNewFriendAddMe) {
+                    querySnapshot.forEach(async (doc) => {
+                        const { firstName, lastName, username, id, img, unreadMessagesNumber, lastMessage, isFriend } = doc.data();
+                        if (isFriend === null) {
+                            friendsList.innerHTML = '';
+                            const querySnapshot = await getDocs(collection(db, 'users', uid, 'friends'));
+                            querySnapshot.forEach((doc) => {
+                                const { firstName, lastName, username, id, img, unreadMessagesNumber, lastMessage, isFriend } = doc.data();
+                                loadFriendList(firstName, lastName, username, id, img, unreadMessagesNumber, lastMessage, isFriend, uid);
+                            });
+                        }
+                    });
+                }
+                isLoadedListenIfNewFriendAddMe = true;
+            });
+
+        } else {
+            // User is signed out
+            // ...
+        }
+    });
+}
+
+listenIfNewFriendAddMe()
+
+const getUserFriendList = async (uid) => {
     const querySnapshot = await getDocs(collection(db, 'users', uid, 'friends'));
     querySnapshot.forEach((doc) => {
         const { firstName, lastName, username, id, img, unreadMessagesNumber, lastMessage, isFriend } = doc.data();
         loadFriendList(firstName, lastName, username, id, img, unreadMessagesNumber, lastMessage, isFriend, uid);
     });
-    loadFirstnameAndLastnameToMyProfileComponent();
+    loadFirstnameAndLastnameToMyProfileComponent(uid);
     await updateDoc(doc(db, 'users', uid), {
         lastOnline: new Date()
     });

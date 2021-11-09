@@ -399,20 +399,39 @@ const writeUserStatus = async(uid, id) => {
     });
 }
 
-const checkIfFriendIsMyFriend = async (uid, id) => {
+//co jakiś czas to niech mi sprawdza
+
+const checkIfFriendIsMyFriend = async (uid, id, content) => {
     const docSnap = await getDoc(doc(db, 'users', id, 'friends', uid));
     const { isFriend } = docSnap.data();
-        if (isFriend === false || isFriend === null) {
-            displayGlobalErrorFullspace(backButton, SelectedContactComponent, '403');
-        }
-        return isFriend;
+    if (isFriend === false) {
+        displayGlobalErrorFullspace(backButton, SelectedContactComponent, '403');
     }
+    listenIfFriendBlockMe(uid, id, content);
+    return isFriend;
+}
+
+const listenIfFriendBlockMe = (uid, id) => {
+    const unsubscribeListenIfFriendBlockMe = onSnapshot(doc(db, 'users', id, 'friends', uid), (doc) => {
+        const { isFriend } = doc.data();
+        if (isFriend === false) {
+            content.innerHTML = '';
+            content.style.display = 'none';
+            displayGlobalErrorFullspace(backButton, SelectedContactComponent, '403');
+            unsubscribeListenIfFriendBlockMe();
+        }
+    });
+    backButton.addEventListener('click', () => {
+        unsubscribeListenIfFriendBlockMe();
+    });
+}
 
 const loadUserDataToSelectedContactComponent = async (firstName, lastName, imageUrl, lastMessage, uid, id) => {
-    if (await checkIfFriendIsMyFriend(uid, id) && await checkIfFriendIsMyFriend(uid, id) !== null) {
+    content.innerHTML = '';
+    content.style.display = 'none';
+    const isFriend = await checkIfFriendIsMyFriend(uid, id, content);
+    if (isFriend === true || isFriend === null) {
         const allMessagesSortedByDate = [];
-        content.innerHTML = '';
-        content.style.display = 'none';
         loadContactNameAndImage(firstName, lastName, imageUrl);
         loadAllMessages(allMessagesSortedByDate, lastMessage, uid, id, imageUrl);
         clearUnreadMessages(uid, id);
