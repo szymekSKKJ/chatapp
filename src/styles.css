@@ -22,8 +22,7 @@ html {
 body {
   max-width: 100vw;
   min-height: 100vh;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#2e3238), to(#23262a));
-  background-image: linear-gradient(#2e3238, #23262a);
+  background-color: #272b31;
   font-family: 'Mitr', sans-serif;
   color: #d3d8de;
   -webkit-user-select: none;
@@ -169,7 +168,7 @@ body #app #Contacts #upside #second-wrapper #searcher input {
   font-size: 20px;
   padding-left: 36px;
   border-radius: 100px;
-  border: solid 2px #22252b;
+  border: solid 2px #272b31;
   -webkit-transition: all 500ms;
   transition: all 500ms;
 }
@@ -1651,7 +1650,7 @@ body #app #SelectedContact #write-message textarea {
   padding-left: 24px;
   padding-right: 24px;
   border-radius: 20px;
-  border: solid 3px #22252b;
+  border: solid 2px #272b31;
   -webkit-transition: all 500ms, height 0ms;
   transition: all 500ms, height 0ms;
   color: #e2e5e9;
@@ -1663,7 +1662,7 @@ body #app #SelectedContact #write-message textarea {
 }
 
 body #app #SelectedContact #write-message textarea:focus {
-  border: solid 3px #393e46;
+  border: solid 2px transparent;
 }
 
 body #app #SelectedContact #write-message #send-button {
@@ -2235,7 +2234,7 @@ body #app #LoginForm #submit-button input {
   outline: none;
   font-size: 20px;
   border-radius: 100px;
-  border: solid 2px #22252b;
+  border: solid 2px #272b31;
   -webkit-transition: all 333ms, -webkit-transform 250ms;
   transition: all 333ms, -webkit-transform 250ms;
   transition: all 333ms, transform 250ms;

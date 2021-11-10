@@ -1,6 +1,6 @@
 import { app } from '../firebaseInitialize.js';
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js";
-import { collection, getDocs, doc, updateDoc, onSnapshot, getFirestore, getDoc, orderBy, limit, query } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js";
+import { collection, getDocs, doc, updateDoc, onSnapshot, getFirestore, getDoc, orderBy, limit, query, where } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js";
 import showAndHideComponent from '../showAndHideComponent.js';
 import loadUserDataToSelectedContactComponent from './loadUserDataToSelectedContactComponent.js';
 import displayGlobalNotification from '../displayGlobalNotification.js';
@@ -12,7 +12,6 @@ const ContactsComponent = document.querySelector('#Contacts');
 const SelectedContactComponent = document.querySelector('#SelectedContact');
 const friendsList = ContactsComponent.querySelector('#friends-list');
 const messagesStatus = SelectedContactComponent.querySelector('#messages-status');
-const language = localStorage.getItem('language');
 const db = getFirestore(app);
 
 const writeLastMessage = (lastMessage, bothMessages) => {
@@ -67,6 +66,8 @@ const listenNewMessages = (uid, id, notificationNumber, lastMessage) => {
 
 const whenNewFriend = (isFriend, friendsListItem, lastMessage, uid, id, firstName, lastName, img, notificationNumber, lastMessageContent) => {
     if (isFriend === null) {
+        const SelectedContactComponent = document.querySelector('#SelectedContact');
+        const backButton = SelectedContactComponent.querySelector('#back-button');
         const acceptOrIgnoreFriend = document.createElement('div');
         acceptOrIgnoreFriend.classList.add('accept-or-ignore-friend');
         acceptOrIgnoreFriend.innerHTML = `
@@ -105,6 +106,8 @@ const whenNewFriend = (isFriend, friendsListItem, lastMessage, uid, id, firstNam
                         isFriend: true
                     });
                     listenNewMessages(uid, id, notificationNumber, lastMessage);
+                    friendsList.click();
+                    backButton.click();
 
                 } else {
                     await updateDoc(doc(db, 'users', uid, 'friends', id), {
@@ -227,6 +230,7 @@ const listenIfNewFriendAddMe = () => {
             const uid = user.uid;
             const unsubscribeListenIfNewFriendAddMe = onSnapshot(query(collection(db, 'users', uid, 'friends')), (querySnapshot) => {
                 if (isLoadedListenIfNewFriendAddMe) {
+                    console.log('w')
                     querySnapshot.forEach(async (doc) => {
                         const { firstName, lastName, username, id, img, unreadMessagesNumber, lastMessage, isFriend } = doc.data();
                         if (isFriend === null) {
@@ -249,7 +253,7 @@ const listenIfNewFriendAddMe = () => {
     });
 }
 
-listenIfNewFriendAddMe()
+listenIfNewFriendAddMe();
 
 const getUserFriendList = async (uid) => {
     const querySnapshot = await getDocs(collection(db, 'users', uid, 'friends'));
@@ -269,7 +273,6 @@ const checkIfUserIsLogged = () => {
     globalLoading('show');
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            const friendsList = ContactsComponent.querySelector('#friends-list');
             friendsList.innerHTML = '';
             const uid = user.uid;
             ifNotRememberMe();
@@ -277,12 +280,9 @@ const checkIfUserIsLogged = () => {
         } else {
             const auth = getAuth();
             signOut(auth).then(() => {
-                const language = localStorage.getItem('language');
                 localStorage.removeItem('email');
                 localStorage.removeItem('password');
                 localStorage.removeItem('rememberMe');
-                if (language === '_pl')
-                    localStorage.setItem('error', 'Zostałeś wylogowany');
                 localStorage.setItem('error', 'You have been log out');
                 window.history.pushState("object or string", "Title", `../index/index.html?`);
                 window.location.reload(true);

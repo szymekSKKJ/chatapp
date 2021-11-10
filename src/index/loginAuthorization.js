@@ -21,6 +21,8 @@ window.addEventListener('load', () => {
     if (errorMessage !== null) {
         displayGlobalNotification(errorMessage);
         localStorage.removeItem('error');
+        localStorage.removeItem('email');
+        localStorage.removeItem('password');
     }
 });
 
