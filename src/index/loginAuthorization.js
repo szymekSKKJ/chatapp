@@ -49,6 +49,7 @@ submitButton.addEventListener('click', () => {
                 globalLoading('hide');
                 localStorage.removeItem('email');
                 localStorage.removeItem('password');
+                localStorage.removeItem('rememberMe')
             });
     } else {
         displayGlobalNotification('Please fill login and password');
