@@ -4,11 +4,11 @@ import checkIfUserIsLogged from './loadFriendsList.js';
 import displayGlobalPopoutMessage from '../displayGlobalPopoutMessage.js';
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js";
 import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js";
-const SelectedContactSettingsComponent = document.querySelector('#SelectedContactSettings');
-const options = SelectedContactSettingsComponent.querySelectorAll('.option');
+const SelectedContactOptionsComponent = document.querySelector('#SelectedContactOptions');
+const options = SelectedContactOptionsComponent.querySelectorAll('.option');
 const SelectedContactComponent = document.querySelector('#SelectedContact');
 const backButton = SelectedContactComponent.querySelector('#upside #back-button');
-const closeSettingsButton = SelectedContactSettingsComponent.querySelector('#close-button');
+const closeSettingsButton = SelectedContactOptionsComponent.querySelector('#close-button');
 const db = getFirestore(app);
 let id;
 
@@ -37,7 +37,7 @@ const blockThisUser = (id) => {
 options.forEach((option) => {
     option.addEventListener('click', () => {
         if (option.id === 'block-this-user') {
-            const contactName = SelectedContactSettingsComponent.querySelector('#contact-name p');
+            const contactName = SelectedContactOptionsComponent.querySelector('#contact-name p');
             displayGlobalPopoutMessage(`Are you sure you want to block ${contactName.innerHTML} ?`, () => blockThisUser(id));
         }
     });

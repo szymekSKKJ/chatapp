@@ -3,6 +3,7 @@ import displayGlobalNotification from '../displayGlobalNotification.js';
 import globalLoading from '../displayOrHideGlobalLoading.js';
 import submitByEnterKey from '../submitByEnterKey.js';
 import authorizationSwitchError from '../authorizationSwitchError.js';
+import restoreDefault from "../restoreDefault.js";
 const LoginFormComponent = document.querySelector('#LoginForm');
 const userLogin = LoginFormComponent.querySelector('#user-login input');
 const userPassword = LoginFormComponent.querySelector('#user-password input');
@@ -46,19 +47,13 @@ submitButton.addEventListener('click', () => {
             })
             .catch((error) => {
                 displayGlobalNotification(authorizationSwitchError(error.code));
-                globalLoading('hide');
-                localStorage.removeItem('email');
-                localStorage.removeItem('password');
-                localStorage.removeItem('rememberMe');
+                restoreDefault('force');
             });
     } else {
         displayGlobalNotification('Please fill login and password');
         if (language === '_pl')
             displayGlobalNotification('Najpierw wypełnij login i hasło');
-            localStorage.removeItem('email');
-            localStorage.removeItem('password');
-            localStorage.removeItem('rememberMe');
-        globalLoading('hide');
+            restoreDefault();
     }
 
 });

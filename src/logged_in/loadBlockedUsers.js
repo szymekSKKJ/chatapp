@@ -4,6 +4,7 @@ import { getAuth, onAuthStateChanged, } from "https://www.gstatic.com/firebasejs
 import addShowPopoutMessageOnClick from './blockedUsersFunctions.js';
 import displayOrHideGlobalLoading from '../displayOrHideGlobalLoading.js';
 import checkIfUserIsLogged from './loadFriendsList.js';
+import restoreDefault from "../restoreDefault.js";
 const MyProfileComponent = document.querySelector('#MyProfile');
 const blockedUsersOption = MyProfileComponent.querySelector('#blocked-users-option');
 const MyProfileOptionsComponent = document.querySelector('#MyProfileOptions');
@@ -52,8 +53,7 @@ blockedUsersOption.addEventListener('click', async() => {
                 }
             });
         } else {
-            // User is signed out
-            // ...
+            restoreDefault('force');
         }
     });
 });

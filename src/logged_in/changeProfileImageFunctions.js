@@ -4,6 +4,7 @@ import displayGlobalNotification from '../displayGlobalNotification.js';
 import loadProfileImage from './loadProfileImage.js';
 import globalLoading from '../displayOrHideGlobalLoading.js';
 import checkIfUserIsLogged from './loadFriendsList.js';
+import restoreDefault from "../restoreDefault.js";
 const MyProfileOptions = document.querySelector('#MyProfileOptions');
 const changeProfileImage = MyProfileOptions.querySelector('#change-profile-image');
 const submitButton = changeProfileImage.querySelector('#submit-button');
@@ -39,19 +40,7 @@ const uploadImage = (file) => {
             });
 
         } else {
-            const auth = getAuth();
-            signOut(auth).then(() => {
-                localStorage.removeItem('email');
-                localStorage.removeItem('password');
-                localStorage.removeItem('rememberMe');
-                if (language === '_pl')
-                    localStorage.setItem('error', 'Zostałeś wylogowany');
-                localStorage.setItem('error', 'You have been log out');
-                window.history.pushState("object or string", "Title", `../index/index.html?`);
-                window.location.reload(true);
-            }).catch((error) => {
-                // An error happened.
-            });
+            restoreDefault('force');
         }
     });
 }

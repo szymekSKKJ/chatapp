@@ -1862,7 +1862,7 @@ body #app #SelectedContact #new-message p {
   }
 }
 
-body #app #SelectedContactSettings {
+body #app #SelectedContactOptions {
   width: 100vw;
   height: 100vh;
   background-color: transparent;
@@ -1878,7 +1878,7 @@ body #app #SelectedContactSettings {
   transition: 250ms;
 }
 
-body #app #SelectedContactSettings #upside {
+body #app #SelectedContactOptions #upside {
   width: 100%;
   height: auto;
   background-color: transparent;
@@ -1894,7 +1894,7 @@ body #app #SelectedContactSettings #upside {
   top: 0;
 }
 
-body #app #SelectedContactSettings #wrapper {
+body #app #SelectedContactOptions #wrapper {
   width: 100%;
   height: auto;
   background-color: transparent;
@@ -1914,7 +1914,7 @@ body #app #SelectedContactSettings #wrapper {
   margin-top: 25px;
 }
 
-body #app #SelectedContactSettings #wrapper #contact-image {
+body #app #SelectedContactOptions #wrapper #contact-image {
   width: 150px;
   height: 150px;
   background-color: transparent;
@@ -1928,7 +1928,7 @@ body #app #SelectedContactSettings #wrapper #contact-image {
   border: solid 3px #22252a;
 }
 
-body #app #SelectedContactSettings #wrapper #contact-image img {
+body #app #SelectedContactOptions #wrapper #contact-image img {
   width: 100%;
   position: absolute;
   top: 50%;
@@ -1937,7 +1937,7 @@ body #app #SelectedContactSettings #wrapper #contact-image img {
           transform: translate(-50%, -50%);
 }
 
-body #app #SelectedContactSettings #wrapper #contact-name {
+body #app #SelectedContactOptions #wrapper #contact-name {
   width: 100%;
   height: auto;
   background-color: transparent;
@@ -1946,7 +1946,7 @@ body #app #SelectedContactSettings #wrapper #contact-name {
   margin-bottom: 25px;
 }
 
-body #app #SelectedContactSettings .option {
+body #app #SelectedContactOptions .option {
   width: 100%;
   height: 50px;
   background-color: transparent;
@@ -1962,15 +1962,15 @@ body #app #SelectedContactSettings .option {
   margin-left: 8px;
 }
 
-body #app #SelectedContactSettings .option i {
+body #app #SelectedContactOptions .option i {
   margin-right: 12px;
 }
 
-body #app #SelectedContactSettings .option:nth-child(3) i {
+body #app #SelectedContactOptions .option:nth-child(3) i {
   margin-right: 8px;
 }
 
-body #app #SelectedContactSettings .option:nth-child(5) i {
+body #app #SelectedContactOptions .option:nth-child(5) i {
   margin-right: 16px;
 }
 

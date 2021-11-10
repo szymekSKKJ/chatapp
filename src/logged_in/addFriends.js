@@ -4,6 +4,7 @@ import { collection, query, where, getDocs, getDoc, setDoc, getFirestore, doc } 
 import submitByEnterKey from '../submitByEnterKey.js';
 import displayGlobalNotification from '../displayGlobalNotification.js';
 import globalLoading from '../displayOrHideGlobalLoading.js';
+import restoreDefault from "../restoreDefault.js";
 const AddFriendComponent = document.querySelector('#AddFriend');
 const findUsername = AddFriendComponent.querySelector('#find-username input');
 const inputsOnEnter = AddFriendComponent.querySelectorAll('.input-on-enter');
@@ -57,8 +58,7 @@ submitButton.addEventListener('click', () => {
                                     lastMessage: ''
                                 }); {
                                     const docSnap = await getDoc(doc(db, 'users', uid));
-                                    const { firstName, lastName, username, img } = docSnap.data();
-
+                                    const { firstName, lastName, username, img } = docSnap.data()
                                     await setDoc(doc(db, 'users', id, 'friends', uid), {
                                         id: uid,
                                         firstName: firstName,
@@ -75,7 +75,6 @@ submitButton.addEventListener('click', () => {
                                     displayGlobalNotification('Użytkownik został dodany', 'success');
                                 globalLoading('hide');
                                 backButton.click();
-
                             }
                         } else {
                             displayGlobalNotification('You have already added yourself :)');
@@ -90,28 +89,14 @@ submitButton.addEventListener('click', () => {
                         globalLoading('hide');
                     }
                 });
-
             } else {
                 displayGlobalNotification('Username contains space');
                 if (language === '_pl')
                     displayGlobalNotification('Nazwa użytkownika nie moze być pusta');
                 globalLoading('hide');
             }
-
         } else {
-            const auth = getAuth();
-            signOut(auth).then(() => {
-                localStorage.removeItem('email');
-                localStorage.removeItem('password');
-                localStorage.removeItem('rememberMe');
-                if (language === '_pl')
-                    localStorage.setItem('error', 'Zostałeś wylogowany');
-                localStorage.setItem('error', 'You have been log out');
-                window.history.pushState("object or string", "Title", `../index/index.html?`);
-                window.location.reload(true);
-            }).catch((error) => {
-                // An error happened.
-            });
+            restoreDefault('force');
         }
     });
 });

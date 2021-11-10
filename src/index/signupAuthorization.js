@@ -90,7 +90,6 @@ submitButton.addEventListener('click', async() => {
                             displayGlobalNotification('Profile has been created', 'success');
                             if (language === '_pl')
                                 displayGlobalNotification('Profil został utworzony', 'success');
-
                             inputs.forEach((input) => {
                                 input.value = '';
                             });

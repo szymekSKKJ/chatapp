@@ -3,7 +3,6 @@ import displayGlobalNotification from '../displayGlobalNotification.js';
 import globalLoading from '../displayOrHideGlobalLoading.js';
 import submitByEnterKey from '../submitByEnterKey.js';
 import authorizationSwitchError from '../authorizationSwitchError.js';
-
 const RememberPassowrdFormComponent = document.querySelector('#RememberPassowrdForm');
 const submitButton = RememberPassowrdFormComponent.querySelector('#submit-button');
 const userEmail = RememberPassowrdFormComponent.querySelector('#user-email input');
@@ -32,7 +31,6 @@ submitButton.addEventListener('click', () => {
                 displayGlobalNotification(authorizationSwitchError(error.code));
             });
     } else {
-        globalLoading('hide');
         displayGlobalNotification('Please fill en email');
         if (language === '_pl')
             displayGlobalNotification('Najpierw wypełnij email');

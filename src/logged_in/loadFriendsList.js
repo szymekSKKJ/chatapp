@@ -8,6 +8,7 @@ import prepareSending from './sendingMessage.js';
 import globalLoading from '../displayOrHideGlobalLoading.js';
 import loadFirstnameAndLastnameToMyProfileComponent from './loadDataToMyProfileComponent.js';
 import ifMessageIncludesEmojiWithSymbols from './ifMessageIncludesEmojiWithSymbols.js';
+import restoreDefault from "../restoreDefault.js";
 const ContactsComponent = document.querySelector('#Contacts');
 const SelectedContactComponent = document.querySelector('#SelectedContact');
 const friendsList = ContactsComponent.querySelector('#friends-list');
@@ -230,7 +231,6 @@ const listenIfNewFriendAddMe = () => {
             const uid = user.uid;
             const unsubscribeListenIfNewFriendAddMe = onSnapshot(query(collection(db, 'users', uid, 'friends')), (querySnapshot) => {
                 if (isLoadedListenIfNewFriendAddMe) {
-                    console.log('w')
                     querySnapshot.forEach(async (doc) => {
                         const { firstName, lastName, username, id, img, unreadMessagesNumber, lastMessage, isFriend } = doc.data();
                         if (isFriend === null) {
@@ -247,8 +247,7 @@ const listenIfNewFriendAddMe = () => {
             });
 
         } else {
-            // User is signed out
-            // ...
+            restoreDefault('force');
         }
     });
 }
@@ -278,17 +277,7 @@ const checkIfUserIsLogged = () => {
             ifNotRememberMe();
             getUserFriendList(uid);
         } else {
-            const auth = getAuth();
-            signOut(auth).then(() => {
-                localStorage.removeItem('email');
-                localStorage.removeItem('password');
-                localStorage.removeItem('rememberMe');
-                localStorage.setItem('error', 'You have been log out');
-                window.history.pushState("object or string", "Title", `../index/index.html?`);
-                window.location.reload(true);
-            }).catch((error) => {
-                // An error happened.
-            });
+            restoreDefault('force');
         }
     });
 }
