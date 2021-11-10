@@ -6,13 +6,11 @@
 }
 
 ::-webkit-backdrop {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#2e3238), to(#23262a));
-  background-image: linear-gradient(#2e3238, #23262a);
+  background-color: #272b31;
 }
 
 ::backdrop {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#2e3238), to(#23262a));
-  background-image: linear-gradient(#2e3238, #23262a);
+  background-color: #272b31;
 }
 
 html {
@@ -87,7 +85,7 @@ body #app #Contacts #upside #first-wrapper {
 body #app #Contacts #upside #first-wrapper #profile {
   width: 50px;
   height: 50px;
-  background-color: #2e3238;
+  background-color: #272b31;
   border-radius: 100%;
   border: solid 4px #22252a;
   overflow: hidden;
@@ -455,7 +453,7 @@ body #app #Contacts #add-contact-button {
 body #app #MyProfile {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.4);
   -webkit-backdrop-filter: blur(4px);
           backdrop-filter: blur(4px);
   position: fixed;
@@ -471,8 +469,7 @@ body #app #MyProfile {
 body #app #MyProfile #content {
   width: 80%;
   height: 100%;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#2e3238), to(#23262a));
-  background-image: linear-gradient(#2e3238, #23262a);
+  background-color: #272b31;
   border-right: solid 4px #17191c;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -644,7 +641,7 @@ body #app #MyProfileOptions #blocked-users #content {
 body #app #MyProfileOptions #change-profile-image #image-preview {
   width: 75vw;
   height: 75vw;
-  background-color: #2e3238;
+  background-color: #272b31;
   border-radius: 100%;
   border: solid 4px #4188be;
   -webkit-filter: drop-shadow(0px 0px 8px #17191c);
@@ -992,7 +989,7 @@ body #app #SelectedContact #upside #wrapper {
 body #app #SelectedContact #upside #wrapper #contact-image {
   width: 50px;
   height: 50px;
-  background-color: #2e3238;
+  background-color: #272b31;
   border-radius: 100%;
   border: solid 1px #22252a;
   overflow: hidden;
@@ -1020,7 +1017,7 @@ body #app #SelectedContact #upside #wrapper #user-active {
   border-radius: 100%;
   background-color: #02aa3a;
   position: absolute;
-  border: solid 4px #2e3238;
+  border: solid 4px #272b31;
   left: 50px;
   top: 36px;
   display: none;
@@ -1256,7 +1253,7 @@ body #app #SelectedContact #content .message-from {
 body #app #SelectedContact #content .message-from .profile-image {
   width: 36px;
   height: 36px;
-  background-color: #2e3238;
+  background-color: #272b31;
   border: solid 1px #22252a;
   border-radius: 100%;
   position: relative;
@@ -1444,7 +1441,7 @@ body #app #SelectedContact #messages-status {
 body #app #SelectedContact #message-additions-content {
   width: 100%;
   height: 300px;
-  background-color: #23262a;
+  background-color: #272b31;
   position: fixed;
   bottom: 0px;
   -webkit-transform: translateY(300px);
@@ -1473,7 +1470,7 @@ body #app #SelectedContact #message-additions-content .content {
 body #app #SelectedContact #message-additions-content #categories {
   width: 100%;
   height: 40px;
-  background-color: #2e3238;
+  background-color: #272b31;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1646,7 +1643,7 @@ body #app #SelectedContact #write-message textarea {
   border: none;
   outline: none;
   font-size: 16px;
-  padding-top: 6px;
+  padding-top: 8px;
   padding-left: 24px;
   padding-right: 24px;
   border-radius: 20px;
@@ -1694,11 +1691,10 @@ body #app #SelectedContact #write-message-forbid {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  padding-left: 8px;
-  padding-right: 8px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 4px 8px 4px 8px;
   position: fixed;
   bottom: 0px;
   pointer-events: none;
@@ -1865,7 +1861,7 @@ body #app #SelectedContact #new-message p {
 body #app #SelectedContactOptions {
   width: 100vw;
   height: 100vh;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.4);
   -webkit-backdrop-filter: blur(4px);
           backdrop-filter: blur(4px);
   position: fixed;
@@ -1972,6 +1968,97 @@ body #app #SelectedContactOptions .option:nth-child(3) i {
 
 body #app #SelectedContactOptions .option:nth-child(5) i {
   margin-right: 16px;
+}
+
+body #app #SelectedContactOptionElements {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+  display: none;
+}
+
+body #app #SelectedContactOptionElements #title {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  padding: 8px 16px 8px 16px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+body #app #SelectedContactOptionElements #change-theme {
+  width: 100vw;
+  height: auto;
+  background-color: transparent;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+body #app #SelectedContactOptionElements #change-theme #themes {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 16px;
+}
+
+body #app #SelectedContactOptionElements #change-theme #themes .theme {
+  width: 50px;
+  height: 50px;
+  background-image: radial-gradient(circle, #29333d, #c1576d 50%);
+  border-radius: 100%;
+  margin: 5px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+body #app #SelectedContactOptionElements #change-theme #themes .theme i {
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  font-size: 26px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 2px;
+  border-radius: 100%;
+  -webkit-backdrop-filter: brightness(75%);
+          backdrop-filter: brightness(75%);
+  color: white;
+}
+
+body #app #SelectedContactOptionElements #change-theme #themes .current {
+  width: 50px;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 26px;
 }
 
 body #app #AddFriend {
@@ -2915,7 +3002,7 @@ body #app #global-notification p {
 body #app #global-loading {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   top: 0;
   display: -webkit-box;
@@ -3040,7 +3127,7 @@ body #app #global-loading #dots .dot p {
   50% {
     -webkit-backdrop-filter: blur(8px);
             backdrop-filter: blur(8px);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
   }
   100% {
     -webkit-backdrop-filter: blur(4px);
@@ -3058,7 +3145,7 @@ body #app #global-loading #dots .dot p {
   50% {
     -webkit-backdrop-filter: blur(8px);
             backdrop-filter: blur(8px);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
   }
   100% {
     -webkit-backdrop-filter: blur(4px);

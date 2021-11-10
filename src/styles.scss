@@ -5,7 +5,8 @@
 }
 
 ::backdrop {
-    background-image: linear-gradient(#2e3238, #23262a);
+    //background-image: linear-gradient(#2e3238, #23262a);
+    background-color: #272b31;
 }
 
 $primary-color: #4188be;
@@ -53,7 +54,7 @@ body {
                     #profile {
                         width: 50px;
                         height: 50px;
-                        background-color: #2e3238;
+                        background-color: #272b31;
                         border-radius: 100%;
                         border: solid 4px #22252a;
                         overflow: hidden;
@@ -311,7 +312,7 @@ body {
         #MyProfile {
             width: 100vw;
             height: 100vh;
-            background-color: rgba(0, 0, 0, 0.75);
+            background-color: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(4px);
             position: fixed;
             top: 0;
@@ -324,7 +325,8 @@ body {
             #content {
                 width: 80%;
                 height: 100%;
-                background-image: linear-gradient(#2e3238, #23262a);
+                //background-image: linear-gradient(#2e3238, #23262a);
+                background-color: #272b31;
                 border-right: solid 4px #17191c;
                 display: flex;
                 flex-direction: column;
@@ -431,7 +433,7 @@ body {
                 #image-preview {
                     width: 75vw;
                     height: 75vw;
-                    background-color: #2e3238;
+                    background-color: #272b31;
                     border-radius: 100%;
                     border: solid 4px $primary-color;
                     filter: drop-shadow(0px 0px 8px #17191c);
@@ -682,7 +684,7 @@ body {
                     #contact-image {
                         width: 50px;
                         height: 50px;
-                        background-color: #2e3238;
+                        background-color: #272b31;
                         border-radius: 100%;
                         border: solid 1px #22252a;
                         overflow: hidden;
@@ -705,7 +707,7 @@ body {
                         border-radius: 100%;
                         background-color: #02aa3a;
                         position: absolute;
-                        border: solid 4px #2e3238;
+                        border: solid 4px #272b31;
                         left: 50px;
                         top: 36px;
                         display: none;
@@ -863,7 +865,7 @@ body {
                     .profile-image {
                         width: 36px;
                         height: 36px;
-                        background-color: #2e3238;
+                        background-color: #272b31;
                         border: solid 1px #22252a;
                         border-radius: 100%;
                         position: relative;
@@ -1001,7 +1003,7 @@ body {
             #message-additions-content {
                 width: 100%;
                 height: 300px;
-                background-color: #23262a;
+                background-color: #272b31;
                 position: fixed;
                 bottom: 0px;
                 transform: translateY(300px);
@@ -1020,7 +1022,7 @@ body {
                 #categories {
                     width: 100%;
                     height: 40px;
-                    background-color: #2e3238;
+                    background-color: #272b31;
                     display: flex;
                     justify-content: flex-start;
                     align-items: center;
@@ -1131,7 +1133,7 @@ body {
                     border: none;
                     outline: none;
                     font-size: 16px;
-                    padding-top: 6px;
+                    padding-top: 8px;
                     padding-left: 24px;
                     padding-right: 24px;
                     border-radius: 20px;
@@ -1165,9 +1167,8 @@ body {
                 background-color: transparent;
                 display: flex;
                 justify-content: center;
-                align-items: flex-end;
-                padding-left: 8px;
-                padding-right: 8px;
+                align-items: center;
+                padding: 4px 8px 4px 8px;
                 position: fixed;
                 bottom: 0px;
                 //border-top: solid 2px #17191c;
@@ -1284,7 +1285,7 @@ body {
         #SelectedContactOptions {
             width: 100vw;
             height: 100vh;
-            background-color: transparent;
+            background-color: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(4px);
             position: fixed;
             top: 0;
@@ -1361,6 +1362,73 @@ body {
                 &:nth-child(5) {
                     i {
                         margin-right: 16px;
+                    }
+                }
+            }
+        }
+        #SelectedContactOptionElements {
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.2);
+            //background-color: transparent;
+            position: fixed;
+            top: 0;
+            left: 0;
+            backdrop-filter: blur(4px);
+            display: none;
+
+            #title {
+                width: 100%;
+                height: auto;
+                background-color: transparent;
+                padding: 8px 16px 8px 16px;
+                font-size: 24px;
+                font-weight: bold;
+            }
+            #change-theme {
+                width: 100vw;
+                height: auto;
+                background-color: transparent;
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                #themes {
+                    width: 100%;
+                    height: auto;
+                    background-color: transparent;
+                    display: flex;
+                    align-content: flex-start;
+                    flex-wrap: wrap;
+                    padding: 16px;
+                    .theme {
+                        width: 50px;
+                        height: 50px;
+                        background-image: radial-gradient(circle, #29333d , #c1576d 50%);
+                        border-radius: 100%;
+                        margin: 5px;
+                        flex-shrink: 0;
+    
+                        i {
+                            width: 50px;
+                            height: 50px;
+                            background-color: transparent;
+                            font-size: 26px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            padding-top: 2px;
+                            border-radius: 100%;
+                            backdrop-filter: brightness(75%);
+                            color: white;
+                        }
+                    }
+                    .current {
+                        width: 50px;
+                        height: 50px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 26px;
                     }
                 }
             }
@@ -1965,7 +2033,7 @@ body {
         #global-loading {
             width: 100vw;
             height: 100vh;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.4);
             position: fixed;
             top: 0;
             display: flex;
@@ -2034,7 +2102,7 @@ body {
                 }
                 50% {
                     backdrop-filter: blur(8px);
-                    background-color: rgba(0, 0, 0, 0.5);
+                    background-color: rgba(0, 0, 0, 0.4);
                 }
                 100% {
                     backdrop-filter: blur(4px);

@@ -22,7 +22,6 @@ showSelectedContactComponentSettingsButton.addEventListener('click', () => {
     setTimeout(() => {
         upside.style.top = '-70px'
         profileImageElement.style.transform = 'translateY(0px)';
-        SelectedContactOptionsComponent.style.backgroundColor = 'rgba(0, 0, 0, 0.75)';
         SelectedContactOptionsComponent.style.opacity = '1';
     }, 50);
 });
@@ -31,7 +30,6 @@ closeButton.addEventListener('click', () => {
     profileImageElement.removeEventListener('click', openFullImage);
     setTimeout(() => {
         profileImageElement.style.transform = 'translateY(-200px)';
-        SelectedContactOptionsComponent.style.backgroundColor = 'transparent';
         SelectedContactOptionsComponent.style.opacity = '0';
         upside.style.top = '0px';
         setTimeout(() => {
