@@ -49,12 +49,15 @@ submitButton.addEventListener('click', () => {
                 globalLoading('hide');
                 localStorage.removeItem('email');
                 localStorage.removeItem('password');
-                localStorage.removeItem('rememberMe')
+                localStorage.removeItem('rememberMe');
             });
     } else {
         displayGlobalNotification('Please fill login and password');
         if (language === '_pl')
             displayGlobalNotification('Najpierw wypełnij login i hasło');
+            localStorage.removeItem('email');
+            localStorage.removeItem('password');
+            localStorage.removeItem('rememberMe');
         globalLoading('hide');
     }
 
