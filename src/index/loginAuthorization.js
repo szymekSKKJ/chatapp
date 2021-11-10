@@ -21,8 +21,6 @@ window.addEventListener('load', () => {
     if (errorMessage !== null) {
         displayGlobalNotification(errorMessage);
         localStorage.removeItem('error');
-        localStorage.removeItem('email');
-        localStorage.removeItem('password');
     }
 });
 
@@ -49,6 +47,8 @@ submitButton.addEventListener('click', () => {
             .catch((error) => {
                 displayGlobalNotification(authorizationSwitchError(error.code));
                 globalLoading('hide');
+                localStorage.removeItem('email');
+                localStorage.removeItem('password');
             });
     } else {
         displayGlobalNotification('Please fill login and password');
