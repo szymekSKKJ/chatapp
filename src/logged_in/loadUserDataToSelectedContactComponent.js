@@ -90,7 +90,7 @@ const singleEmojiAnimation = (emoji) => {
     for (let i = 0; i < 31; i++) {
         const app = document.querySelector('#app');
         const emojiElement = document.createElement('div');
-        emojiElement.innerHTML = `<img src="${emoji.src}">`;
+        emojiElement.innerHTML = `<img src="${emoji.src}" draggable="false">`;
         emojiElement.classList.add('single-emoji');
         emojiElement.style.display = 'block';
         app.appendChild(emojiElement);
