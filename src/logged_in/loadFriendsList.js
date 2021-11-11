@@ -65,7 +65,7 @@ const listenNewMessages = (uid, id, notificationNumber, lastMessage) => {
     });
 }
 
-const whenNewFriend = (isFriend, friendsListItem, lastMessage, uid, id, firstName, lastName, img, notificationNumber, lastMessageContent) => {
+const whenNewFriend = (isFriend, friendsListItem, lastMessage, uid, id, firstName, lastName, img, notificationNumber, lastMessageContent, checkIfUserIsLogged) => {
     if (isFriend === null) {
         const SelectedContactComponent = document.querySelector('#SelectedContact');
         const backButton = SelectedContactComponent.querySelector('#back-button');
@@ -107,9 +107,6 @@ const whenNewFriend = (isFriend, friendsListItem, lastMessage, uid, id, firstNam
                         isFriend: true
                     });
                     listenNewMessages(uid, id, notificationNumber, lastMessage);
-                    friendsList.click();
-                    backButton.click();
-
                 } else {
                     await updateDoc(doc(db, 'users', uid, 'friends', id), {
                         isFriend: false
@@ -119,6 +116,7 @@ const whenNewFriend = (isFriend, friendsListItem, lastMessage, uid, id, firstNam
                         isFriend: true
                     });
                 }
+                checkIfUserIsLogged();
             });
         });
     }
@@ -142,7 +140,7 @@ const checkIfUserChangedProfileImage = async(id, LastImg, friendImageElement, ui
     }
 }
 
-const loadFriendList = async(firstName, lastName, username, id, img, unreadMessagesNumber, lastMessageContent, isFriend, uid) => {
+const loadFriendList = async(firstName, lastName, username, id, img, unreadMessagesNumber, lastMessageContent, isFriend, uid, checkIfUserIsLogged) => {
     if (isFriend || isFriend === null) {
 
         const friendsListItem = document.createElement('div');
@@ -196,7 +194,7 @@ const loadFriendList = async(firstName, lastName, username, id, img, unreadMessa
             }
         }
 
-        whenNewFriend(isFriend, friendsListItem, lastMessage, uid, id, firstName, lastName, newLoadedImage, notificationNumber, lastMessageContent);
+        whenNewFriend(isFriend, friendsListItem, lastMessage, uid, id, firstName, lastName, newLoadedImage, notificationNumber, lastMessageContent, checkIfUserIsLogged);
         if (isFriend) {
             listenNewMessages(uid, id, notificationNumber, lastMessage);
         }
@@ -238,7 +236,7 @@ const listenIfNewFriendAddMe = () => {
                             const querySnapshot = await getDocs(collection(db, 'users', uid, 'friends'));
                             querySnapshot.forEach((doc) => {
                                 const { firstName, lastName, username, id, img, unreadMessagesNumber, lastMessage, isFriend } = doc.data();
-                                loadFriendList(firstName, lastName, username, id, img, unreadMessagesNumber, lastMessage, isFriend, uid);
+                                loadFriendList(firstName, lastName, username, id, img, unreadMessagesNumber, lastMessage, isFriend, uid, checkIfUserIsLogged);
                             });
                         }
                     });
@@ -254,11 +252,11 @@ const listenIfNewFriendAddMe = () => {
 
 listenIfNewFriendAddMe();
 
-const getUserFriendList = async (uid) => {
+const getUserFriendList = async (uid, checkIfUserIsLogged) => {
     const querySnapshot = await getDocs(collection(db, 'users', uid, 'friends'));
     querySnapshot.forEach((doc) => {
         const { firstName, lastName, username, id, img, unreadMessagesNumber, lastMessage, isFriend } = doc.data();
-        loadFriendList(firstName, lastName, username, id, img, unreadMessagesNumber, lastMessage, isFriend, uid);
+        loadFriendList(firstName, lastName, username, id, img, unreadMessagesNumber, lastMessage, isFriend, uid, checkIfUserIsLogged);
     });
     loadFirstnameAndLastnameToMyProfileComponent(uid);
     await updateDoc(doc(db, 'users', uid), {
@@ -275,7 +273,7 @@ const checkIfUserIsLogged = () => {
             friendsList.innerHTML = '';
             const uid = user.uid;
             ifNotRememberMe();
-            getUserFriendList(uid);
+            getUserFriendList(uid, checkIfUserIsLogged);
         } else {
             restoreDefault('force');
         }

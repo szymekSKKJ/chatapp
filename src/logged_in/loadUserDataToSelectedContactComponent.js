@@ -112,13 +112,20 @@ const ifMessageContentContainsOnlyEmoji = (messageContentElement, isNewMessage =
                 } else {
                     node.style.width = '72px';
                     node.style.height = '72px';
-                    if (isNewMessage) {
-                        singleEmojiAnimation(node);
-                    }
                 }
             });
         }
     }, 10);
+}
+
+const ifLastMessageContainsOnlyOneEmoji = () => {
+    const allMessages = [...SelectedContactComponent.querySelector('#content').childNodes];
+    const lastMessage = allMessages[allMessages.length - 1];
+    const lastMessageContent = lastMessage.querySelector('.message-content p');
+    if (lastMessageContent.childNodes.length === 1 && lastMessageContent.childNodes[0].tagName === 'IMG') {
+        singleEmojiAnimation(lastMessageContent.childNodes[0]);
+    }
+    
 }
 
 const addFriendProfileImageToMessage = (message, fromOrTo, imageUrl, index, array) => {
@@ -270,6 +277,7 @@ const listenNewMessages = (lastMessageElement, uid, id, imageUrl, index, array) 
             if (isLoaded) {
                 lastMessageElement.innerHTML = `<p>${messageContent}</p>`;
                 createMessage('message-to', messageContent, firebaseUnixTimestamp, imageUrl, index, array);
+                ifLastMessageContainsOnlyOneEmoji();
             }
         });
     });
@@ -285,6 +293,7 @@ const listenNewMessages = (lastMessageElement, uid, id, imageUrl, index, array) 
                     const audio = new Audio('/assets/recive_message_pop.mp3');
                     audio.play();
                     croppedMessageWhenScrolledUp(imageUrl, messageContent);
+                    ifLastMessageContainsOnlyOneEmoji();
                 }, 500);
             }
         });
@@ -328,6 +337,7 @@ const loadAllMessages = async(allMessagesSortedByDate, lastMessageElement, uid, 
         }
     });
     listenIfFriendReadMessages(uid, id, allMessagesSortedByDate, imageUrl);
+    ifLastMessageContainsOnlyOneEmoji();
 }
 
 const loadContactNameAndImage = (firstName, lastName, imageUrl) => {
