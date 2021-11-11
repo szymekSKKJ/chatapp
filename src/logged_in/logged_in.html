@@ -216,33 +216,27 @@
                     <img src="default_user.png">
                 </div>
                 <div id="contact-name">
-                    <p></p>
+                    <p>Szymon Stępniak</p>
                 </div>
             </div>
-            <div class="option">
-                <i class="fad fa-user-edit"></i>
-                <p>Change nickname</p>
-            </div>
-            <div class="option">
-                <i class="fad fa-palette"></i>
-                <p>Change theme</p>
-            </div>
-            <div id="block-this-user" class="option">
-                <i class="fad fa-lock-alt"></i>
-                <p>Block this user</p>
+            <div id="options">
+                <div class="option pickable">
+                    <i class="fad fa-palette"></i>
+                    <p>Change theme</p>
+                </div>
+                <div class="option">
+                    <i class="fad fa-user-edit"></i>
+                    <p>Change nickname</p>
+                </div>
+                <div id="block-this-user" class="option">
+                    <i class="fad fa-lock-alt"></i>
+                    <p>Block this user</p>
+                </div>
             </div>
         </div>
         <div id="SelectedContactOptionElements">
             <div id="change-theme" class="option">
-                <div id="title">
-                    <p>Custmize your chat</p>
-                </div>
                 <div id="themes">
-                    <div class="theme">
-                    </div>
-                    <div class="theme current">
-                        <i class="fas fa-check"></i>
-                    </div>
                 </div>
             </div>
         </div>
@@ -342,8 +336,8 @@
     <script type="module" src="SelectedContactOptionsFunctions.js"></script>
 	<script type="module" src="../displayGlobalErrorFullspace.js"></script>
     <script type="module" src="../restoreDefault.js"></script>
-	
-	
+    <script type="module" src="./showSelectedContactOptionElemens.js"></script>
+    <script type="module" src="./switchBetweenSelectedContactThemes.js"></script>
 </body>
 
 </html>

@@ -29,6 +29,8 @@ body {
           user-select: none;
   font-weight: 300;
   -webkit-tap-highlight-color: transparent;
+  -webkit-transition: 500ms;
+  transition: 500ms;
 }
 
 body #app {
@@ -1152,7 +1154,7 @@ body #app #SelectedContact #content .message-to {
 body #app #SelectedContact #content .message-to .message-content {
   max-width: 80%;
   height: auto;
-  background-color: #393e46;
+  background-color: rgba(100, 100, 100, 0.33);
   padding: 8px;
   border-radius: 8px 8px 0px 8px;
   font-size: 16px;
@@ -1165,6 +1167,8 @@ body #app #SelectedContact #content .message-to .message-content {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-transition: 500ms;
+  transition: 500ms;
 }
 
 body #app #SelectedContact #content .message-to .message-content img {
@@ -1293,6 +1297,8 @@ body #app #SelectedContact #content .message-from .message-content {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-transition: 500ms;
+  transition: 500ms;
 }
 
 body #app #SelectedContact #content .message-from .message-content img {
@@ -1868,10 +1874,17 @@ body #app #SelectedContactOptions {
   top: 0;
   left: 0;
   z-index: 1000000;
-  display: none;
-  opacity: 0;
   -webkit-transition: 250ms;
   transition: 250ms;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: none;
+  opacity: 0;
 }
 
 body #app #SelectedContactOptions #upside {
@@ -1915,8 +1928,6 @@ body #app #SelectedContactOptions #wrapper #contact-image {
   height: 150px;
   background-color: transparent;
   position: relative;
-  -webkit-transform: translateY(-200px);
-          transform: translateY(-200px);
   -webkit-transition: 750ms;
   transition: 750ms;
   border-radius: 100%;
@@ -1942,8 +1953,25 @@ body #app #SelectedContactOptions #wrapper #contact-name {
   margin-bottom: 25px;
 }
 
-body #app #SelectedContactOptions .option {
+body #app #SelectedContactOptions #options {
   width: 100%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  position: relative;
+}
+
+body #app #SelectedContactOptions #options .option {
+  width: auto;
   height: 50px;
   background-color: transparent;
   font-size: 20px;
@@ -1955,50 +1983,58 @@ body #app #SelectedContactOptions .option {
       -ms-flex-align: center;
           align-items: center;
   padding: 16px;
-  margin-left: 8px;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 
-body #app #SelectedContactOptions .option i {
+body #app #SelectedContactOptions #options .option i {
   margin-right: 12px;
 }
 
-body #app #SelectedContactOptions .option:nth-child(3) i {
+body #app #SelectedContactOptions #options .option:nth-child(3) i {
   margin-right: 8px;
 }
 
-body #app #SelectedContactOptions .option:nth-child(5) i {
+body #app #SelectedContactOptions #options .option:nth-child(5) i {
   margin-right: 16px;
+}
+
+body #app #SelectedContactOptions #options .option p, body #app #SelectedContactOptions #options .option i {
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+}
+
+body #app #SelectedContactOptions #options .current {
+  pointer-events: none;
+  position: relative;
+  -webkit-transition: 500ms;
+  transition: 500ms;
+  margin-left: 50%;
 }
 
 body #app #SelectedContactOptionElements {
   width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.2);
+  height: calc(100vh - 300px);
+  background-color: transparent;
   position: fixed;
   top: 0;
   left: 0;
-  -webkit-backdrop-filter: blur(4px);
-          backdrop-filter: blur(4px);
   display: none;
-}
-
-body #app #SelectedContactOptionElements #title {
-  width: 100%;
-  height: auto;
-  background-color: transparent;
-  padding: 8px 16px 8px 16px;
-  font-size: 24px;
-  font-weight: bold;
+  z-index: 1000000;
+  margin-top: 300px;
+  -webkit-transform: translateX(-100vh);
+          transform: translateX(-100vh);
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
 }
 
 body #app #SelectedContactOptionElements #change-theme {
   width: 100vw;
   height: auto;
   background-color: transparent;
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  display: none;
 }
 
 body #app #SelectedContactOptionElements #change-theme #themes {
@@ -2020,7 +2056,7 @@ body #app #SelectedContactOptionElements #change-theme #themes .theme {
   height: 50px;
   background-image: radial-gradient(circle, #29333d, #c1576d 50%);
   border-radius: 100%;
-  margin: 5px;
+  margin: 10px;
   -ms-flex-negative: 0;
       flex-shrink: 0;
 }
@@ -2044,6 +2080,9 @@ body #app #SelectedContactOptionElements #change-theme #themes .theme i {
   -webkit-backdrop-filter: brightness(75%);
           backdrop-filter: brightness(75%);
   color: white;
+  opacity: 0;
+  -webkit-transition: 250ms;
+  transition: 250ms;
 }
 
 body #app #SelectedContactOptionElements #change-theme #themes .current {

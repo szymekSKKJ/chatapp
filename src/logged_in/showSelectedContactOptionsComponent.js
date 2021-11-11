@@ -5,6 +5,16 @@ const SelectedContactOptionsComponent = document.querySelector('#SelectedContact
 const profileImageElement = SelectedContactOptionsComponent.querySelector('#wrapper #contact-image');
 const contactNameElement = SelectedContactOptionsComponent.querySelector('#wrapper #contact-name p');
 const closeButton = SelectedContactOptionsComponent.querySelector('#upside #close-button');
+const selectedContactOptions = SelectedContactOptionsComponent.querySelectorAll('.option');
+let isPickableOptionOpen = false;
+
+selectedContactOptions.forEach((option, index) => {
+    if (option.className.includes('pickable')) {
+        option.addEventListener('click', () => {
+            isPickableOptionOpen = true;
+        });
+    }
+});
 
 const openFullImage = (event) => {
     window.open(event.target.src);
@@ -27,15 +37,20 @@ showSelectedContactComponentSettingsButton.addEventListener('click', () => {
 });
 
 closeButton.addEventListener('click', () => {
-    profileImageElement.removeEventListener('click', openFullImage);
-    setTimeout(() => {
-        profileImageElement.style.transform = 'translateY(-200px)';
-        SelectedContactOptionsComponent.style.opacity = '0';
-        upside.style.top = '0px';
+    if (isPickableOptionOpen) {
+        isPickableOptionOpen = false;
+    }
+    else {
+        profileImageElement.removeEventListener('click', openFullImage);
         setTimeout(() => {
-            SelectedContactOptionsComponent.style.display = 'none';
-        }, 500);
-    }, 50);
+            profileImageElement.style.transform = 'translateY(-200px)';
+            SelectedContactOptionsComponent.style.opacity = '0';
+            upside.style.top = '0px';
+            setTimeout(() => {
+                SelectedContactOptionsComponent.style.display = 'none';
+            }, 500);
+        }, 50);
+    }
 });
 
 export { writeFullContactName };

@@ -24,6 +24,7 @@ body {
     user-select: none;
     font-weight: 300;
     -webkit-tap-highlight-color: transparent;
+    transition: 500ms;
     #app {
         width: inherit;
         height: inherit;
@@ -803,7 +804,7 @@ body {
                     .message-content {
                         max-width: 80%;
                         height: auto;
-                        background-color: #393e46;
+                        background-color: rgba(100, 100, 100, 0.33);;
                         padding: 8px;
                         border-radius: 8px 8px 0px 8px;
                         font-size: 16px;
@@ -812,6 +813,7 @@ body {
                         line-height: 1.2;
                         display: flex;
                         align-items: center;
+                        transition: 500ms;
                         img {
                             width: 18px;
                             height: 18px;
@@ -894,6 +896,7 @@ body {
                         line-height: 1.2;
                         display: flex;
                         align-items: center;
+                        transition: 500ms;
                         img {
                             width: 18px;
                             height: 18px;
@@ -1291,9 +1294,11 @@ body {
             top: 0;
             left: 0;
             z-index: 1000000;
+            transition: 250ms;
+            display: flex;
+            flex-direction: column;
             display: none;
             opacity: 0;
-            transition: 250ms;
             #upside {
                 width: 100%;
                 height: auto;
@@ -1319,7 +1324,7 @@ body {
                     height: 150px;
                     background-color: transparent;
                     position: relative;
-                    transform: translateY(-200px);
+                    //transform: translateY(-200px);
                     transition: 750ms;
                     border-radius: 100%;
                     overflow: hidden;
@@ -1341,57 +1346,69 @@ body {
                     margin-bottom: 25px;
                 }
             }
-            .option {
+
+            #options {
                 width: 100%;
-                height: 50px;
+                height: auto;
                 background-color: transparent;
-                font-size: 20px;
-                cursor: pointer;
                 display: flex;
-                align-items: center;
-                padding: 16px;
-                margin-left: 8px;
-                i {
-                    margin-right: 12px;
-                }
-                &:nth-child(3) {
+                flex-direction: column;
+                align-items: flex-start;
+                position: relative;
+
+                .option {
+                    width: auto;
+                    height: 50px;
+                    background-color: transparent;
+                    font-size: 20px;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    padding: 16px;
+                    transition: all 500ms;
+                    flex-shrink: 0;
                     i {
-                        margin-right: 8px;
+                        margin-right: 12px;
+                    }
+                    &:nth-child(3) {
+                        i {
+                            margin-right: 8px;
+                        }
+                    }
+                    &:nth-child(5) {
+                        i {
+                            margin-right: 16px;
+                        }
+                    }
+                    p, i {
+                        transition: all 500ms;
                     }
                 }
-                &:nth-child(5) {
-                    i {
-                        margin-right: 16px;
-                    }
+                .current {
+                    pointer-events: none;
+                    position: relative;
+                    transition: 500ms;
+                    margin-left: 50%;
                 }
             }
         }
         #SelectedContactOptionElements {
             width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.2);
-            //background-color: transparent;
+            height: calc(100vh - 300px);
+            background-color: transparent;
             position: fixed;
             top: 0;
             left: 0;
-            backdrop-filter: blur(4px);
             display: none;
-
-            #title {
-                width: 100%;
-                height: auto;
-                background-color: transparent;
-                padding: 8px 16px 8px 16px;
-                font-size: 24px;
-                font-weight: bold;
-            }
+            z-index: 1000000;
+            margin-top: 300px;
+            transform: translateX(-100vh);
+            transition: all 500ms;
             #change-theme {
                 width: 100vw;
                 height: auto;
                 background-color: transparent;
-                position: relative;
-                top: 50%;
-                transform: translateY(-50%);
+                display: none;
                 #themes {
                     width: 100%;
                     height: auto;
@@ -1405,9 +1422,8 @@ body {
                         height: 50px;
                         background-image: radial-gradient(circle, #29333d , #c1576d 50%);
                         border-radius: 100%;
-                        margin: 5px;
+                        margin: 10px;
                         flex-shrink: 0;
-    
                         i {
                             width: 50px;
                             height: 50px;
@@ -1420,6 +1436,8 @@ body {
                             border-radius: 100%;
                             backdrop-filter: brightness(75%);
                             color: white;
+                            opacity: 0;
+                            transition: 250ms;
                         }
                     }
                     .current {

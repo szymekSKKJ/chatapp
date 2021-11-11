@@ -2,9 +2,11 @@ import { app } from '../firebaseInitialize.js';
 import { doc, updateDoc, collection, getDocs, onSnapshot, getFirestore, orderBy, limit, query, getDoc } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js";
 import ifMessageIncludesEmojiWithSymbols from './ifMessageIncludesEmojiWithSymbols.js';
 import { writeFullContactName as writeFullContactNameInUserSettings } from './showSelectedContactOptionsComponent.js';
-import { getFriendId } from './SelectedContactOptionsFunctions.js';
+import { getFriendId as getFriendIdToSelectedContactOptionsFunctions } from './SelectedContactOptionsFunctions.js';
+import { getFriendId as getFriendIdToswitchBetweenSelectedContactThemes } from './switchBetweenSelectedContactThemes.js'
 import displayGlobalErrorFullspace from '../displayGlobalErrorFullspace.js';
 import restoreDefault from "../restoreDefault.js";
+import SelectedUserThemes from './selectedUserThemes.js';
 const SelectedContactComponent = document.querySelector('#SelectedContact');
 const backButton = SelectedContactComponent.querySelector('#back-button');
 const messagesStatus = SelectedContactComponent.querySelector('#messages-status');
@@ -15,10 +17,27 @@ let isHrYesterday = false;
 let isHrOlder = false;
 
 backButton.addEventListener('click', () => {
+    const { background: background_color, message: message_color, textarea: textarea_color } = SelectedUserThemes[0];
     content.style.scrollBehavior = 'auto';
     isHrYesterday = false;
     isHrOlder = false;
-})
+    document.body.style.backgroundColor = background_color;
+});
+
+const loadUserTheme = async (uid, id) => {
+    const messages = SelectedContactComponent.querySelectorAll('.message-from');
+    const writeMessage = SelectedContactComponent.querySelector('#write-message textarea');
+    const docSnap = await getDoc(doc(db, 'users', uid, 'friends', id));
+    const { themeNumber } = docSnap.data();
+    const { background: background_color, message: message_color, textarea: textarea_color } = SelectedUserThemes[themeNumber === undefined ? 0 : themeNumber];
+    document.body.style.backgroundColor = background_color;
+    writeMessage.style.backgroundColor = textarea_color;
+    messages.forEach((message) => {
+        const messageContent = message.querySelector('.message-content');
+        messageContent.style.backgroundColor = message_color;
+    });
+}
+
 
 const addHrIfMessageIsOlderThenToday = (allMessagesSortedByDate) => {
     const reversedAllMessagesSortedByDate = allMessagesSortedByDate.reverse();
@@ -100,7 +119,7 @@ const singleEmojiAnimation = (emoji) => {
     }
 }
 
-const ifMessageContentContainsOnlyEmoji = (messageContentElement, isNewMessage = false) => {
+const ifMessageContentContainsOnlyEmoji = (messageContentElement) => {
     const messageContent = messageContentElement.querySelector('p');
     setTimeout(() => {
         const isEveryImage = [...messageContent.childNodes].every((node) => node.tagName === 'IMG');
@@ -169,7 +188,7 @@ const addFriendProfileImageToMessage = (message, fromOrTo, imageUrl, index, arra
     }
 }
 
-const createMessage = (fromOrTo, messageContent, firebaseUnixTimestamp, imageUrl, index, array, isNewMessage) => {
+const createMessage = (fromOrTo, messageContent, firebaseUnixTimestamp, imageUrl, index, array) => {
     const message = document.createElement('div');
     message.classList.add(`${fromOrTo}`);
     content.appendChild(message);
@@ -204,7 +223,7 @@ const createMessage = (fromOrTo, messageContent, firebaseUnixTimestamp, imageUrl
     twemoji.parse(message);
 
     ifMessageIncludesEmojiWithSymbols(messageContent, messageContentElement);
-    ifMessageContentContainsOnlyEmoji(messageContentElement, isNewMessage);
+    ifMessageContentContainsOnlyEmoji(messageContentElement);
 }
 
 const clearUnreadMessages = async(uid, id) => {
@@ -287,7 +306,7 @@ const listenNewMessages = (lastMessageElement, uid, id, imageUrl, index, array) 
             const { firebaseUnixTimestamp, messageContent } = doc.data();
             if (isLoaded) {
                 lastMessageElement.innerHTML = `<p>${messageContent}</p>`;
-                createMessage('message-from', messageContent, firebaseUnixTimestamp, imageUrl, index, array, true);
+                createMessage('message-from', messageContent, firebaseUnixTimestamp, imageUrl, index, array);
                 setTimeout(() => {
                     clearUnreadMessages(uid, id);
                     const audio = new Audio('/assets/recive_message_pop.mp3');
@@ -338,6 +357,7 @@ const loadAllMessages = async(allMessagesSortedByDate, lastMessageElement, uid, 
     });
     listenIfFriendReadMessages(uid, id, allMessagesSortedByDate, imageUrl);
     ifLastMessageContainsOnlyOneEmoji();
+    loadUserTheme(uid, id);
 }
 
 const loadContactNameAndImage = (firstName, lastName, imageUrl) => {
@@ -368,7 +388,7 @@ const writeUserStatus = async(uid, id) => {
             const hoursLastOnlnieDate = lastOnlineDate.getHours()
             const daysNow = now.getDate();
             const daysLastOnlineDate = lastOnlineDate.getDate();
-            if (daysNow === daysLastOnlineDate && minutesNow === minutesLastOnlineDate || minutesNow - minutesLastOnlineDate === 1) {
+            if (daysNow === daysLastOnlineDate && hoursNow === hoursLastOnlnieDate && minutesNow === minutesLastOnlineDate || minutesNow - minutesLastOnlineDate === 1) {
                 userStatus.innerHTML = `Active now`;
                 userActive.style.display = 'block';
             } else if (daysNow === daysLastOnlineDate && hoursNow === hoursLastOnlnieDate) {
@@ -448,7 +468,8 @@ const loadUserDataToSelectedContactComponent = async (firstName, lastName, image
         clearUnreadMessages(uid, id);
         writeUserStatus(uid, id);
         writeFullContactNameInUserSettings(firstName, lastName);
-        getFriendId(id);
+        getFriendIdToSelectedContactOptionsFunctions(id);
+        getFriendIdToswitchBetweenSelectedContactThemes(id, uid);
     }
 }
 
