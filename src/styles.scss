@@ -804,7 +804,7 @@ body {
                     .message-content {
                         max-width: 80%;
                         height: auto;
-                        background-color: rgba(100, 100, 100, 0.33);;
+                        background-color: rgba(100, 100, 100, 0.33);
                         padding: 8px;
                         border-radius: 8px 8px 0px 8px;
                         font-size: 16px;
@@ -1140,7 +1140,7 @@ body {
                     padding-left: 24px;
                     padding-right: 24px;
                     border-radius: 20px;
-                    border: solid 2px #272b31;
+                    border: solid 2px rgba(50, 50, 50, 0.33);
                     transition: all 500ms, height 0ms;
                     color: #e2e5e9;
                     overflow: visible;
@@ -1150,6 +1150,9 @@ body {
                     overflow-y: hidden;
                     &:focus {
                         border: solid 2px transparent;
+                    }
+                    &::placeholder {
+                        color: #8b98a7;
                     }
                 }
                 #send-button {

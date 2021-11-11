@@ -1653,7 +1653,7 @@ body #app #SelectedContact #write-message textarea {
   padding-left: 24px;
   padding-right: 24px;
   border-radius: 20px;
-  border: solid 2px #272b31;
+  border: solid 2px rgba(50, 50, 50, 0.33);
   -webkit-transition: all 500ms, height 0ms;
   transition: all 500ms, height 0ms;
   color: #e2e5e9;
@@ -1666,6 +1666,22 @@ body #app #SelectedContact #write-message textarea {
 
 body #app #SelectedContact #write-message textarea:focus {
   border: solid 2px transparent;
+}
+
+body #app #SelectedContact #write-message textarea::-webkit-input-placeholder {
+  color: #8b98a7;
+}
+
+body #app #SelectedContact #write-message textarea:-ms-input-placeholder {
+  color: #8b98a7;
+}
+
+body #app #SelectedContact #write-message textarea::-ms-input-placeholder {
+  color: #8b98a7;
+}
+
+body #app #SelectedContact #write-message textarea::placeholder {
+  color: #8b98a7;
 }
 
 body #app #SelectedContact #write-message #send-button {

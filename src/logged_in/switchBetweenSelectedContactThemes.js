@@ -9,7 +9,6 @@ let uid;
 const getFriendId = (idd, uidd) => {
     id = idd;
     uid = uidd;
-    console.log(id,uid)
 }
 
 export { getFriendId }
