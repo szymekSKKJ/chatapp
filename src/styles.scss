@@ -674,6 +674,7 @@ body {
                     margin-left: 12px;
                     z-index: 1000000;
                     cursor: pointer;
+                    transition: 500ms;
                 }
                 #wrapper {
                     width: 100%;
@@ -804,7 +805,7 @@ body {
                     .message-content {
                         max-width: 80%;
                         height: auto;
-                        background-color: rgba(100, 100, 100, 0.33);
+                        background-color: rgba(20, 20, 20, 0.25);
                         padding: 8px;
                         border-radius: 8px 8px 0px 8px;
                         font-size: 16px;
@@ -1391,7 +1392,19 @@ body {
                     pointer-events: none;
                     position: relative;
                     transition: 500ms;
-                    margin-left: 50%;
+                    left: 0;
+                    //animation: moveLeft 500ms ease-in-out forwards;
+
+                    @keyframes moveLeft {
+                        0% {
+                            left: 0;
+                            transform: translateX(0) scale(1); 
+                        }
+                        100% {
+                            left: 50%;
+                            transform: translateX(-50%) scale(1.33); 
+                        }
+                    }
                 }
             }
         }

@@ -25,17 +25,22 @@ backButton.addEventListener('click', () => {
 });
 
 const loadUserTheme = async (uid, id) => {
+    const SelectedContactOptionElementsComponent = document.querySelector('#SelectedContactOptionElements');
     const messages = SelectedContactComponent.querySelectorAll('.message-from');
     const writeMessage = SelectedContactComponent.querySelector('#write-message textarea');
+    const themesElements = SelectedContactOptionElementsComponent.querySelectorAll('#change-theme #themes .theme');
     const docSnap = await getDoc(doc(db, 'users', uid, 'friends', id));
     const { themeNumber } = docSnap.data();
-    const { background: background_color, message: message_color, textarea: textarea_color } = SelectedUserThemes[themeNumber === undefined ? 0 : themeNumber];
+    const { background: background_color, message: message_color, textarea: textarea_color, messageFromFont: messageFromColor } = SelectedUserThemes[themeNumber === undefined ? 0 : themeNumber];
     document.body.style.backgroundColor = background_color;
     writeMessage.style.backgroundColor = textarea_color;
+    backButton.style.backgroundColor = message_color;
     messages.forEach((message) => {
         const messageContent = message.querySelector('.message-content');
         messageContent.style.backgroundColor = message_color;
+        messageContent.style.color = messageFromColor;
     });
+    themesElements[themeNumber].innerHTML = '<i class="fas fa-check" aria-hidden="true" style="opacity: 1;"></i>';
 }
 
 
@@ -140,11 +145,12 @@ const ifMessageContentContainsOnlyEmoji = (messageContentElement) => {
 const ifLastMessageContainsOnlyOneEmoji = () => {
     const allMessages = [...SelectedContactComponent.querySelector('#content').childNodes];
     const lastMessage = allMessages[allMessages.length - 1];
-    const lastMessageContent = lastMessage.querySelector('.message-content p');
-    if (lastMessageContent.childNodes.length === 1 && lastMessageContent.childNodes[0].tagName === 'IMG') {
-        singleEmojiAnimation(lastMessageContent.childNodes[0]);
+    if (lastMessage.querySelector('.message-content p')) {
+        const lastMessageContent = lastMessage.querySelector('.message-content p');
+        if (lastMessageContent.childNodes.length === 1 && lastMessageContent.childNodes[0].tagName === 'IMG') {
+            singleEmojiAnimation(lastMessageContent.childNodes[0]);
+        }
     }
-    
 }
 
 const addFriendProfileImageToMessage = (message, fromOrTo, imageUrl, index, array) => {

@@ -3,6 +3,8 @@ import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs
 import SelectedUserThemes from './selectedUserThemes.js';
 const SelectedContactOptionElementsComponent = document.querySelector('#SelectedContactOptionElements');
 const themesElement = SelectedContactOptionElementsComponent.querySelector('#change-theme #themes');
+const SelectedContactComponent = document.querySelector('#SelectedContact');
+const backButton = SelectedContactComponent.querySelector('#back-button');
 const db = getFirestore(app);
 let id;
 let uid;
@@ -13,15 +15,17 @@ const getFriendId = (idd, uidd) => {
 
 export { getFriendId }
 const setTheme = async (theme, themeIndex) => {
-    const { background: background_color, message: message_color, textarea: textarea_color } = theme;
+    const { background: background_color, message: message_color, textarea: textarea_color, messageFromFont: messageFromColor } = theme;
     const SelectedContactComponent = document.querySelector('#SelectedContact');
     const messages = SelectedContactComponent.querySelectorAll('.message-from');
     const writeMessage = SelectedContactComponent.querySelector('#write-message textarea');
     document.body.style.backgroundColor = background_color;
     writeMessage.style.backgroundColor = textarea_color;
+    backButton.style.backgroundColor = message_color;
     messages.forEach((message) => {
         const messageContent = message.querySelector('.message-content');
         messageContent.style.backgroundColor = message_color;
+        messageContent.style.color = messageFromColor;
     });
 
     await updateDoc(doc(db, 'users', uid, 'friends', id), {
@@ -50,7 +54,7 @@ const chooseThisTheme = (themeElement, theme, index) => {
 
 window.addEventListener('load', () => {
     SelectedUserThemes.forEach((theme, index) => {
-        const { background, message, textarea } = theme;
+        const { background, message, textarea, messageFrom } = theme;
         const themeElement = document.createElement('div');
         themeElement.style.backgroundImage = `radial-gradient(circle, ${background} , ${message} 50%)`;
         themeElement.classList.add('theme');

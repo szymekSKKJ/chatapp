@@ -973,6 +973,8 @@ body #app #SelectedContact #upside #back-button {
   margin-left: 12px;
   z-index: 1000000;
   cursor: pointer;
+  -webkit-transition: 500ms;
+  transition: 500ms;
 }
 
 body #app #SelectedContact #upside #wrapper {
@@ -1154,7 +1156,7 @@ body #app #SelectedContact #content .message-to {
 body #app #SelectedContact #content .message-to .message-content {
   max-width: 80%;
   height: auto;
-  background-color: rgba(100, 100, 100, 0.33);
+  background-color: rgba(20, 20, 20, 0.25);
   padding: 8px;
   border-radius: 8px 8px 0px 8px;
   font-size: 16px;
@@ -2027,7 +2029,33 @@ body #app #SelectedContactOptions #options .current {
   position: relative;
   -webkit-transition: 500ms;
   transition: 500ms;
-  margin-left: 50%;
+  left: 0;
+}
+
+@-webkit-keyframes moveLeft {
+  0% {
+    left: 0;
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1);
+  }
+  100% {
+    left: 50%;
+    -webkit-transform: translateX(-50%) scale(1.33);
+            transform: translateX(-50%) scale(1.33);
+  }
+}
+
+@keyframes moveLeft {
+  0% {
+    left: 0;
+    -webkit-transform: translateX(0) scale(1);
+            transform: translateX(0) scale(1);
+  }
+  100% {
+    left: 50%;
+    -webkit-transform: translateX(-50%) scale(1.33);
+            transform: translateX(-50%) scale(1.33);
+  }
 }
 
 body #app #SelectedContactOptionElements {
