@@ -9,6 +9,7 @@ import globalLoading from '../displayOrHideGlobalLoading.js';
 import loadFirstnameAndLastnameToMyProfileComponent from './loadDataToMyProfileComponent.js';
 import ifMessageIncludesEmojiWithSymbols from './ifMessageIncludesEmojiWithSymbols.js';
 import restoreDefault from "../restoreDefault.js";
+import { loadNicknames } from "./changeNickname.js";
 const ContactsComponent = document.querySelector('#Contacts');
 const SelectedContactComponent = document.querySelector('#SelectedContact');
 const friendsList = ContactsComponent.querySelector('#friends-list');
@@ -162,9 +163,10 @@ const loadFriendList = async(firstName, lastName, username, id, img, unreadMessa
         friendName.innerHTML = `
             <p>${firstName}</p>
             <p>${lastName}</p>
-            <p id="friend-id" style="display: none;">${id}</p>
-            <p id="user-id" style="display: none;">${uid}</p>
         `;
+        //<p id="friend-id" style="display: none;">${id}</p>
+        //<p id="user-id" style="display: none;">${uid}</p>
+        loadNicknames(id, friendName);
 
         const lastMessage = document.createElement('div');
         lastMessage.classList.add('message');
@@ -199,11 +201,11 @@ const loadFriendList = async(firstName, lastName, username, id, img, unreadMessa
             listenNewMessages(uid, id, notificationNumber, lastMessage);
         }
 
-        friendsListItem.addEventListener('click', async () => {
+        friendsListItem.addEventListener('click', async (event) => {
             if (isFriend) {
                 const SelectedContactComponent = document.querySelector('#SelectedContact');
                 showAndHideComponent(SelectedContactComponent, ContactsComponent);
-                loadUserDataToSelectedContactComponent(firstName, lastName, newLoadedImage, lastMessage, uid, id);
+                loadUserDataToSelectedContactComponent(event, firstName, lastName, newLoadedImage, lastMessage, uid, id);
                 prepareSending(uid, id);
                 await updateDoc(doc(db, 'users', uid), {
                     lastOnline: new Date()

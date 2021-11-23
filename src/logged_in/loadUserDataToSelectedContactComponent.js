@@ -4,6 +4,7 @@ import ifMessageIncludesEmojiWithSymbols from './ifMessageIncludesEmojiWithSymbo
 import { writeFullContactName as writeFullContactNameInUserSettings } from './showSelectedContactOptionsComponent.js';
 import { getFriendId as getFriendIdToSelectedContactOptionsFunctions } from './SelectedContactOptionsFunctions.js';
 import { getFriendId as getFriendIdToswitchBetweenSelectedContactThemes } from './switchBetweenSelectedContactThemes.js'
+import { getFriendId as getFriendIdToChangeNickname } from './changeNickname.js';
 import displayGlobalErrorFullspace from '../displayGlobalErrorFullspace.js';
 import restoreDefault from "../restoreDefault.js";
 import SelectedUserThemes from './selectedUserThemes.js';
@@ -194,15 +195,49 @@ const addFriendProfileImageToMessage = (message, fromOrTo, imageUrl, index, arra
     }
 }
 
+/*messageElement.animate([
+    { 
+        transform: 'translateX(0px)',
+        //backdropFilter: 'brightness(100%)'
+    },
+    { 
+        transform: 'translateX(100px)',
+        //backdropFilter: 'brightness(125%)'
+    }
+  ], {
+    duration: 250,
+    iterations: 1,
+    fill: 'forwards',
+    easing: 'ease-in-out',
+  }); */
+
+const replyMessage = (messageElement, fromOrTo, messageContentElement) => {
+    let isPressing = false;
+    messageElement.addEventListener('mousedown', (event) => {
+
+    });
+
+    messageElement.addEventListener('mouseup', (event) => {
+
+    });
+
+    messageElement.addEventListener('mousemove', (event) => {
+
+    });
+
+}
+
 const createMessage = (fromOrTo, messageContent, firebaseUnixTimestamp, imageUrl, index, array) => {
     const message = document.createElement('div');
     message.classList.add(`${fromOrTo}`);
+    
     content.appendChild(message);
     const messageContentElement = document.createElement('div');
     messageContentElement.classList.add('message-content');
     messageContentElement.innerHTML = `
         <p>${messageContent}</p>
     `;
+    replyMessage(message, fromOrTo, messageContentElement);
 
     addFriendProfileImageToMessage(message, fromOrTo, imageUrl, index, array);
 
@@ -366,15 +401,20 @@ const loadAllMessages = async(allMessagesSortedByDate, lastMessageElement, uid, 
     loadUserTheme(uid, id);
 }
 
-const loadContactNameAndImage = (firstName, lastName, imageUrl) => {
+const loadContactNameAndImage = (firstName, lastName, imageUrl, id) => {
     const contactName = SelectedContactComponent.querySelector('#contact-name');
     const contactImage = SelectedContactComponent.querySelector('#contact-image');
-    contactName.innerHTML = `
-    <p>${firstName}</p>
-    `;
     contactImage.innerHTML = `
         <img src="${imageUrl}">
     `;
+    if (localStorage.getItem(id)) {
+        contactName.innerHTML = `<p>${localStorage.getItem(id)}</p>`;
+    }
+    else {
+        contactName.innerHTML = `
+        <p>${firstName}</p>
+        `;
+    }
 }
 
 const writeUserStatus = async(uid, id) => {
@@ -394,7 +434,7 @@ const writeUserStatus = async(uid, id) => {
             const hoursLastOnlnieDate = lastOnlineDate.getHours()
             const daysNow = now.getDate();
             const daysLastOnlineDate = lastOnlineDate.getDate();
-            if (daysNow === daysLastOnlineDate && hoursNow === hoursLastOnlnieDate && minutesNow === minutesLastOnlineDate || minutesNow - minutesLastOnlineDate === 1) {
+            if (daysNow === daysLastOnlineDate && hoursNow === hoursLastOnlnieDate && (minutesNow === minutesLastOnlineDate || minutesNow - minutesLastOnlineDate === 1)) {
                 userStatus.innerHTML = `Active now`;
                 userActive.style.display = 'block';
             } else if (daysNow === daysLastOnlineDate && hoursNow === hoursLastOnlnieDate) {
@@ -463,19 +503,28 @@ const listenIfFriendBlockMe = (uid, id) => {
     });
 }
 
-const loadUserDataToSelectedContactComponent = async (firstName, lastName, imageUrl, lastMessage, uid, id) => {
+const loadChangeNicknameInputValue = (id) => {
+    const SelectedContactOptionElementsComponent = document.querySelector('#SelectedContactOptionElements');
+    const changeNicknameInput = SelectedContactOptionElementsComponent.querySelector('#change-nickname #input input');
+    const getNicknameById = localStorage.getItem(id);
+    changeNicknameInput.value = getNicknameById;
+}
+
+const loadUserDataToSelectedContactComponent = async (event, firstName, lastName, imageUrl, lastMessage, uid, id) => {
     content.innerHTML = '';
     content.style.display = 'none';
     const isFriend = await checkIfFriendIsMyFriend(uid, id, content);
     if (isFriend === true || isFriend === null) {
         const allMessagesSortedByDate = [];
-        loadContactNameAndImage(firstName, lastName, imageUrl);
+        loadContactNameAndImage(firstName, lastName, imageUrl, id);
         loadAllMessages(allMessagesSortedByDate, lastMessage, uid, id, imageUrl);
         clearUnreadMessages(uid, id);
         writeUserStatus(uid, id);
         writeFullContactNameInUserSettings(firstName, lastName);
         getFriendIdToSelectedContactOptionsFunctions(id);
         getFriendIdToswitchBetweenSelectedContactThemes(id, uid);
+        getFriendIdToChangeNickname(event, id);
+        loadChangeNicknameInputValue(id);
     }
 }
 

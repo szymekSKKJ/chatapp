@@ -227,6 +227,7 @@ body #app #Contacts #content #friends-list .friends-list-item .image {
           filter: drop-shadow(0px 0px 8px #17191c);
   -ms-flex-negative: 0;
       flex-shrink: 0;
+  pointer-events: none;
 }
 
 body #app #Contacts #content #friends-list .friends-list-item .image img {
@@ -252,6 +253,7 @@ body #app #Contacts #content #friends-list .friends-list-item .wrapper {
   margin-left: 12px;
   position: relative;
   overflow: hidden;
+  pointer-events: none;
 }
 
 body #app #Contacts #content #friends-list .friends-list-item .wrapper .name {
@@ -979,6 +981,7 @@ body #app #SelectedContact #upside #back-button {
 
 body #app #SelectedContact #upside #wrapper {
   width: 100%;
+  max-width: calc(100vw - 100px);
   height: auto;
   background-color: transparent;
   display: -webkit-box;
@@ -988,6 +991,7 @@ body #app #SelectedContact #upside #wrapper {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
+  overflow: hidden;
 }
 
 body #app #SelectedContact #upside #wrapper #contact-image {
@@ -1046,6 +1050,12 @@ body #app #SelectedContact #upside #wrapper #wrapper1 #contact-name {
   background-color: transparent;
   font-size: 24px;
   text-align: left;
+}
+
+body #app #SelectedContact #upside #wrapper #wrapper1 #contact-name p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 body #app #SelectedContact #upside #wrapper #wrapper1 #user-status {
@@ -2011,12 +2021,12 @@ body #app #SelectedContactOptions #options .option i {
   margin-right: 12px;
 }
 
-body #app #SelectedContactOptions #options .option:nth-child(3) i {
-  margin-right: 8px;
+body #app #SelectedContactOptions #options .option .fa-palette {
+  margin-right: 16px;
 }
 
-body #app #SelectedContactOptions #options .option:nth-child(5) i {
-  margin-right: 16px;
+body #app #SelectedContactOptions #options .option .fa-lock-alt {
+  margin-right: 20px;
 }
 
 body #app #SelectedContactOptions #options .option p, body #app #SelectedContactOptions #options .option i {
@@ -2027,8 +2037,8 @@ body #app #SelectedContactOptions #options .option p, body #app #SelectedContact
 body #app #SelectedContactOptions #options .current {
   pointer-events: none;
   position: relative;
-  -webkit-transition: 500ms;
-  transition: 500ms;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
   left: 0;
 }
 
@@ -2142,6 +2152,53 @@ body #app #SelectedContactOptionElements #change-theme #themes .current {
       -ms-flex-align: center;
           align-items: center;
   font-size: 26px;
+}
+
+body #app #SelectedContactOptionElements #change-nickname {
+  width: 100vw;
+  height: auto;
+  background-color: transparent;
+  display: none;
+}
+
+body #app #SelectedContactOptionElements #change-nickname #input {
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body #app #SelectedContactOptionElements #change-nickname #input input {
+  width: 80%;
+  font-size: 30px;
+  text-align: center;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-family: 'Mitr', sans-serif;
+  color: #d3d8de;
+  border-radius: 100px;
+}
+
+body #app #SelectedContactOptionElements #change-nickname #input input::-webkit-input-placeholder {
+  color: #8b98a7;
+}
+
+body #app #SelectedContactOptionElements #change-nickname #input input:-ms-input-placeholder {
+  color: #8b98a7;
+}
+
+body #app #SelectedContactOptionElements #change-nickname #input input::-ms-input-placeholder {
+  color: #8b98a7;
+}
+
+body #app #SelectedContactOptionElements #change-nickname #input input::placeholder {
+  color: #8b98a7;
 }
 
 body #app #AddFriend {

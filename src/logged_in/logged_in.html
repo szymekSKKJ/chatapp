@@ -224,7 +224,7 @@
                     <i class="fad fa-palette"></i>
                     <p>Change theme</p>
                 </div>
-                <div class="option">
+                <div class="option pickable">
                     <i class="fad fa-user-edit"></i>
                     <p>Change nickname</p>
                 </div>
@@ -237,6 +237,11 @@
         <div id="SelectedContactOptionElements">
             <div id="change-theme" class="option">
                 <div id="themes">
+                </div>
+            </div>
+            <div id="change-nickname" class="option">
+                <div id="input">
+                    <input type="text" placeholder="Set nickname" maxlength="20">
                 </div>
             </div>
         </div>
@@ -338,6 +343,6 @@
     <script type="module" src="../restoreDefault.js"></script>
     <script type="module" src="./showSelectedContactOptionElemens.js"></script>
     <script type="module" src="./switchBetweenSelectedContactThemes.js"></script>
+    <script type="module" src="changeNickname.js"></script>
 </body>
-
 </html>
