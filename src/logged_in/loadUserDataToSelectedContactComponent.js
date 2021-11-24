@@ -5,6 +5,7 @@ import { writeFullContactName as writeFullContactNameInUserSettings } from './sh
 import { getFriendId as getFriendIdToSelectedContactOptionsFunctions } from './SelectedContactOptionsFunctions.js';
 import { getFriendId as getFriendIdToswitchBetweenSelectedContactThemes } from './switchBetweenSelectedContactThemes.js'
 import { getFriendId as getFriendIdToChangeNickname } from './changeNickname.js';
+import { getIdOfReplayingDocument } from './sendingMessage.js';
 import displayGlobalErrorFullspace from '../displayGlobalErrorFullspace.js';
 import restoreDefault from "../restoreDefault.js";
 import SelectedUserThemes from './selectedUserThemes.js';
@@ -27,7 +28,9 @@ backButton.addEventListener('click', () => {
 
 const loadUserTheme = async (uid, id) => {
     const SelectedContactOptionElementsComponent = document.querySelector('#SelectedContactOptionElements');
+    const messageReplyelement = SelectedContactComponent.querySelector('#message-reply');
     const messages = SelectedContactComponent.querySelectorAll('.message-from');
+    const writeMessageElement = SelectedContactComponent.querySelector('#write-message');
     const writeMessage = SelectedContactComponent.querySelector('#write-message textarea');
     const themesElements = SelectedContactOptionElementsComponent.querySelectorAll('#change-theme #themes .theme');
     const docSnap = await getDoc(doc(db, 'users', uid, 'friends', id));
@@ -36,6 +39,8 @@ const loadUserTheme = async (uid, id) => {
     document.body.style.backgroundColor = background_color;
     writeMessage.style.backgroundColor = textarea_color;
     backButton.style.backgroundColor = message_color;
+    messageReplyelement.style.backgroundColor = background_color;
+    writeMessageElement.style.backgroundColor = background_color;
     messages.forEach((message) => {
         const messageContent = message.querySelector('.message-content');
         messageContent.style.backgroundColor = message_color;
@@ -211,33 +216,167 @@ const addFriendProfileImageToMessage = (message, fromOrTo, imageUrl, index, arra
     easing: 'ease-in-out',
   }); */
 
-const replyMessage = (messageElement, fromOrTo, messageContentElement) => {
-    let isPressing = false;
-    messageElement.addEventListener('mousedown', (event) => {
+const replyMessage = (messageElement, fromOrTo, messageContentElement, messageContent, id, allMessagesSortedByDate) => {
+    if (fromOrTo === 'message-from') {
+        const messageReplyElement = SelectedContactComponent.querySelector('#message-reply');
+        const messageReplyToNameElement = SelectedContactComponent.querySelector('#message-reply #reply-to-name p');
+        const messageReplyContent = SelectedContactComponent.querySelector('#message-reply #message-reply-content p');
+        const friendName = SelectedContactComponent.querySelector('#upside #wrapper #wrapper1 #contact-name p').innerHTML;
+        const currentMessageId = id;
+        let isPressing = false;
+        let mouseDownXposition;
+        let isSelectedMessage = false;
+    
+        messageElement.addEventListener('mousedown', (event) => {
+            isPressing = true;
+            mouseDownXposition = event.clientX;
+        });
 
-    });
+        messageElement.addEventListener('touchstart', (event) => {
+            isPressing = true;
+            mouseDownXposition = event.touches[0].pageX;
+        });
+    
+        window.addEventListener('mouseup', (event) => {
+            isPressing = false;
+            isSelectedMessage = false;
+            messageContentElement.animate([
+                { 
+                    marginLeft: ''
+                },
+                { 
+                    marginLeft: '0px'
+                }
+              ], {
+                duration: 250,
+                iterations: 1,
+                fill: 'forwards',
+                easing: 'ease-in-out',
+              });
+        });
 
-    messageElement.addEventListener('mouseup', (event) => {
+        window.addEventListener('touchend', (event) => {
+            isPressing = false;
+            isSelectedMessage = false;
+            messageContentElement.animate([
+                { 
+                    marginLeft: ''
+                },
+                { 
+                    marginLeft: '0px'
+                }
+              ], {
+                duration: 250,
+                iterations: 1,
+                fill: 'forwards',
+                easing: 'ease-in-out',
+              });
+        });
+    
+        window.addEventListener('mousemove', (event) => {
+            if (isPressing) {
+                messageContentElement.animate([
+                    { 
+                        marginLeft: ''
+                    },
+                    { 
+                        marginLeft: `${(event.clientX - mouseDownXposition)}px`
+                    }
+                  ], {
+                    duration: 1,
+                    iterations: 1,
+                    fill: 'forwards',
+                    easing: 'ease-in-out',
+                  });
+                if (event.clientX - mouseDownXposition > 75 && isSelectedMessage === false) {
+                    getIdOfReplayingDocument(id);
+                    isSelectedMessage = true;
+                    messageReplyElement.style.display = 'flex';
+                    setTimeout(() => {
+                        messageReplyElement.style.transform = 'translateY(115px)';
+                       setTimeout(() => {
+                        messageReplyElement.style.transform = 'translateY(0px)';
+                       }, 333);
+                    }, 100);
+                    setTimeout(() => {
+                        messageReplyContent.innerHTML = messageContent;
+                        messageReplyToNameElement.innerHTML = `Reply to ${friendName}`;
+                    }, 433);
+                }
+                else {
+                    
+                }
+            }
+        });
 
-    });
-
-    messageElement.addEventListener('mousemove', (event) => {
-
-    });
-
+        window.addEventListener('touchmove', (event) => {
+            if (isPressing) {
+                messageContentElement.animate([
+                    { 
+                        marginLeft: ''
+                    },
+                    { 
+                        marginLeft: `${(event.touches[0].pageX - mouseDownXposition)}px`
+                    }
+                  ], {
+                    duration: 1,
+                    iterations: 1,
+                    fill: 'forwards',
+                    easing: 'ease-in-out',
+                  });
+                if (event.touches[0].pageX - mouseDownXposition > 75 && isSelectedMessage === false) {
+                    getIdOfReplayingDocument(id);
+                    isSelectedMessage = true;
+                    messageReplyElement.style.display = 'flex';
+                    setTimeout(() => {
+                        messageReplyElement.style.transform = 'translateY(115px)';
+                       setTimeout(() => {
+                        messageReplyElement.style.transform = 'translateY(0px)';
+                       }, 333);
+                    }, 100);
+                    setTimeout(() => {
+                        messageReplyContent.innerHTML = messageContent;
+                        messageReplyToNameElement.innerHTML = `Reply to ${friendName}`;
+                    }, 433);
+                }
+                else {
+                    
+                }
+            }
+        });
+    }
 }
 
-const createMessage = (fromOrTo, messageContent, firebaseUnixTimestamp, imageUrl, index, array) => {
+const ifIsReplyMessage = (idOfReplayingDocument, allMessagesSortedByDate, messageContentElement, messageContent) => {
+    if (idOfReplayingDocument) {
+        allMessagesSortedByDate.forEach((message) => {
+            const { id, messageContent : replyingMessageContent } = message;
+            if (id === idOfReplayingDocument) {
+                messageContentElement.innerHTML = `
+                    <div class="message-reply">
+                        <p>${replyingMessageContent}</p>
+                    </div>
+                    <p>${messageContent}</p>
+                `;
+                const messageReplyElementHeight = messageContentElement.querySelector('.message-reply').getBoundingClientRect().height;
+                messageContentElement.style.paddingTop = `${messageReplyElementHeight + (5 * 8) + 10}px`;
+            }
+        });
+    }
+}
+
+const createMessage = (fromOrTo, messageContent, firebaseUnixTimestamp, imageUrl, index, array, id, allMessagesSortedByDate, idOfReplayingDocument) => {
     const message = document.createElement('div');
     message.classList.add(`${fromOrTo}`);
-    
     content.appendChild(message);
     const messageContentElement = document.createElement('div');
     messageContentElement.classList.add('message-content');
     messageContentElement.innerHTML = `
         <p>${messageContent}</p>
     `;
-    replyMessage(message, fromOrTo, messageContentElement);
+
+    ifIsReplyMessage(idOfReplayingDocument, allMessagesSortedByDate, messageContentElement, messageContent);
+    replyMessage(message, fromOrTo, messageContentElement, messageContent, id, allMessagesSortedByDate);
 
     addFriendProfileImageToMessage(message, fromOrTo, imageUrl, index, array);
 
@@ -329,14 +468,15 @@ const croppedMessageWhenScrolledUp = (imageUrl, messageContent) => {
 }
 
 
-const listenNewMessages = (lastMessageElement, uid, id, imageUrl, index, array) => {
+const listenNewMessages = (lastMessageElement, uid, id, imageUrl, index, array, allMessagesSortedByDate) => {
     let isLoaded = false;
     const unsubscribeGetUserLastMessage = onSnapshot(query(collection(db, 'users', uid, 'friends', id, 'deliveredMessages'), orderBy('firebaseUnixTimestamp', 'desc'), limit(1)), (querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            const { firebaseUnixTimestamp, messageContent } = doc.data();
+            const { firebaseUnixTimestamp, messageContent, idOfReplayingDocument } = doc.data();
             if (isLoaded) {
+                const idOfDocument = doc.id;
                 lastMessageElement.innerHTML = `<p>${messageContent}</p>`;
-                createMessage('message-to', messageContent, firebaseUnixTimestamp, imageUrl, index, array);
+                createMessage('message-to', messageContent, firebaseUnixTimestamp, imageUrl, index, array, idOfDocument, allMessagesSortedByDate, idOfReplayingDocument);
                 ifLastMessageContainsOnlyOneEmoji();
             }
         });
@@ -344,10 +484,11 @@ const listenNewMessages = (lastMessageElement, uid, id, imageUrl, index, array) 
 
     const unsubscribeGetFriendLastMessage = onSnapshot(query(collection(db, 'users', id, 'friends', uid, 'deliveredMessages'), orderBy('firebaseUnixTimestamp', 'desc'), limit(1)), (querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            const { firebaseUnixTimestamp, messageContent } = doc.data();
+            const { firebaseUnixTimestamp, messageContent, idOfReplayingDocument } = doc.data();
             if (isLoaded) {
+                const idOfDocument = doc.id;
                 lastMessageElement.innerHTML = `<p>${messageContent}</p>`;
-                createMessage('message-from', messageContent, firebaseUnixTimestamp, imageUrl, index, array);
+                createMessage('message-from', messageContent, firebaseUnixTimestamp, imageUrl, index, array, idOfDocument, allMessagesSortedByDate, idOfReplayingDocument);
                 setTimeout(() => {
                     clearUnreadMessages(uid, id);
                     const audio = new Audio('/assets/recive_message_pop.mp3');
@@ -369,31 +510,35 @@ const listenNewMessages = (lastMessageElement, uid, id, imageUrl, index, array) 
 const loadAllMessages = async(allMessagesSortedByDate, lastMessageElement, uid, id, imageUrl) => {
     const querySnapshot = await getDocs(query(collection(db, 'users', uid, 'friends', id, 'deliveredMessages'), orderBy('firebaseUnixTimestamp', 'desc'), limit(50)));
     querySnapshot.forEach((doc) => {
-        const { firebaseUnixTimestamp, messageContent } = doc.data();
+        const { firebaseUnixTimestamp, messageContent, idOfReplayingDocument } = doc.data();
         allMessagesSortedByDate.push({
+            id: doc.id,
             firebaseUnixTimestamp: firebaseUnixTimestamp,
             messageContent: messageContent,
-            fromOrTo: 'message-to'
+            fromOrTo: 'message-to',
+            idOfReplayingDocument: idOfReplayingDocument
         });
     });
     const querySnapshot1 = await getDocs(query(collection(db, 'users', id, 'friends', uid, 'deliveredMessages'), orderBy('firebaseUnixTimestamp', 'desc'), limit(50)));
     querySnapshot1.forEach((doc) => {
-        const { firebaseUnixTimestamp, messageContent } = doc.data();
+        const { firebaseUnixTimestamp, messageContent, idOfReplayingDocument } = doc.data();
         allMessagesSortedByDate.push({
+            id: doc.id,
             firebaseUnixTimestamp: firebaseUnixTimestamp,
             messageContent: messageContent,
-            fromOrTo: 'message-from'
+            fromOrTo: 'message-from', 
+            idOfReplayingDocument: idOfReplayingDocument
         });
     });
     allMessagesSortedByDate.sort(function(a, b) {
         return a.firebaseUnixTimestamp - b.firebaseUnixTimestamp;
     });
     allMessagesSortedByDate.forEach((message, index, array) => {
-        const { firebaseUnixTimestamp, messageContent, fromOrTo } = message;
-        createMessage(fromOrTo, messageContent, firebaseUnixTimestamp, imageUrl, index, array);
+        const { firebaseUnixTimestamp, messageContent, fromOrTo, id, idOfReplayingDocument} = message;
+        createMessage(fromOrTo, messageContent, firebaseUnixTimestamp, imageUrl, index, array, id, allMessagesSortedByDate, idOfReplayingDocument);
         if (index === array.length - 1) {
             addHrIfMessageIsOlderThenToday(allMessagesSortedByDate);
-            listenNewMessages(lastMessageElement, uid, id, imageUrl, index, array);
+            listenNewMessages(lastMessageElement, uid, id, imageUrl, index, array, allMessagesSortedByDate);
         }
     });
     listenIfFriendReadMessages(uid, id, allMessagesSortedByDate, imageUrl);

@@ -19,6 +19,10 @@ const setTheme = async (theme, themeIndex) => {
     const SelectedContactComponent = document.querySelector('#SelectedContact');
     const messages = SelectedContactComponent.querySelectorAll('.message-from');
     const writeMessage = SelectedContactComponent.querySelector('#write-message textarea');
+    const messageReplyelement = SelectedContactComponent.querySelector('#message-reply');
+    const writeMessageElement = SelectedContactComponent.querySelector('#write-message');
+    writeMessageElement.style.backgroundColor = background_color;
+    messageReplyelement.style.backgroundColor = background_color;
     document.body.style.backgroundColor = background_color;
     writeMessage.style.backgroundColor = textarea_color;
     backButton.style.backgroundColor = message_color;

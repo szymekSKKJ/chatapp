@@ -13,11 +13,17 @@ const messagesStatus = SelectedContactComponent.querySelector('#messages-status'
 const db = getFirestore(app);
 let uid;
 let id;
+let idOfReplayingDocument = null;
+
+const getIdOfReplayingDocument = (idOfDocument) => {
+    idOfReplayingDocument = idOfDocument;
+}
 
 const prepareSending = (uidd, idd) => {
     uid = uidd;
     id = idd;
 }
+
 writeMessage.addEventListener('focus', () => {
     setTimeout(() => {
         content.scrollTop = content.scrollHeight;
@@ -34,10 +40,19 @@ sendButton.addEventListener('click', async() => {
         writeMessageWrapper.setAttribute("id", "write-message-forbid");
         writeMessage.blur();
         writeMessage.focus();
-        await addDoc(collection(db, 'users', uid, 'friends', id, 'deliveredMessages'), {
-            messageContent: writeMessage.value,
-            firebaseUnixTimestamp: firebaseUnixTimestamp
-        });
+        if (idOfReplayingDocument !== null) {
+            await addDoc(collection(db, 'users', uid, 'friends', id, 'deliveredMessages'), {
+                idOfReplayingDocument: idOfReplayingDocument,
+                messageContent: writeMessage.value,
+                firebaseUnixTimestamp: firebaseUnixTimestamp
+            });
+        }
+        else {
+            await addDoc(collection(db, 'users', uid, 'friends', id, 'deliveredMessages'), {
+                messageContent: writeMessage.value,
+                firebaseUnixTimestamp: firebaseUnixTimestamp
+            });
+        }
         const docSnap = await getDoc(doc(db, 'users', id, 'friends', uid));
         const { unreadMessagesNumber } = docSnap.data();
         await updateDoc(doc(db, 'users', id, 'friends', uid), {
@@ -63,3 +78,4 @@ submitByEnterKey(sendButton, inputsOnEnter);
 
 
 export default prepareSending;
+export { getIdOfReplayingDocument };

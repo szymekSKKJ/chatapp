@@ -1167,7 +1167,7 @@ body #app #SelectedContact #content .message-to .message-content {
   max-width: 80%;
   height: auto;
   background-color: rgba(20, 20, 20, 0.25);
-  padding: 8px;
+  padding: 8px 8px 8px 8px;
   border-radius: 8px 8px 0px 8px;
   font-size: 16px;
   word-wrap: break-word;
@@ -1181,6 +1181,37 @@ body #app #SelectedContact #content .message-to .message-content {
           align-items: center;
   -webkit-transition: 500ms;
   transition: 500ms;
+  position: relative;
+}
+
+body #app #SelectedContact #content .message-to .message-content > .message-reply {
+  width: auto;
+  height: auto;
+  background-color: rgba(65, 136, 190, 0.25);
+  position: absolute;
+  border-radius: 4px;
+  top: 8px;
+  right: 8px;
+  left: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 8px;
+  border-left: solid 4px #4188be;
+}
+
+body #app #SelectedContact #content .message-to .message-content > .message-reply p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 body #app #SelectedContact #content .message-to .message-content img {
@@ -1311,6 +1342,7 @@ body #app #SelectedContact #content .message-from .message-content {
           align-items: center;
   -webkit-transition: 500ms;
   transition: 500ms;
+  position: relative;
 }
 
 body #app #SelectedContact #content .message-from .message-content img {
@@ -1610,15 +1642,16 @@ body #app #SelectedContact #write-message {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   padding: 4px 8px 4px 8px;
   position: fixed;
   bottom: 0px;
+  z-index: 1000000;
   pointer-events: all;
 }
 
@@ -1655,7 +1688,7 @@ body #app #SelectedContact #write-message #message-addition-buttons .button {
 }
 
 body #app #SelectedContact #write-message textarea {
-  width: 90%;
+  width: 100%;
   height: 36px;
   background-color: #393e46;
   border: none;
@@ -1665,7 +1698,7 @@ body #app #SelectedContact #write-message textarea {
   padding-left: 24px;
   padding-right: 24px;
   border-radius: 20px;
-  border: solid 2px rgba(50, 50, 50, 0.33);
+  border: solid 3px rgba(50, 50, 50, 0.33);
   -webkit-transition: all 500ms, height 0ms;
   transition: all 500ms, height 0ms;
   color: #e2e5e9;
@@ -1677,7 +1710,7 @@ body #app #SelectedContact #write-message textarea {
 }
 
 body #app #SelectedContact #write-message textarea:focus {
-  border: solid 2px transparent;
+  border: solid 3px transparent;
 }
 
 body #app #SelectedContact #write-message textarea::-webkit-input-placeholder {
@@ -1713,6 +1746,90 @@ body #app #SelectedContact #write-message #send-button {
   cursor: pointer;
   -ms-flex-item-align: end;
       align-self: flex-end;
+}
+
+body #app #SelectedContact #message-reply {
+  width: 100%;
+  height: 65px;
+  background-color: #272b31;
+  position: absolute;
+  bottom: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  padding: 0px 16px 0px 16px;
+  border-top: solid 3px #393e46;
+  -webkit-transform: translateY(115px);
+          transform: translateY(115px);
+  -webkit-transition: all 333ms;
+  transition: all 333ms;
+  display: none;
+}
+
+body #app #SelectedContact #message-reply #reply-to-name {
+  width: auto;
+  height: auto;
+  position: absolute;
+  font-size: 15px;
+  padding: 4px 12px 4px 12px;
+  border-radius: 4px;
+  top: 0px;
+  left: 36px;
+  z-index: 100;
+}
+
+body #app #SelectedContact #message-reply #message-reply-content {
+  width: 100%;
+  height: 50px;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+}
+
+body #app #SelectedContact #message-reply #message-reply-content p {
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 14px;
+  border-radius: 100px;
+  padding: 8px 20px 8px 20px;
+  color: #8b98a7;
+}
+
+body #app #SelectedContact #message-reply #close-button {
+  width: 30px;
+  height: 30px;
+  background-color: #393e46;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 18px;
+  border-radius: 100%;
+  -ms-flex-item-align: center;
+      align-self: center;
 }
 
 body #app #SelectedContact #write-message-forbid {
