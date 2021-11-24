@@ -467,12 +467,11 @@ const croppedMessageWhenScrolledUp = (imageUrl, messageContent) => {
     }
 }
 
-
-const listenNewMessages = (lastMessageElement, uid, id, imageUrl, index, array, allMessagesSortedByDate) => {
+const listenNewMessages = (lastMessageElement, uid, id, imageUrl, index, array, idOfDocument, allMessagesSortedByDate, idOfReplayingDocument) => {
     let isLoaded = false;
     const unsubscribeGetUserLastMessage = onSnapshot(query(collection(db, 'users', uid, 'friends', id, 'deliveredMessages'), orderBy('firebaseUnixTimestamp', 'desc'), limit(1)), (querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            const { firebaseUnixTimestamp, messageContent, idOfReplayingDocument } = doc.data();
+            const { firebaseUnixTimestamp, messageContent, idOfReplayingDocument} = doc.data();
             if (isLoaded) {
                 const idOfDocument = doc.id;
                 lastMessageElement.innerHTML = `<p>${messageContent}</p>`;
@@ -526,7 +525,7 @@ const loadAllMessages = async(allMessagesSortedByDate, lastMessageElement, uid, 
             id: doc.id,
             firebaseUnixTimestamp: firebaseUnixTimestamp,
             messageContent: messageContent,
-            fromOrTo: 'message-from', 
+            fromOrTo: 'message-from',
             idOfReplayingDocument: idOfReplayingDocument
         });
     });
@@ -534,11 +533,11 @@ const loadAllMessages = async(allMessagesSortedByDate, lastMessageElement, uid, 
         return a.firebaseUnixTimestamp - b.firebaseUnixTimestamp;
     });
     allMessagesSortedByDate.forEach((message, index, array) => {
-        const { firebaseUnixTimestamp, messageContent, fromOrTo, id, idOfReplayingDocument} = message;
-        createMessage(fromOrTo, messageContent, firebaseUnixTimestamp, imageUrl, index, array, id, allMessagesSortedByDate, idOfReplayingDocument);
+        const { firebaseUnixTimestamp, messageContent, fromOrTo, id : idOfDocument, idOfReplayingDocument } = message;
+        createMessage(fromOrTo, messageContent, firebaseUnixTimestamp, imageUrl, index, array, idOfDocument, allMessagesSortedByDate, idOfReplayingDocument);
         if (index === array.length - 1) {
             addHrIfMessageIsOlderThenToday(allMessagesSortedByDate);
-            listenNewMessages(lastMessageElement, uid, id, imageUrl, index, array, allMessagesSortedByDate);
+            listenNewMessages(lastMessageElement, uid, id, imageUrl, index, array, idOfDocument, allMessagesSortedByDate, idOfReplayingDocument);
         }
     });
     listenIfFriendReadMessages(uid, id, allMessagesSortedByDate, imageUrl);
