@@ -200,21 +200,6 @@ const addFriendProfileImageToMessage = (message, fromOrTo, imageUrl, index, arra
     }
 }
 
-/*messageElement.animate([
-    { 
-        transform: 'translateX(0px)',
-        //backdropFilter: 'brightness(100%)'
-    },
-    { 
-        transform: 'translateX(100px)',
-        //backdropFilter: 'brightness(125%)'
-    }
-  ], {
-    duration: 250,
-    iterations: 1,
-    fill: 'forwards',
-    easing: 'ease-in-out',
-  }); */
 
 const replyMessage = (messageElement, fromOrTo, messageContentElement, messageContent, id, allMessagesSortedByDate) => {
     if (fromOrTo === 'message-from') {
@@ -359,7 +344,7 @@ const ifIsReplyMessage = (idOfReplayingDocument, allMessagesSortedByDate, messag
                     <p>${messageContent}</p>
                 `;
                 const messageReplyElementHeight = messageContentElement.querySelector('.message-reply').getBoundingClientRect().height;
-                messageContentElement.style.paddingTop = `${messageReplyElementHeight + (5 * 8) + 10}px`;
+                //messageContentElement.style.paddingTop = `${messageReplyElementHeight + (5 * 8) + 10}px`;
             }
         });
     }

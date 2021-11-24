@@ -1176,34 +1176,37 @@ body #app #SelectedContact #content .message-to .message-content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-transition: 500ms;
   transition: 500ms;
   position: relative;
 }
 
 body #app #SelectedContact #content .message-to .message-content > .message-reply {
-  width: auto;
+  width: 100%;
   height: auto;
   background-color: rgba(65, 136, 190, 0.25);
-  position: absolute;
+  position: relative;
   border-radius: 4px;
   top: 8px;
-  right: 8px;
-  left: 8px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   padding: 8px;
   border-left: solid 4px #4188be;
+  margin-bottom: 16px;
 }
 
 body #app #SelectedContact #content .message-to .message-content > .message-reply p {
