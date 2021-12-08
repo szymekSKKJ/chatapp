@@ -24,11 +24,6 @@ const prepareSending = (uidd, idd) => {
     id = idd;
 }
 
-writeMessage.addEventListener('focus', () => {
-    setTimeout(() => {
-        content.scrollTop = content.scrollHeight;
-    }, 500);
-});
 const isEmpty = (writeMessage) => {
     return !writeMessage.trim().length;
 };

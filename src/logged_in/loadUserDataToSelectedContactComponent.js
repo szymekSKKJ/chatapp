@@ -35,18 +35,20 @@ const loadUserTheme = async (uid, id) => {
     const themesElements = SelectedContactOptionElementsComponent.querySelectorAll('#change-theme #themes .theme');
     const docSnap = await getDoc(doc(db, 'users', uid, 'friends', id));
     const { themeNumber } = docSnap.data();
-    const { background: background_color, message: message_color, textarea: textarea_color, messageFromFont: messageFromColor } = SelectedUserThemes[themeNumber === undefined ? 0 : themeNumber];
-    document.body.style.backgroundColor = background_color;
-    writeMessage.style.backgroundColor = textarea_color;
-    backButton.style.backgroundColor = message_color;
-    messageReplyelement.style.backgroundColor = background_color;
-    writeMessageElement.style.backgroundColor = background_color;
-    messages.forEach((message) => {
-        const messageContent = message.querySelector('.message-content');
-        messageContent.style.backgroundColor = message_color;
-        messageContent.style.color = messageFromColor;
-    });
-    themesElements[themeNumber].innerHTML = '<i class="fas fa-check" aria-hidden="true" style="opacity: 1;"></i>';
+    if (themeNumber) {
+        const { background: background_color, message: message_color, textarea: textarea_color, messageFromFont: messageFromColor } = SelectedUserThemes[themeNumber === undefined ? 0 : themeNumber];
+        document.body.style.backgroundColor = background_color;
+        writeMessage.style.backgroundColor = textarea_color;
+        backButton.style.backgroundColor = message_color;
+        messageReplyelement.style.backgroundColor = background_color;
+        writeMessageElement.style.backgroundColor = background_color;
+        messages.forEach((message) => {
+            const messageContent = message.querySelector('.message-content');
+            messageContent.style.backgroundColor = message_color;
+            messageContent.style.color = messageFromColor;
+        });
+        themesElements[themeNumber].innerHTML = '<i class="fas fa-check" aria-hidden="true" style="opacity: 1;"></i>';
+    }
 }
 
 
@@ -156,17 +158,19 @@ const ifMessageContentContainsOnlyEmoji = (messageContentElement) => {
 
 const ifLastMessageContainsOnlyOneEmoji = () => {
     const allMessages = [...SelectedContactComponent.querySelector('#content').childNodes];
-    const lastMessage = allMessages[allMessages.length - 1];
-    if (lastMessage.querySelector('.message-content p')) {
-        let lastMessageContent
-        if (lastMessage.querySelector('.message-content .message-reply')) {
-            lastMessageContent = lastMessage.querySelectorAll('.message-content p')[1];
-        }
-        else {
-            lastMessageContent = lastMessage.querySelector('.message-content p');
-        }
-        if (lastMessageContent.childNodes.length === 1 && lastMessageContent.childNodes[0].tagName === 'IMG') {
-            singleEmojiAnimation(lastMessageContent.childNodes[0]);
+    if (allMessages.length > 0) {
+        const lastMessage = allMessages[allMessages.length - 1];
+        if (lastMessage.querySelector('.message-content p')) {
+            let lastMessageContent
+            if (lastMessage.querySelector('.message-content .message-reply')) {
+                lastMessageContent = lastMessage.querySelectorAll('.message-content p')[1];
+            }
+            else {
+                lastMessageContent = lastMessage.querySelector('.message-content p');
+            }
+            if (lastMessageContent.childNodes.length === 1 && lastMessageContent.childNodes[0].tagName === 'IMG') {
+                singleEmojiAnimation(lastMessageContent.childNodes[0]);
+            }
         }
     }
 }
@@ -213,13 +217,12 @@ const addFriendProfileImageToMessage = (message, fromOrTo, imageUrl, index, arra
 }
 
 
-const replyMessage = (messageElement, fromOrTo, messageContentElement, messageContent, id, allMessagesSortedByDate) => {
+const replyMessage = (messageElement, fromOrTo, messageContentElement, messageContent, idOfDocument, allMessagesSortedByDate) => {
     if (fromOrTo === 'message-from') {
         const messageReplyElement = SelectedContactComponent.querySelector('#message-reply');
         const messageReplyToNameElement = SelectedContactComponent.querySelector('#message-reply #reply-to-name p');
         const messageReplyContent = SelectedContactComponent.querySelector('#message-reply #message-reply-content p');
         const friendName = SelectedContactComponent.querySelector('#upside #wrapper #wrapper1 #contact-name p').innerHTML;
-        const currentMessageId = id;
         let isPressing = false;
         let mouseDownXposition;
         let isSelectedMessage = false;
@@ -286,7 +289,7 @@ const replyMessage = (messageElement, fromOrTo, messageContentElement, messageCo
                     easing: 'ease-in-out',
                   });
                 if (event.clientX - mouseDownXposition > 75 && isSelectedMessage === false) {
-                    getIdOfReplayingDocument(id);
+                    getIdOfReplayingDocument(idOfDocument);
                     isSelectedMessage = true;
                     messageReplyElement.style.display = 'flex';
                     setTimeout(() => {
@@ -322,7 +325,7 @@ const replyMessage = (messageElement, fromOrTo, messageContentElement, messageCo
                     easing: 'ease-in-out',
                   });
                 if (event.touches[0].pageX - mouseDownXposition > 75 && isSelectedMessage === false) {
-                    getIdOfReplayingDocument(id);
+                    getIdOfReplayingDocument(idOfDocument);
                     isSelectedMessage = true;
                     messageReplyElement.style.display = 'flex';
                     setTimeout(() => {
@@ -344,48 +347,48 @@ const replyMessage = (messageElement, fromOrTo, messageContentElement, messageCo
     }
 }
 
-const ifIsReplyMessage = (idOfReplayingDocument, allMessagesSortedByDate, messageContentElement, messageContent) => {
+const ifIsReplyMessage = async (idOfReplayingDocument, allMessagesSortedByDate, messageContentElement, messageContent, idOfDocument, uid, id, fromOrTo) => {
     if (idOfReplayingDocument) {
-        allMessagesSortedByDate.forEach((message) => {
-            const { id, messageContent : replyingMessageContent } = message;
-            if (id === idOfReplayingDocument) {
-                messageContentElement.innerHTML = `
-                    <div class="message-reply">
-                        <p>${replyingMessageContent}</p>
-                    </div>
-                    <p>${messageContent}</p>
-                `;
-                const messageReplyElement = messageContentElement.querySelector('.message-reply');
-                messageReplyElement.addEventListener('click', () => {
-                    const messageReplyElementContent = messageReplyElement.querySelector('p');
-                    const messagesTo = SelectedContactComponent.querySelectorAll('.message-to');
-                    
-                    messagesTo.forEach((messageTo) => {
-                        const messageToContent = messageTo.querySelector('.message-content > p');
-                        
-                        if (messageReplyElementContent.innerHTML == messageToContent.innerHTML) {
-                            messageTo.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+        const docSnap = fromOrTo === 'message-from' ? await getDoc(doc(db, 'users', uid, 'friends', id, 'deliveredMessages', idOfReplayingDocument)) : await getDoc(doc(db, 'users', id, 'friends', uid, 'deliveredMessages', idOfReplayingDocument));
+        const { messageContent : replyingMessageContent } = docSnap.data();
+
+        messageContentElement.innerHTML = `
+        <div class="message-reply">
+            <p>${replyingMessageContent}</p>
+        </div>
+        <p>${messageContent}</p>
+        `;
+        content.scrollTop = content.scrollHeight;
+        const messageReplyElement = messageContentElement.querySelector('.message-reply');
+        messageReplyElement.addEventListener('click', () => {
+            const messageReplyElementContent = messageReplyElement.querySelector('p');
+            const messagesTo = SelectedContactComponent.querySelectorAll('.message-to');
+            
+            messagesTo.forEach((messageTo) => {
+                const messageToContent = messageTo.querySelector('.message-content > p');
+                
+                if (messageReplyElementContent.innerHTML === messageToContent.innerHTML) {
+                    messageTo.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+                    setTimeout(() => {
+                        messageTo.style.backgroundColor = '#4188be';
+                        messageToContent.parentElement.style.transform = 'scale(1.1)';
+                        setTimeout(() => {
+                            messageTo.style.transition = 'all 500ms';
+                            messageTo.style.backgroundColor = 'transparent';
+                            messageToContent.parentElement.style.transform = 'scale(1)';
                             setTimeout(() => {
-                                messageTo.style.backgroundColor = '#4188be';
-                                messageToContent.parentElement.style.transform = 'scale(1.1)';
-                                setTimeout(() => {
-                                    messageTo.style.transition = 'all 500ms';
-                                    messageTo.style.backgroundColor = 'transparent';
-                                    messageToContent.parentElement.style.transform = 'scale(1)';
-                                    setTimeout(() => {
-                                        messageTo.style.transition = 'all 250ms';
-                                    }, 500);
-                                }, 250);
+                                messageTo.style.transition = 'all 250ms';
                             }, 500);
-                        }
-                    });
-                });
-            }
+                        }, 250);
+                    }, 100);
+                }
+            });
         });
+        
     }
 }
 
-const createMessage = (fromOrTo, messageContent, firebaseUnixTimestamp, imageUrl, index, array, id, allMessagesSortedByDate, idOfReplayingDocument) => {
+const createMessage = (fromOrTo, messageContent, firebaseUnixTimestamp, imageUrl, index, array, idOfDocument, allMessagesSortedByDate, idOfReplayingDocument, uid, id) => {
     const message = document.createElement('div');
     message.classList.add(`${fromOrTo}`);
     content.appendChild(message);
@@ -395,8 +398,9 @@ const createMessage = (fromOrTo, messageContent, firebaseUnixTimestamp, imageUrl
         <p>${messageContent}</p>
     `;
 
-    ifIsReplyMessage(idOfReplayingDocument, allMessagesSortedByDate, messageContentElement, messageContent);
-    replyMessage(message, fromOrTo, messageContentElement, messageContent, id, allMessagesSortedByDate);
+    
+    ifIsReplyMessage(idOfReplayingDocument, allMessagesSortedByDate, messageContentElement, messageContent, idOfDocument, uid, id, fromOrTo);
+    replyMessage(message, fromOrTo, messageContentElement, messageContent, idOfDocument, allMessagesSortedByDate);
 
     addFriendProfileImageToMessage(message, fromOrTo, imageUrl, index, array);
 
@@ -413,6 +417,7 @@ const createMessage = (fromOrTo, messageContent, firebaseUnixTimestamp, imageUrl
     });
 
     message.appendChild(messageContentElement);
+    
 
     const dateAndTime = document.createElement('div');
     dateAndTime.classList.add('date-and-time');
@@ -495,7 +500,7 @@ const listenNewMessages = (lastMessageElement, uid, id, imageUrl, index, array, 
             if (isLoaded) {
                 const idOfDocument = doc.id;
                 lastMessageElement.innerHTML = `<p>${messageContent}</p>`;
-                createMessage('message-to', messageContent, firebaseUnixTimestamp, imageUrl, index, array, idOfDocument, allMessagesSortedByDate, idOfReplayingDocument);
+                createMessage('message-to', messageContent, firebaseUnixTimestamp, imageUrl, index, array, idOfDocument, allMessagesSortedByDate, idOfReplayingDocument, uid, id);
                 ifLastMessageContainsOnlyOneEmoji();
             }
         });
@@ -507,7 +512,7 @@ const listenNewMessages = (lastMessageElement, uid, id, imageUrl, index, array, 
             if (isLoaded) {
                 const idOfDocument = doc.id;
                 lastMessageElement.innerHTML = `<p>${messageContent}</p>`;
-                createMessage('message-from', messageContent, firebaseUnixTimestamp, imageUrl, index, array, idOfDocument, allMessagesSortedByDate, idOfReplayingDocument);
+                createMessage('message-from', messageContent, firebaseUnixTimestamp, imageUrl, index, array, idOfDocument, allMessagesSortedByDate, idOfReplayingDocument, uid, id);
                 setTimeout(() => {
                     clearUnreadMessages(uid, id);
                     const audio = new Audio('/assets/recive_message_pop.mp3');
@@ -554,12 +559,13 @@ const loadAllMessages = async(allMessagesSortedByDate, lastMessageElement, uid, 
     });
     allMessagesSortedByDate.forEach((message, index, array) => {
         const { firebaseUnixTimestamp, messageContent, fromOrTo, id : idOfDocument, idOfReplayingDocument } = message;
-        createMessage(fromOrTo, messageContent, firebaseUnixTimestamp, imageUrl, index, array, idOfDocument, allMessagesSortedByDate, idOfReplayingDocument);
+        createMessage(fromOrTo, messageContent, firebaseUnixTimestamp, imageUrl, index, array, idOfDocument, allMessagesSortedByDate, idOfReplayingDocument, uid, id);
         if (index === array.length - 1) {
             addHrIfMessageIsOlderThenToday(allMessagesSortedByDate);
             listenNewMessages(lastMessageElement, uid, id, imageUrl, index, array, idOfDocument, allMessagesSortedByDate, idOfReplayingDocument);
         }
     });
+    
     listenIfFriendReadMessages(uid, id, allMessagesSortedByDate, imageUrl);
     ifLastMessageContainsOnlyOneEmoji();
     loadUserTheme(uid, id);
