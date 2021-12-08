@@ -355,6 +355,31 @@ const ifIsReplyMessage = (idOfReplayingDocument, allMessagesSortedByDate, messag
                     </div>
                     <p>${messageContent}</p>
                 `;
+                const messageReplyElement = messageContentElement.querySelector('.message-reply');
+                messageReplyElement.addEventListener('click', () => {
+                    const messageReplyElementContent = messageReplyElement.querySelector('p');
+                    const messagesTo = SelectedContactComponent.querySelectorAll('.message-to');
+                    
+                    messagesTo.forEach((messageTo) => {
+                        const messageToContent = messageTo.querySelector('.message-content > p');
+                        
+                        if (messageReplyElementContent.innerHTML == messageToContent.innerHTML) {
+                            messageTo.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+                            setTimeout(() => {
+                                messageTo.style.backgroundColor = '#4188be';
+                                messageToContent.parentElement.style.transform = 'scale(1.1)';
+                                setTimeout(() => {
+                                    messageTo.style.transition = 'all 500ms';
+                                    messageTo.style.backgroundColor = 'transparent';
+                                    messageToContent.parentElement.style.transform = 'scale(1)';
+                                    setTimeout(() => {
+                                        messageTo.style.transition = 'all 250ms';
+                                    }, 500);
+                                }, 250);
+                            }, 500);
+                        }
+                    });
+                });
             }
         });
     }

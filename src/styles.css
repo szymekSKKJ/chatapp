@@ -1161,6 +1161,8 @@ body #app #SelectedContact #content .message-to {
   padding-right: 26px;
   padding-left: 8px;
   margin-bottom: 8px;
+  -webkit-transition: all 250ms;
+  transition: all 250ms;
 }
 
 body #app #SelectedContact #content .message-to .message-content {
