@@ -289,6 +289,7 @@ const replyMessage = (messageElement, fromOrTo, messageContentElement, messageCo
                     easing: 'ease-in-out',
                   });
                 if (event.clientX - mouseDownXposition > 75 && isSelectedMessage === false) {
+                    navigator.vibrate(10)
                     getIdOfReplayingDocument(idOfDocument);
                     isSelectedMessage = true;
                     messageReplyElement.style.display = 'flex';
@@ -325,6 +326,7 @@ const replyMessage = (messageElement, fromOrTo, messageContentElement, messageCo
                     easing: 'ease-in-out',
                   });
                 if (event.touches[0].pageX - mouseDownXposition > 75 && isSelectedMessage === false) {
+                    navigator.vibrate(10)
                     getIdOfReplayingDocument(idOfDocument);
                     isSelectedMessage = true;
                     messageReplyElement.style.display = 'flex';
