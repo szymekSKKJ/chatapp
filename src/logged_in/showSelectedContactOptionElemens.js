@@ -59,6 +59,11 @@ closeButton.addEventListener('click', () => {
     });
 });
 
+const setupCorrectTopOfSelectedContactOptionElementsComponent = () => {
+    const { top, height } = selectedContactOptions[0].getBoundingClientRect();
+    SelectedContactOptionElementsComponent.style.top = `${top + height}px`;
+}
+
 const showOptionsOfThisOption = (optionCurrent, indexCurrent) => {
     selectedContactOptions.forEach((option, index) => {
         if (indexCurrent !== index) {
@@ -71,6 +76,7 @@ const showOptionsOfThisOption = (optionCurrent, indexCurrent) => {
             SelectedContactOptionElementsComponent.style.display = 'block';
             SelectedContactOptionElements[indexCurrent].style.display = 'block' ;
             setTimeout(() => {
+                setupCorrectTopOfSelectedContactOptionElementsComponent();
                 SelectedContactOptionElementsComponent.style.transform = 'translateX(0px)';
             }, 125);
         }

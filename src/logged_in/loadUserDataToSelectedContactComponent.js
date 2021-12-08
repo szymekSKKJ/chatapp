@@ -131,7 +131,13 @@ const singleEmojiAnimation = (emoji) => {
 }
 
 const ifMessageContentContainsOnlyEmoji = (messageContentElement) => {
-    const messageContent = messageContentElement.querySelector('p');
+    let messageContent;
+    if (messageContentElement.querySelector('.message-reply')) {
+        messageContent = messageContentElement.querySelectorAll('p')[1];
+    }
+    else {
+        messageContent = messageContentElement.querySelector('p');
+    }
     setTimeout(() => {
         const isEveryImage = [...messageContent.childNodes].every((node) => node.tagName === 'IMG');
         if (isEveryImage) {
@@ -152,7 +158,13 @@ const ifLastMessageContainsOnlyOneEmoji = () => {
     const allMessages = [...SelectedContactComponent.querySelector('#content').childNodes];
     const lastMessage = allMessages[allMessages.length - 1];
     if (lastMessage.querySelector('.message-content p')) {
-        const lastMessageContent = lastMessage.querySelector('.message-content p');
+        let lastMessageContent
+        if (lastMessage.querySelector('.message-content .message-reply')) {
+            lastMessageContent = lastMessage.querySelectorAll('.message-content p')[1];
+        }
+        else {
+            lastMessageContent = lastMessage.querySelector('.message-content p');
+        }
         if (lastMessageContent.childNodes.length === 1 && lastMessageContent.childNodes[0].tagName === 'IMG') {
             singleEmojiAnimation(lastMessageContent.childNodes[0]);
         }
@@ -343,8 +355,6 @@ const ifIsReplyMessage = (idOfReplayingDocument, allMessagesSortedByDate, messag
                     </div>
                     <p>${messageContent}</p>
                 `;
-                const messageReplyElementHeight = messageContentElement.querySelector('.message-reply').getBoundingClientRect().height;
-                //messageContentElement.style.paddingTop = `${messageReplyElementHeight + (5 * 8) + 10}px`;
             }
         });
     }
