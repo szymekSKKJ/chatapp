@@ -73,10 +73,10 @@ const showOptionsOfThisOption = (optionCurrent, indexCurrent) => {
             optionCurrent.classList.add('current');
             optionCurrent.style.transform = `translateY(${(indexCurrent) * -50}px)`;
             animatePickableOption(optionCurrent, indexCurrent);
+            setupCorrectTopOfSelectedContactOptionElementsComponent();
             SelectedContactOptionElementsComponent.style.display = 'block';
             SelectedContactOptionElements[indexCurrent].style.display = 'block' ;
             setTimeout(() => {
-                setupCorrectTopOfSelectedContactOptionElementsComponent();
                 SelectedContactOptionElementsComponent.style.transform = 'translateX(0px)';
             }, 125);
         }
