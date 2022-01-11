@@ -17,6 +17,10 @@ const hasWhiteSpace = (username) => {
     return /\s/g.test(username);
 }
 
+backButton.addEventListener('click', () => {
+    findUsername.value = '';
+});
+
 submitButton.addEventListener('click', () => {
     const auth = getAuth();
     let counter = 0;

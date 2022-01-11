@@ -19,7 +19,7 @@ const getIdOfReplayingDocument = (idOfDocument) => {
     idOfReplayingDocument = idOfDocument;
 }
 
-const prepareSending = (uidd, idd) => {
+const prepareSending = (uidd, idd, lastMessagee) => {
     uid = uidd;
     id = idd;
 }
